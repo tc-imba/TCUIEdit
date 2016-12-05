@@ -5,7 +5,7 @@
 #ifndef TCUIEDIT_UIBASE_H
 #define TCUIEDIT_UIBASE_H
 
-#include "Core.h"
+#include "../UICore.h"
 
 namespace TCUIEdit
 {
@@ -22,17 +22,18 @@ namespace TCUIEdit
         static const char *TYPE_NAME[TYPE_NUM];
     protected:
         TYPE type = UNKNOWN;
-        std::string name;
-
+        QString name;
+        UIProject *_proj;
     public:
+        UIBase(UIProject *project);
+
         const char *getTypeName() const;
 
-        std::string getName() const;
-    };
+        const QString &getName() const;
 
-    class UIBase_Category : public UIBase
-    {
+        void setName(QString &name);
 
+        void setName(const QString &name);
     };
 
 };

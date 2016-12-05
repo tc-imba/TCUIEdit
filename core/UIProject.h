@@ -5,15 +5,20 @@
 #ifndef TCUIEDIT_UIPROJECT_H
 #define TCUIEDIT_UIPROJECT_H
 
-#include "Core.h"
+#include "UICore.h"
 #include "UIMap.h"
 
 namespace TCUIEdit
 {
     class UIProject
     {
+        // friend class UIBase;
+
     protected:
-        UIMap name_map;
+        UIMap uiMap;
+
+    public:
+        UIMap& getUIMap();
     };
 
 

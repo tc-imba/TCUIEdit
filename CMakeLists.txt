@@ -19,8 +19,10 @@ find_package(Qt5Widgets REQUIRED)
 
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
 
-set(SOURCE_FILES main.cpp mainwindow.cpp core/UIProject.cpp core/UIMap.cpp core/UIPackage.cpp core/UIException.cpp core/UIBase.cpp)
+add_subdirectory(core bin)
+
+set(SOURCE_FILES main.cpp mainwindow.cpp)
 add_executable(TCUIEdit ${SOURCE_FILES})
 
 # qt5_use_modules(TCUIEdit Core Widgets Gui)
-target_link_libraries(TCUIEdit Qt5::Widgets)
+target_link_libraries(TCUIEdit Qt5::Widgets core)

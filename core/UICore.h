@@ -5,11 +5,13 @@
 #ifndef TCUIEDIT_CORE_H
 #define TCUIEDIT_CORE_H
 
-#include <vector>
-#include <unordered_map>
-#include <list>
-#include <string>
-#include <exception>
+#include <QVector>
+#include <QMultiHash>
+#include <QLinkedList>
+#include <QList>
+#include <QString>
+#include <QException>
+#include <QtAlgorithms>
 
 namespace TCUIEdit
 {
@@ -28,6 +30,10 @@ namespace TCUIEdit
 
 
     class UIException;
+
+    class UIExceptionUndefined;
+
+    class UIExceptionRedefined;
 
     class UIExceptionNotFound;
 
