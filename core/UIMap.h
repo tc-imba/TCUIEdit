@@ -5,6 +5,8 @@
 #ifndef TCUIEDIT_UIMAP_H
 #define TCUIEDIT_UIMAP_H
 
+#include <QMultiHash>
+#include <QList>
 #include "UICore.h"
 #include "base/UIBase.h"
 #include "UIException.h"

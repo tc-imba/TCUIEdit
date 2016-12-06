@@ -20,7 +20,16 @@ namespace TCUIEdit
 
     const char *UIBase::getTypeName() const
     {
-        return this->TYPE_NAME[this->type];
+        return this->getTypeName(this->type);
+    }
+
+    const char *UIBase::getTypeName(TYPE type)
+    {
+        if (type != UNKNOWN)
+        {
+            return UIBase::TYPE_NAME[type];
+        }
+        return "UNKNOWN_TYPE";
     }
 
     const QString &UIBase::getName() const

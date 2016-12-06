@@ -29,6 +29,8 @@ namespace TCUIEdit
 
         const char *getTypeName() const;
 
+        static const char *getTypeName(TYPE type);
+
         const QString &getName() const;
 
         void setName(QString &name);

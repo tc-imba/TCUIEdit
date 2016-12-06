@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 //***************************************************************************
 [TriggerCategories]
 // Defines categories for organizing trigger functions

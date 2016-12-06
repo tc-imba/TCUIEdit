@@ -6,6 +6,7 @@
 #define TCUIEDIT_UIEXCEPTION_H
 
 #include "UICore.h"
+#include <QException>
 
 namespace TCUIEdit
 {

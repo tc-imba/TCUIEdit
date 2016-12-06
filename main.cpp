@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    TCUIEdit::UIProject project;
+    /*TCUIEdit::UIProject project;
 
     auto ui = new TCUIEdit::UIBase(&project);
 
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     else
     {
         std::cout << "0";
-    }
+    }*/
 
 
     QApplication a(argc, argv);

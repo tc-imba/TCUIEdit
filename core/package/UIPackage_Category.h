@@ -10,14 +10,16 @@
 
 namespace TCUIEdit
 {
-    class UIPackage_Category : UIPackage_Base
+    class UIPackage_Category : public UIPackage_Base
     {
     protected:
-        std::vector<UIBase_Category *> data;
+        QVector<UIBase_Category *> data;
     public:
         UIBase_Category *TCUIEDIT_UIPACKAGE_OPERATOR_INDEX
 
-        void readLine(std::string &str);
+        void readLine(QString &str);
+
+        //void readComment(QString &str, COMMENT_TYPE cType);
     };
 
 };

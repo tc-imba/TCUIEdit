@@ -6,6 +6,9 @@
 
 namespace TCUIEdit
 {
-
+    void UIPackage_Base::readComment(QString &str)
+    {
+        //
+    }
 
 };

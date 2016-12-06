@@ -5,13 +5,7 @@
 #ifndef TCUIEDIT_CORE_H
 #define TCUIEDIT_CORE_H
 
-#include <QVector>
-#include <QMultiHash>
-#include <QLinkedList>
-#include <QList>
 #include <QString>
-#include <QException>
-#include <QtAlgorithms>
 
 namespace TCUIEdit
 {
