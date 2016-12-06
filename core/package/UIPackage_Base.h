@@ -6,7 +6,9 @@
 #define TCUIEDIT_UIPACKAGE_BASE_H
 
 #include <QVector>
+#include <QPair>
 #include "../UICore.h"
+#include "../UIException.h"
 
 #define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX operator[](unsigned int index){return this->data.size()>index?this->data[index]:NULL;}
 
@@ -14,7 +16,15 @@ namespace TCUIEdit
 {
     class UIPackage_Base
     {
+    protected:
+
+        QPair<QString, QStringList> preprocessLine(QString &str);
+
+        UIPackage *_pkg;
+
     public:
+
+        UIPackage_Base(UIPackage *package);
 
         virtual void readLine(QString &str) = 0;
 

@@ -20,7 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString str = "ui/ydwe/ui/TriggerData.txt";
 
-    UIPackage uip(str);
+    UIProject proj;
+
+    UIPackage uip(&proj, str);
 
     qDebug() << "1";
     //msgBox.setText(uip.readLine());

@@ -6,6 +6,7 @@
 #define TCUIEDIT_UIBASE_H
 
 #include "../UICore.h"
+#include "../UIException.h"
 
 namespace TCUIEdit
 {
@@ -22,10 +23,11 @@ namespace TCUIEdit
         static const char *TYPE_NAME[TYPE_NUM];
     protected:
         TYPE type = UNKNOWN;
-        QString name;
-        UIProject *_proj;
+        QString name, display;
+        //UIProject *_proj;
+        UIPackage *_pkg;
     public:
-        UIBase(UIProject *project);
+        UIBase(UIPackage *package);
 
         const char *getTypeName() const;
 

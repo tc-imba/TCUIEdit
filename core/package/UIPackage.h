@@ -22,6 +22,8 @@ namespace TCUIEdit
     class UIPackage
     {
     protected:
+        UIProject *_proj;
+
         void initBase();
 
         QByteArray fileData;
@@ -44,8 +46,10 @@ namespace TCUIEdit
 
         UIPackage();
 
-        UIPackage(const QString &filename);
+        UIPackage(UIProject *project, const QString &filename);
 
+        UIProject *getProject() const
+        { return this->_proj; }
 
         int readLine();
 

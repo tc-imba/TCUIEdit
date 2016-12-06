@@ -4,6 +4,9 @@
 
 #include "UIBase.h"
 #include "UIProject.h"
+#include "package/UIPackage.h"
+
+#define _PROJ this->_pkg->getProject()
 
 namespace TCUIEdit
 {
@@ -13,9 +16,9 @@ namespace TCUIEdit
              "DefaultTriggerCategories", "DefaultTriggers"
             };
 
-    UIBase::UIBase(UIProject *project)
+    UIBase::UIBase(UIPackage *package)
     {
-        this->_proj = project;
+        this->_pkg = package;
     }
 
     const char *UIBase::getTypeName() const
@@ -37,15 +40,17 @@ namespace TCUIEdit
         return this->name;
     }
 
+
+
     void UIBase::setName(QString &name)
     {
         try
         {
-            this->_proj->getUIMap().removeUI(this);
+            _PROJ->getUIMap().removeUI(this);
             this->name = name;
-            this->_proj->getUIMap().addUI(this);
+            _PROJ->getUIMap().addUI(this);
         }
-        catch (QException &e)
+        catch (UIException &e)
         {
             throw e;
         }

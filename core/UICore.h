@@ -6,6 +6,7 @@
 #define TCUIEDIT_CORE_H
 
 #include <QString>
+#include <QStringList>
 
 namespace TCUIEdit
 {
@@ -31,7 +32,7 @@ namespace TCUIEdit
 
     class UIExceptionNotFound;
 
-
+    class UIExceptionFormatError;
 
 };
 #endif //TCUIEDIT_CORE_H

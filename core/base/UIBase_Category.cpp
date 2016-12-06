@@ -3,13 +3,43 @@
 //
 
 #include "UIBase_Category.h"
+#include <QMessageBox>
 
 namespace TCUIEdit
 {
 
-    UIBase_Category::UIBase_Category(UIProject *project) : UIBase(project)
+    UIBase_Category::UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
     {
+        try
+        {
+            this->setName(pair.first);
+        }
+        catch (UIException &e)
+        {
+            throw e;
+        }
 
+        auto it = pair.second.constBegin();
+
+        // Value 0: Display text
+        if (it != pair.second.constEnd())
+        {
+            this->display = *it++;
+        }
+        // Value 1: Icon image file
+        if (it != pair.second.constEnd())
+        {
+            this->icon = *it++;
+        }
+        // Value 2: Optional flag (defaults to 0) indicating to disable display of category name
+        if (it != pair.second.constEnd())
+        {
+            this->displayFlag = *it++;
+        }
+
+        QMessageBox msgBox;
+        msgBox.setText(this->name);
+        msgBox.exec();
     }
 
 };

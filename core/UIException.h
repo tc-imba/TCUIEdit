@@ -26,6 +26,10 @@ namespace TCUIEdit
     {
     };
 
+    class UIExceptionFormatError : UIException
+    {
+    };
+
 
 };
 

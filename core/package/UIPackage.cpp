@@ -9,7 +9,7 @@ namespace TCUIEdit
 {
     void UIPackage::initBase()
     {
-        this->base[UIBase::TRIGGER_CATEGORY] = new UIPackage_Category();
+        this->base[UIBase::TRIGGER_CATEGORY] = new UIPackage_Category(this);
 
     }
 
@@ -19,9 +19,10 @@ namespace TCUIEdit
     }
 
 
-    UIPackage::UIPackage(const QString &filename)
+    UIPackage::UIPackage(UIProject *project, const QString &filename)
     {
         this->initBase();
+        this->_proj = project;
         QFile qFile(filename);
         if (qFile.open(QFile::ReadOnly))
         {

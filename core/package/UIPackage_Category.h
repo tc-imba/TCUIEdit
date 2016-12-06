@@ -15,6 +15,8 @@ namespace TCUIEdit
     protected:
         QVector<UIBase_Category *> data;
     public:
+        UIPackage_Category(UIPackage* package);
+
         UIBase_Category *TCUIEDIT_UIPACKAGE_OPERATOR_INDEX
 
         void readLine(QString &str);
