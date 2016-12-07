@@ -10,7 +10,10 @@
 #include "../UICore.h"
 #include "../UIException.h"
 
-#define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX operator[](unsigned int index){return this->data.size()>index?this->data[index]:NULL;}
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME
+#define TCUIEDIT_UIPACKAGE_BASE_NAME UIBase
+#define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX TCUIEDIT_UIPACKAGE_BASE_NAME *operator[](unsigned int index){return this->data.size()>index?this->data[index]:NULL;}
+#define TCUIEDIT_UIPACKAGE_GET_DATA QVector<TCUIEDIT_UIPACKAGE_BASE_NAME *> getData(){return this->data;}
 
 namespace TCUIEdit
 {

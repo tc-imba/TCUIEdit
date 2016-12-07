@@ -10,7 +10,7 @@ namespace TCUIEdit
 {
     UIPackage_Category::UIPackage_Category(UIPackage *package) : UIPackage_Base(package)
     {
-        
+
     }
 
 
@@ -21,9 +21,10 @@ namespace TCUIEdit
         {
             auto pair = this->preprocessLine(str);
             auto item = new UIBase_Category(this->_pkg, pair);
+            this->data.push_back(item);
         }
 
-        catch (QException &e)
+        catch (UIException &e)
         {
             throw e;
         }

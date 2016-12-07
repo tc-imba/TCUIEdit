@@ -37,12 +37,10 @@ namespace TCUIEdit
 
         UIPackage_Base *base[UIBase::TYPE_NUM];
 
-        UIPackage_Base *getBaseCurrent();
 
         void processLine(QString &line);
 
     public:
-
 
         UIPackage();
 
@@ -53,6 +51,9 @@ namespace TCUIEdit
 
         int readLine();
 
+        UIPackage_Base *getBase(UIBase::TYPE type) const;
+
+        UIPackage_Base *getBaseCurrent() const;
 
         const bool isBaseChanged() const
         { return this->baseChangedFlag; }

@@ -6,21 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>477</height>
+    <width>1007</width>
+    <height>585</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TCUIEdit v0.0.1rc</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>110</y>
+      <x>520</x>
+      <y>50</y>
       <width>311</width>
       <height>191</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="treeView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>331</width>
+      <height>461</height>
      </rect>
     </property>
    </widget>
@@ -30,10 +40,17 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>706</width>
+     <width>1007</width>
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuTCUIEdit_v0_0_1_rc">
+    <property name="title">
+     <string>Files</string>
+    </property>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menuTCUIEdit_v0_0_1_rc"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -44,6 +61,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAaa">
+   <property name="text">
+    <string>aaa</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

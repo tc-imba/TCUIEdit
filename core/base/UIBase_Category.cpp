@@ -37,9 +37,17 @@ namespace TCUIEdit
             this->displayFlag = *it++;
         }
 
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText(this->name);
-        msgBox.exec();
+        msgBox.exec();*/
     }
 
+    const QString UIBase_Category::getDisplayName() const
+    {
+        if (this->displayFlag == "1")
+        {
+            return this->name;
+        }
+        return this->name + " - " + this->display;
+    }
 };

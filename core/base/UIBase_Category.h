@@ -22,10 +22,12 @@ namespace TCUIEdit
 
     class UIBase_Category : public UIBase
     {
+
     protected:
         QString icon, displayFlag;
     public:
         UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair);
+        const QString getDisplayName() const;
     };
 };
 

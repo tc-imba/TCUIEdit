@@ -8,16 +8,24 @@
 #include "../UICore.h"
 #include "UIPackage_Base.h"
 
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME
+#define TCUIEDIT_UIPACKAGE_BASE_NAME UIBase_Category
+
 namespace TCUIEdit
 {
     class UIPackage_Category : public UIPackage_Base
     {
+        friend class MainWindow;
+
     protected:
         QVector<UIBase_Category *> data;
     public:
-        UIPackage_Category(UIPackage* package);
+        UIPackage_Category(UIPackage *package);
 
-        UIBase_Category *TCUIEDIT_UIPACKAGE_OPERATOR_INDEX
+        TCUIEDIT_UIPACKAGE_OPERATOR_INDEX
+
+        TCUIEDIT_UIPACKAGE_GET_DATA
+
 
         void readLine(QString &str);
 

@@ -35,6 +35,8 @@ namespace TCUIEdit
 
         const QString &getName() const;
 
+        virtual const QString getDisplayName() const = 0;
+
         void setName(QString &name);
 
         void setName(const QString &name);

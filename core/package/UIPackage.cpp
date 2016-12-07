@@ -39,10 +39,15 @@ namespace TCUIEdit
         }
     }
 
-    UIPackage_Base *UIPackage::getBaseCurrent()
+    UIPackage_Base *UIPackage::getBase(UIBase::TYPE type) const
     {
-        if (this->baseTypeCurrent == UIBase::UNKNOWN)return NULL;
-        return this->base[this->baseTypeCurrent];
+        if (type == UIBase::UNKNOWN)return NULL;
+        return this->base[type];
+    }
+
+    UIPackage_Base *UIPackage::getBaseCurrent() const
+    {
+        return this->getBase(this->baseTypeCurrent);
     }
 
     int UIPackage::readLine()
@@ -105,7 +110,10 @@ namespace TCUIEdit
             return;
         }
 
-        this->getBaseCurrent()->readLine(line);
+        if (getBaseTypeCurrent() == UIBase::TRIGGER_CATEGORY)
+        {
+            this->getBaseCurrent()->readLine(line);
+        }
     }
 
 };
