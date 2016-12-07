@@ -10,7 +10,8 @@ find_package(Qt5Widgets REQUIRED)
 
 set(SOURCE_FILES_BASE
         base/UIBase.cpp
-        base/UIBase_Category.cpp)
+        base/UIBase_Category.cpp
+        base/UIBase_Type.cpp base/UIBase_Type.h)
 
 set(SOURCE_FILES_PACKAGE
         package/UIPackage.cpp

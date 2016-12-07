@@ -21,7 +21,7 @@ namespace TCUIEdit
         auto pair = this->preprocessLine(str);
         auto item = new UIBase_Category(this->_pkg, pair);
         this->data.push_back(item);
-        
+
     }
 
     /*void UIPackage_Category::readComment(QString &str, COMMENT_TYPE cType)

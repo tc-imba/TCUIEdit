@@ -3,14 +3,12 @@
 //
 
 #include "UIBase_Category.h"
-#include <QMessageBox>
 
 namespace TCUIEdit
 {
 
     UIBase_Category::UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
     {
-
         this->setName(pair.first);
 
         auto it = pair.second.constBegin();
@@ -30,10 +28,6 @@ namespace TCUIEdit
         {
             this->displayFlag = *it++;
         }
-
-        /*QMessageBox msgBox;
-        msgBox.setText(this->name);
-        msgBox.exec();*/
     }
 
     const QString UIBase_Category::getDisplayName() const

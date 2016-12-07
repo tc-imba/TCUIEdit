@@ -18,7 +18,7 @@ namespace TCUIEdit
     // Value 0: Display text
     // Value 1: Icon image file
     // Value 2: Optional flag (defaults to 0) indicating to disable display of category name
-    //
+
 
     class UIBase_Category : public UIBase
     {
