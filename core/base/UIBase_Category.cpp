@@ -10,14 +10,8 @@ namespace TCUIEdit
 
     UIBase_Category::UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
     {
-        try
-        {
-            this->setName(pair.first);
-        }
-        catch (UIException &e)
-        {
-            throw e;
-        }
+
+        this->setName(pair.first);
 
         auto it = pair.second.constBegin();
 

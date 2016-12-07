@@ -17,17 +17,11 @@ namespace TCUIEdit
     void UIPackage_Category::readLine(QString &str)
     {
         //QRegExp rx("$");
-        try
-        {
-            auto pair = this->preprocessLine(str);
-            auto item = new UIBase_Category(this->_pkg, pair);
-            this->data.push_back(item);
-        }
 
-        catch (UIException &e)
-        {
-            throw e;
-        }
+        auto pair = this->preprocessLine(str);
+        auto item = new UIBase_Category(this->_pkg, pair);
+        this->data.push_back(item);
+        
     }
 
     /*void UIPackage_Category::readComment(QString &str, COMMENT_TYPE cType)

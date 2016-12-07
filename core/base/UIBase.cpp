@@ -41,32 +41,17 @@ namespace TCUIEdit
     }
 
 
-
     void UIBase::setName(QString &name)
     {
-        try
-        {
-            _PROJ->getUIMap().removeUI(this);
-            this->name = name;
-            _PROJ->getUIMap().addUI(this);
-        }
-        catch (UIException &e)
-        {
-            throw e;
-        }
+        _PROJ->getUIMap().removeUI(this);
+        this->name = name;
+        _PROJ->getUIMap().addUI(this);
     }
 
     void UIBase::setName(const QString &name)
     {
-        try
-        {
-            QString str = name;
-            this->setName(str);
-        }
-        catch (QException &e)
-        {
-            throw e;
-        }
+        QString str = name;
+        this->setName(str);
     }
 
 
