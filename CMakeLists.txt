@@ -3,7 +3,7 @@ project(TCUIEdit)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#打开Qt的MOC功能和UI文件处理功能
+# Open moc and uic support of CMake
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
@@ -12,20 +12,29 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    MESSAGE(STATUS "current platform: Linux ")
+    MESSAGE(STATUS "+-------------------------+")
+    MESSAGE(STATUS "| Current Platform: Linux |")
+    MESSAGE(STATUS "+-------------------------+")
+    # Set it to the Qt path
     set(CMAKE_PREFIX_PATH "/opt/Qt5.7.0/5.7/gcc_64")
 ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
-    MESSAGE(STATUS "current platform: Windows")
+    MESSAGE(STATUS "+---------------------------+")
+    MESSAGE(STATUS "| Current Platform: Windows |")
+    MESSAGE(STATUS "+---------------------------+")
+    # Set it to the Qt path
     set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt5.7.0\\5.7\\mingw53_32")
+    # Disable the console on Windows
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
 ELSE ()
+    MESSAGE(STATUS "+------------------------------+")
+    MESSAGE(STATUS "| Current Platform unsupported |")
+    MESSAGE(STATUS "+------------------------------+")
     MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 
 #find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 #find_package(Qt5Gui REQUIRED)
-
 
 add_subdirectory(core bin)
 

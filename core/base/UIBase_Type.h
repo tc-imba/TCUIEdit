@@ -28,9 +28,10 @@ namespace TCUIEdit
     {
 
     protected:
-        QString icon, displayFlag;
+        QString version, globalFlag, compareFlag, baseType, importType, baseFlag;
     public:
         UIBase_Type(UIPackage *package, QPair<QString, QStringList> pair);
+
         const QString getDisplayName() const;
     };
 };
