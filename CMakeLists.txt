@@ -13,9 +13,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
     MESSAGE(STATUS "current platform: Linux ")
+    set(CMAKE_PREFIX_PATH "/opt/Qt5.7.0/5.7/gcc_64")
 ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     MESSAGE(STATUS "current platform: Windows")
     set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt5.7.0\\5.7\\mingw53_32")
+    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
 ELSE ()
     MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
@@ -24,7 +26,6 @@ ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 find_package(Qt5Widgets REQUIRED)
 #find_package(Qt5Gui REQUIRED)
 
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
 
 add_subdirectory(core bin)
 
