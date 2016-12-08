@@ -17,7 +17,7 @@ set(SOURCE_FILES_PACKAGE
         package/UIPackage.cpp
         package/UIPackage_Category.cpp
         package/UIPackage_Base.cpp
-        )
+        package/UIPackage_Type.cpp package/UIPackage_Type.h)
 
 set(SOURCE_FILES
         UIProject.cpp

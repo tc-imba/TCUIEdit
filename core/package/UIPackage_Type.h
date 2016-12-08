@@ -1,25 +1,25 @@
 //
-// Created by liu on 2016/12/5.
+// Created by liu on 2016/12/8.
 //
 
-#ifndef TCUIEDIT_UIPACKAGE_CATEGORY_H
-#define TCUIEDIT_UIPACKAGE_CATEGORY_H
+#ifndef TCUIEDIT_UIPACKAGE_TYPE_H
+#define TCUIEDIT_UIPACKAGE_TYPE_H
 
 #include  "../UICore.h"
 #include "UIPackage_Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UIBase_Category
+#define TCUIEDIT_UIPACKAGE_BASE_NAME UIBase_Type
 
 namespace TCUIEdit
 {
-    class UIPackage_Category : public UIPackage_Base
+    class UIPackage_Type : public UIPackage_Base
     {
 
     protected:
-        // QVector<UIBase_Category *> data;
+        //QVector<UIBase_Type *> data;
     public:
-        UIPackage_Category(UIPackage *package);
+        UIPackage_Type(UIPackage *package);
 
         TCUIEDIT_UIPACKAGE_OPERATOR_INDEX
 
@@ -33,4 +33,4 @@ namespace TCUIEdit
 };
 
 
-#endif //TCUIEDIT_UIPACKAGE_CATEGORY_H
+#endif //TCUIEDIT_UIPACKAGE_TYPE_H

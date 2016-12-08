@@ -2,7 +2,6 @@
 // Created by liu on 2016/12/5.
 //
 
-#include <QRegExp>
 #include "UIPackage_Category.h"
 #include "../base/UIBase_Category.h"
 
@@ -19,7 +18,7 @@ namespace TCUIEdit
         //QRegExp rx("$");
 
         auto pair = this->preprocessLine(str);
-        auto item = new UIBase_Category(this->_pkg, pair);
+        auto item = static_cast<UIBase *>(new UIBase_Category(this->_pkg, pair));
         this->data.push_back(item);
 
     }

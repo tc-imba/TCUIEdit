@@ -50,16 +50,17 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    ui->treeView->expandToDepth(1);
+    ui->treeView->expandToDepth(0);
 
-    auto parentItem = package->child(0);
-
-    auto category = static_cast<UIPackage_Category *>(uip.getBase(UIBase::TRIGGER_CATEGORY));
-
-    for (auto it:category->getData())
+    for (int i = 0; i < 2; i++)
     {
-        auto item = new QStandardItem(it->getDisplayName());
-        parentItem->appendRow(item);
+        auto parentItem = package->child(i);
+        auto base = uip.getBase(UIBase::TYPE(i));
+        for (auto it:base->getData())
+        {
+            auto item = new QStandardItem(it->getDisplayName());
+            parentItem->appendRow(item);
+        }
     }
 
 }

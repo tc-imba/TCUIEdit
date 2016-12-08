@@ -16,6 +16,7 @@
 #include "../base/UIBase.h"
 #include "UIPackage_Base.h"
 #include "UIPackage_Category.h"
+#include "UIPackage_Type.h"
 
 namespace TCUIEdit
 {

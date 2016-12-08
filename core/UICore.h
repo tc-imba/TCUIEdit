@@ -14,10 +14,14 @@ namespace TCUIEdit
 
     class UIBase_Category;
 
+    class UIBase_Type;
+
 
     class UIPackage;
 
     class UIPackage_Category;
+
+    class UIPackage_Type;
 
     class UIMap;
 

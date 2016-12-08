@@ -12,14 +12,16 @@
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME UIBase
-#define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX TCUIEDIT_UIPACKAGE_BASE_NAME *operator[](unsigned int index){return this->data.size()>index?this->data[index]:NULL;}
-#define TCUIEDIT_UIPACKAGE_GET_DATA QVector<TCUIEDIT_UIPACKAGE_BASE_NAME *> getData(){return this->data;}
+#define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX TCUIEDIT_UIPACKAGE_BASE_NAME *operator[](unsigned int index){return this->data.size()>index?(TCUIEDIT_UIPACKAGE_BASE_NAME*)(this->data[index]):NULL;}
+#define TCUIEDIT_UIPACKAGE_CAST_DATA static TCUIEDIT_UIPACKAGE_BASE_NAME *castData(UIBase* baseType){return (TCUIEDIT_UIPACKAGE_BASE_NAME*)(baseType);}
 
 namespace TCUIEdit
 {
     class UIPackage_Base
     {
     protected:
+
+        QVector<UIBase *> data;
 
         QPair<QString, QStringList> preprocessLine(QString &str);
 
@@ -30,6 +32,9 @@ namespace TCUIEdit
         UIPackage_Base(UIPackage *package);
 
         virtual void readLine(QString &str) = 0;
+
+        QVector<UIBase *> getData()
+        { return this->data; }
 
         void readComment(QString &str);
     };
