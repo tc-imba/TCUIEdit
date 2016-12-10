@@ -28,7 +28,7 @@ namespace TCUIEdit
 
     const char *UIBase::getTypeName(TYPE type)
     {
-        if (type != UNKNOWN)
+        if (type >= 0 && type < UIBase::TYPE_NUM)
         {
             return UIBase::TYPE_NAME[type];
         }

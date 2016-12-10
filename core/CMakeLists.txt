@@ -4,13 +4,13 @@ project(core)
 set(SOURCE_FILES_BASE
         base/UIBase.cpp
         base/UIBase_Category.cpp
-        base/UIBase_Type.cpp base/UIBase_Type.h)
+        base/UIBase_Type.cpp)
 
 set(SOURCE_FILES_PACKAGE
         package/UIPackage.cpp
         package/UIPackage_Category.cpp
         package/UIPackage_Base.cpp
-        package/UIPackage_Type.cpp package/UIPackage_Type.h)
+        package/UIPackage_Type.cpp)
 
 set(SOURCE_FILES
         UIProject.cpp
@@ -18,7 +18,7 @@ set(SOURCE_FILES
         UIMap.cpp
         ${SOURCE_FILES_BASE}
         UIException.cpp
-        )
+        UIFileInput.cpp)
 
 add_library(core ${SOURCE_FILES})
 

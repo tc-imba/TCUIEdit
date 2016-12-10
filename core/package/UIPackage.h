@@ -13,6 +13,7 @@
 #include <QDebug>
 
 #include "../UICore.h"
+#include "../UIFileInput.h"
 #include "../base/UIBase.h"
 #include "UIPackage_Base.h"
 #include "UIPackage_Category.h"
@@ -27,9 +28,9 @@ namespace TCUIEdit
 
         void initBase();
 
-        QByteArray fileData;
-        QTextStream *file;
-        int fileLineNum = 0;
+        UIFileInput file;
+
+        QString basePath, name;
 
         bool baseChangedFlag = false;
         UIBase::TYPE baseTypeCurrent = UIBase::TYPE::UNKNOWN;
@@ -38,19 +39,22 @@ namespace TCUIEdit
 
         UIPackage_Base *base[UIBase::TYPE_NUM];
 
+        void processTrigData(QString &line);
 
-        void processLine(QString &line);
+        void (UIPackage::*processLine)(QString &);
 
     public:
 
         UIPackage();
 
-        UIPackage(UIProject *project, const QString &filename);
+        UIPackage(UIProject *project, const QString &basePath);
+
+        bool openFile(UIFileInput::TYPE fileType);
+
+        int readLine();
 
         UIProject *getProject() const
         { return this->_proj; }
-
-        int readLine();
 
         UIPackage_Base *getBase(UIBase::TYPE type) const;
 

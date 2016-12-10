@@ -20,11 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString str = "ui/ydwe/ui/TriggerData.txt";
+    QString str = "ui/ydwe/ui/";
 
     UIProject proj;
 
     UIPackage uip(&proj, str);
+
+    uip.openFile(UIFileInput::CLASSIC_TRIG_DATA);
 
     qDebug() << "1";
     //msgBox.setText(uip.readLine());
@@ -51,6 +53,10 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ui->treeView->expandToDepth(0);
+
+
+    //uip.openWEString("ui/ydwe/ui/WorldEditStrings.txt");
+
 
     for (int i = 0; i < 2; i++)
     {

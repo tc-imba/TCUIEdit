@@ -20,24 +20,11 @@ namespace TCUIEdit
     }
 
 
-    UIPackage::UIPackage(UIProject *project, const QString &filename)
+    UIPackage::UIPackage(UIProject *project, const QString &basePath)
     {
         this->initBase();
         this->_proj = project;
-        QFile qFile(filename);
-        if (qFile.open(QFile::ReadOnly))
-        {
-            this->fileData = qFile.readAll();
-            this->file = new QTextStream(this->fileData);
-            /**
-             * @TODO File Codec of input UI File
-             * The default format of UI File is UTF-8
-             * This version only supports UTF-8 encoding
-             * The support of ANSI and UNICODE may be added later
-             */
-            this->file->setCodec("UTF-8");
-            qFile.close();
-        }
+        this->basePath = basePath;
     }
 
     UIPackage_Base *UIPackage::getBase(UIBase::TYPE type) const
@@ -51,26 +38,7 @@ namespace TCUIEdit
         return this->getBase(this->baseTypeCurrent);
     }
 
-    int UIPackage::readLine()
-    {
-        if (this->fileLineNum < 0)return 0;
-        QString line;
-        while (this->file->readLineInto(&line))
-        {
-            this->fileLineNum++;
-            line = line.trimmed();
-            if (!line.isEmpty())
-            {
-                this->processLine(line);
-                return this->fileLineNum;
-            }
-        }
-        this->fileLineNum = -1;
-        return 0;
-
-    }
-
-    void UIPackage::processLine(QString &line)
+    void UIPackage::processTrigData(QString &line)
     {
         // Match the sign [\w] when a new base is assigned.
         QRegExp rx("^\\[\\w+\\]$");
@@ -117,5 +85,33 @@ namespace TCUIEdit
         }
     }
 
+    bool UIPackage::openFile(UIFileInput::TYPE fileType)
+    {
+        this->file.open(this->basePath, fileType);
+        if (this->file.is_open())
+        {
+            switch (fileType)
+            {
+            case UIFileInput::CLASSIC_TRIG_DATA:
+                this->processLine = &UIPackage::processTrigData;
+                break;
+            default:
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    int UIPackage::readLine()
+    {
+        QString line;
+        auto lineNum = this->file.readLineInto(line);
+        if (lineNum > 0)
+        {
+            (this->*processLine)(line);
+        }
+        return lineNum;
+    }
 };
 
