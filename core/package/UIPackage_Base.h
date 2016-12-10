@@ -5,7 +5,7 @@
 #ifndef TCUIEDIT_UIPACKAGE_BASE_H
 #define TCUIEDIT_UIPACKAGE_BASE_H
 
-#include <QVector>
+#include <QList>
 #include <QPair>
 #include "../UICore.h"
 #include "../UIException.h"
@@ -21,7 +21,7 @@ namespace TCUIEdit
     {
     protected:
 
-        QVector<UIBase *> data;
+        QList<UIBase *> data;
 
         QPair<QString, QStringList> preprocessLine(QString &str);
 
@@ -33,7 +33,7 @@ namespace TCUIEdit
 
         virtual void readLine(QString &str) = 0;
 
-        QVector<UIBase *> getData()
+        QList<UIBase *> getData()
         { return this->data; }
 
         void readComment(QString &str);

@@ -15,6 +15,7 @@
 #include "../UICore.h"
 #include "../UIFileInput.h"
 #include "../base/UIBase.h"
+#include "UIPackage_WEString.h"
 #include "UIPackage_Base.h"
 #include "UIPackage_Category.h"
 #include "UIPackage_Type.h"
@@ -26,7 +27,7 @@ namespace TCUIEdit
     protected:
         UIProject *_proj;
 
-        void initBase();
+        void init();
 
         UIFileInput file;
 
@@ -39,7 +40,11 @@ namespace TCUIEdit
 
         UIPackage_Base *base[UIBase::TYPE_NUM];
 
+        UIPackage_WEString *weString;
+
         void processTrigData(QString &line);
+
+        void processWEStrings(QString &line);
 
         void (UIPackage::*processLine)(QString &);
 
@@ -55,6 +60,9 @@ namespace TCUIEdit
 
         UIProject *getProject() const
         { return this->_proj; }
+
+        UIPackage_WEString *getWEString() const
+        { return this->weString; }
 
         UIPackage_Base *getBase(UIBase::TYPE type) const;
 

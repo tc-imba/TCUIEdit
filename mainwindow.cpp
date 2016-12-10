@@ -8,6 +8,7 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QDebug>
+#include <QElapsedTimer>
 #include "core/base/UIBase_All.h"
 #include "core/package/UIPackage.h"
 #include "core/UIProject.h"
@@ -20,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QElapsedTimer timer;
+    timer.start();
+
     QString str = "ui/ydwe/ui/";
 
     UIProject proj;
@@ -28,11 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     uip.openFile(UIFileInput::CLASSIC_TRIG_DATA);
 
-    qDebug() << "1";
     //msgBox.setText(uip.readLine());
     //msgBox.exec();
-
-
 
     auto model = new QStandardItemModel(ui->treeView);
     //model->setHorizontalHeaderLabels(QStringList("List"));
@@ -46,10 +47,15 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         if (uip.isBaseChanged())
         {
-            ui->textBrowser->append(UIBase::getTypeName(uip.getBaseTypeCurrent()));
             auto item = new QStandardItem(UIBase::getTypeName(uip.getBaseTypeCurrent()));
             package->appendRow(item);
         }
+    }
+
+    uip.openFile(UIFileInput::CLASSIC_WE_STRINGS);
+    while (uip.readLine() > 0)
+    {
+        //ui->textBrowser->append("1");
     }
 
     ui->treeView->expandToDepth(0);
@@ -68,6 +74,8 @@ MainWindow::MainWindow(QWidget *parent) :
             parentItem->appendRow(item);
         }
     }
+
+    qDebug() << timer.elapsed();
 
 }
 

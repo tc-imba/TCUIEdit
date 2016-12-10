@@ -8,9 +8,4 @@
 namespace TCUIEdit
 {
 
-    UIMap& UIProject::getUIMap()
-    {
-        return this->uiMap;
-    }
-
 };

@@ -24,13 +24,16 @@ ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     # Set it to the Qt path
     set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt5.7.0\\5.7\\mingw53_32")
     # Disable the console on Windows
-    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
+    IF (NOT (CMAKE_BUILD_TYPE STREQUAL Debug))
+        MESSAGE(STATUS "Console is disabled Under " ${CMAKE_BUILD_TYPE} " Mode")
+        set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -mwindows)
+    ENDIF ()
 ELSE ()
     MESSAGE(STATUS "+------------------------------+")
     MESSAGE(STATUS "| Current Platform unsupported |")
     MESSAGE(STATUS "+------------------------------+")
     MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
-ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+ENDIF ()
 
 #find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)

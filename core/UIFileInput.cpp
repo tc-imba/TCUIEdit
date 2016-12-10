@@ -93,6 +93,10 @@ namespace TCUIEdit
             this->lineNum = 0;
             qFile.close();
         }
+        else
+        {
+            this->lineNum = -1;
+        }
     }
 
     int UIFileInput::readLineInto(QString &line)

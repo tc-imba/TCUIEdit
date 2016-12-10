@@ -8,6 +8,7 @@ set(SOURCE_FILES_BASE
 
 set(SOURCE_FILES_PACKAGE
         package/UIPackage.cpp
+        package/UIPackage_WEString.cpp
         package/UIPackage_Category.cpp
         package/UIPackage_Base.cpp
         package/UIPackage_Type.cpp)
@@ -18,7 +19,8 @@ set(SOURCE_FILES
         UIMap.cpp
         ${SOURCE_FILES_BASE}
         UIException.cpp
-        UIFileInput.cpp)
+        UIFileInput.cpp
+        )
 
 add_library(core ${SOURCE_FILES})
 

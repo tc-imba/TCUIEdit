@@ -40,6 +40,10 @@ namespace TCUIEdit
         return this->name;
     }
 
+    const QString UIBase::getDisplay() const
+    {
+        return this->_pkg->getWEString()->getValue(this->display);
+    }
 
     void UIBase::setName(QString &name)
     {
@@ -53,6 +57,5 @@ namespace TCUIEdit
         QString str = name;
         this->setName(str);
     }
-
 
 }

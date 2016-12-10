@@ -7,6 +7,7 @@
 
 #include "UICore.h"
 #include "UIMap.h"
+#include <QMultiHash>
 
 namespace TCUIEdit
 {
@@ -16,9 +17,14 @@ namespace TCUIEdit
 
     protected:
         UIMap uiMap;
-
+        QMultiHash<QString, WEString *> weStringMap;
     public:
-        UIMap& getUIMap();
+        UIMap &getUIMap()
+        { return this->uiMap; }
+
+        QMultiHash<QString, WEString *> &getWEStringMap()
+        { return this->weStringMap; }
+
     };
 
 

@@ -58,7 +58,7 @@ namespace TCUIEdit
         {
             return this->name;
         }
-        return this->name + " - " + this->display;
+        return this->name + " - " + this->getDisplay();
     }
 
 };

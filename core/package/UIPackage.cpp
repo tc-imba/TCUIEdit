@@ -7,8 +7,10 @@
 
 namespace TCUIEdit
 {
-    void UIPackage::initBase()
+    void UIPackage::init()
     {
+        this->weString = new UIPackage_WEString(this);
+
         this->base[UIBase::TRIGGER_CATEGORY] = new UIPackage_Category(this);
         this->base[UIBase::TRIGGER_TYPE] = new UIPackage_Type(this);
 
@@ -16,13 +18,13 @@ namespace TCUIEdit
 
     UIPackage::UIPackage()
     {
-        this->initBase();
+        this->init();
     }
 
 
     UIPackage::UIPackage(UIProject *project, const QString &basePath)
     {
-        this->initBase();
+        this->init();
         this->_proj = project;
         this->basePath = basePath;
     }
@@ -85,6 +87,19 @@ namespace TCUIEdit
         }
     }
 
+    void UIPackage::processWEStrings(QString &line)
+    {
+        // Match the sign [\w] when a new base is assigned.
+        QRegExp rx("^\\[\\w+\\]$");
+        if (rx.indexIn(line) > -1)return;
+        rx.setPattern("^//");
+        if (rx.indexIn(line) > -1)
+        {
+            return;
+        }
+        this->weString->readLine(line);
+    }
+
     bool UIPackage::openFile(UIFileInput::TYPE fileType)
     {
         this->file.open(this->basePath, fileType);
@@ -94,6 +109,9 @@ namespace TCUIEdit
             {
             case UIFileInput::CLASSIC_TRIG_DATA:
                 this->processLine = &UIPackage::processTrigData;
+                break;
+            case UIFileInput::CLASSIC_WE_STRINGS:
+                this->processLine = &UIPackage::processWEStrings;
                 break;
             default:
                 return false;

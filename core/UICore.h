@@ -17,6 +17,10 @@ namespace TCUIEdit
     class UIBase_Type;
 
 
+    class WEString;
+
+    class UIPackage_WEString;
+
     class UIPackage;
 
     class UIPackage_Category;
