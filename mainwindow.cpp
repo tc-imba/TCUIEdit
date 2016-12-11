@@ -28,11 +28,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     UIProject proj;
 
-    UIPackage uip(&proj, str);
+    auto uip = proj.createPackage(str);
 
-    uip.openFile(UIFileInput::CLASSIC_TRIG_DATA);
+    //UIPackage uip(&proj, str);
 
-    //msgBox.setText(uip.readLine());
+    uip->openFile(UIFileInput::CLASSIC_TRIG_DATA);
+
+    //msgBox.setText(uip->readLine());
     //msgBox.exec();
 
     auto model = new QStandardItemModel(ui->treeView);
@@ -43,17 +45,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeView->setModel(model);
     ui->treeView->setHeaderHidden(true);
 
-    while (uip.readLine() > 0)
+    while (uip->readLine() > 0)
     {
-        if (uip.isBaseChanged())
+        if (uip->isBaseChanged())
         {
-            auto item = new QStandardItem(UIBase::getTypeName(uip.getBaseTypeCurrent()));
+            auto item = new QStandardItem(UIBase::getTypeName(uip->getBaseTypeCurrent()));
             package->appendRow(item);
         }
     }
 
-    uip.openFile(UIFileInput::CLASSIC_WE_STRINGS);
-    while (uip.readLine() > 0)
+    uip->openFile(UIFileInput::CLASSIC_WE_STRINGS);
+    while (uip->readLine() > 0)
     {
         //ui->textBrowser->append("1");
     }
@@ -61,19 +63,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeView->expandToDepth(0);
 
 
-    //uip.openWEString("ui/ydwe/ui/WorldEditStrings.txt");
+    //uip->openWEString("ui/ydwe/ui/WorldEditStrings.txt");
 
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         auto parentItem = package->child(i);
-        auto base = uip.getBase(UIBase::TYPE(i));
+        auto base = uip->getBase(UIBase::TYPE(i));
         for (auto it:base->getData())
         {
             auto item = new QStandardItem(it->getDisplayName());
             parentItem->appendRow(item);
         }
     }
+
+    auto _ui = proj.matchUI("integer", UIBase::TRIGGER_TYPE);
+    ui->textBrowser->append(_ui->getDisplayName());
 
     qDebug() << timer.elapsed();
 

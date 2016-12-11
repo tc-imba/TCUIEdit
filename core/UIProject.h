@@ -18,12 +18,20 @@ namespace TCUIEdit
     protected:
         UIMap uiMap;
         QMultiHash<QString, WEString *> weStringMap;
+        QList<UIPackage *> uiPkg;
     public:
         UIMap &getUIMap()
         { return this->uiMap; }
 
         QMultiHash<QString, WEString *> &getWEStringMap()
         { return this->weStringMap; }
+
+        UIPackage *createPackage();
+
+        UIPackage *createPackage(const QString &basePath);
+
+        UIBase *matchUI(const QString &name, UIBase::TYPE type) const;
+
 
     };
 

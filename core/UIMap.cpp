@@ -32,14 +32,14 @@ namespace TCUIEdit
     }
 
 
-    QList<UIBase *> UIMap::getUI(QString &name)
+    /*QList<UIBase *> UIMap::getUI(QString &name) const
     {
-        return this->hashtable.values();
-    }
+        return this->hashtable.values(name);
+    }*/
 
-    QList<UIBase *> UIMap::getUI(const QString &name)
+    QList<UIBase *> UIMap::getUI(const QString &name) const
     {
-        return this->hashtable.values();
+        return this->hashtable.values(name);
     }
 
     void UIMap::removeUI(UIBase *UI)

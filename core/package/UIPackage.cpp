@@ -13,12 +13,14 @@ namespace TCUIEdit
 
         this->base[UIBase::TRIGGER_CATEGORY] = new UIPackage_Category(this);
         this->base[UIBase::TRIGGER_TYPE] = new UIPackage_Type(this);
+        this->base[UIBase::TRIGGER_TYPE_DEFAULT] = new UIPackage_TypeDefault(this);
 
     }
 
-    UIPackage::UIPackage()
+    UIPackage::UIPackage(UIProject *project)
     {
         this->init();
+        this->_proj = project;
     }
 
 
@@ -81,7 +83,7 @@ namespace TCUIEdit
             return;
         }
 
-        if (getBaseTypeCurrent() <= UIBase::TYPE(1))
+        if (getBaseTypeCurrent() < UIBase::TYPE(3))
         {
             this->getBaseCurrent()->readLine(line);
         }

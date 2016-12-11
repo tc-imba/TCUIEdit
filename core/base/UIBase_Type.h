@@ -5,12 +5,11 @@
 #ifndef TCUIEDIT_UIBASE_TYPE_H
 #define TCUIEDIT_UIBASE_TYPE_H
 
-
 #include "../UICore.h"
 #include "UIBase.h"
 
 namespace TCUIEdit
-{
+    {
     //***************************************************************************
     // [TriggerTypes]
     // Defines all trigger variable types to be used by the Script Editor

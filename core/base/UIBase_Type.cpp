@@ -9,6 +9,8 @@ namespace TCUIEdit
 
     UIBase_Type::UIBase_Type(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
     {
+        this->type = TRIGGER_TYPE;
+
         this->setName(pair.first);
 
         auto it = pair.second.constBegin();

@@ -21,6 +21,11 @@ namespace TCUIEdit
         this->_pkg = package;
     }
 
+    UIBase::TYPE UIBase::getType() const
+    {
+        return this->type;
+    }
+
     const char *UIBase::getTypeName() const
     {
         return this->getTypeName(this->type);
@@ -45,17 +50,15 @@ namespace TCUIEdit
         return this->_pkg->getWEString()->getValue(this->display);
     }
 
-    void UIBase::setName(QString &name)
+    void UIBase::setName(const QString &name)
     {
         _PROJ->getUIMap().removeUI(this);
         this->name = name;
         _PROJ->getUIMap().addUI(this);
     }
 
-    void UIBase::setName(const QString &name)
+    UIPackage* UIBase::getPackage() const
     {
-        QString str = name;
-        this->setName(str);
+        return this->_pkg;
     }
-
 }

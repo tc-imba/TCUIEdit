@@ -29,6 +29,8 @@ namespace TCUIEdit
     public:
         UIBase(UIPackage *package);
 
+        TYPE getType() const;
+
         const char *getTypeName() const;
 
         static const char *getTypeName(TYPE type);
@@ -39,9 +41,9 @@ namespace TCUIEdit
 
         virtual const QString getDisplayName() const = 0;
 
-        void setName(QString &name);
-
         void setName(const QString &name);
+
+        UIPackage* getPackage() const;
     };
 
 };

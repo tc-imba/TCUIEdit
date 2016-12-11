@@ -41,11 +41,11 @@ namespace TCUIEdit
 
         UIFileInput();
 
-        UIFileInput(QString &path, TYPE type);
+        UIFileInput(const QString &path, TYPE type);
 
         ~UIFileInput();
 
-        void open(QString &path, TYPE type);
+        void open(const QString &path, TYPE type);
 
         void reset();
 

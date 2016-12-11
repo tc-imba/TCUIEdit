@@ -19,6 +19,7 @@
 #include "UIPackage_Base.h"
 #include "UIPackage_Category.h"
 #include "UIPackage_Type.h"
+#include "UIPackage_TypeDefault.h"
 
 namespace TCUIEdit
 {
@@ -50,7 +51,7 @@ namespace TCUIEdit
 
     public:
 
-        UIPackage();
+        UIPackage(UIProject *project);
 
         UIPackage(UIProject *project, const QString &basePath);
 

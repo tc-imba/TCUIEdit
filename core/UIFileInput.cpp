@@ -51,7 +51,7 @@ namespace TCUIEdit
         this->reset();
     }
 
-    UIFileInput::UIFileInput(QString &path, TYPE type)
+    UIFileInput::UIFileInput(const QString &path, TYPE type)
     {
         this->stream = NULL;
         this->open(path, type);
@@ -72,7 +72,7 @@ namespace TCUIEdit
         this->type = TYPE_UNKNOWN;
     }
 
-    void UIFileInput::open(QString &path, TYPE type)
+    void UIFileInput::open(const QString &path, TYPE type)
     {
         this->reset();
         this->setType(type);
