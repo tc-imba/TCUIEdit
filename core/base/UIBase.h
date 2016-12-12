@@ -26,6 +26,9 @@ namespace TCUIEdit
         QString name, display;
         //UIProject *_proj;
         UIPackage *_pkg;
+
+        const QString _getDisplayName() const;
+
     public:
         UIBase(UIPackage *package);
 
@@ -39,11 +42,12 @@ namespace TCUIEdit
 
         const QString getDisplay() const;
 
+
         virtual const QString getDisplayName() const = 0;
 
         void setName(const QString &name);
 
-        UIPackage* getPackage() const;
+        UIPackage *getPackage() const;
     };
 
 };

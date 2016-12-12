@@ -38,6 +38,6 @@ namespace TCUIEdit
         {
             return this->name;
         }
-        return this->name + " - " + this->getDisplay();
+        return this->_getDisplayName();
     }
 };

@@ -50,6 +50,15 @@ namespace TCUIEdit
         return this->_pkg->getWEString()->getValue(this->display);
     }
 
+    const QString UIBase::_getDisplayName() const
+    {
+        if (this->display == "")
+        {
+            return this->name;
+        }
+        return this->name + " - " + this->getDisplay();
+    }
+
     void UIBase::setName(const QString &name)
     {
         _PROJ->getUIMap().removeUI(this);

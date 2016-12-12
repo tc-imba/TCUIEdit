@@ -56,11 +56,7 @@ namespace TCUIEdit
 
     const QString UIBase_Type::getDisplayName() const
     {
-        if (this->display == "")
-        {
-            return this->name;
-        }
-        return this->name + " - " + this->getDisplay();
+        return this->_getDisplayName();
     }
 
 };
