@@ -18,6 +18,7 @@ namespace TCUIEdit
 
     class UIBase_TypeDefault;
 
+    class UIBase_Param;
 
     class WEString;
 
@@ -30,6 +31,8 @@ namespace TCUIEdit
     class UIPackage_Type;
 
     class UIPackage_TypeDefault;
+
+    class UIPackage_Param;
 
     class UIMap;
 

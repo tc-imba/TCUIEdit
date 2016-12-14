@@ -7,5 +7,8 @@
 
 #include "UIBase.h"
 #include "UIBase_Category.h"
+#include "UIBase_Type.h"
+#include "UIBase_TypeDefault.h"
+#include "UIBase_Param.h"
 
 #endif //TCUIEDIT_UIBASE_ALL_H

@@ -20,6 +20,7 @@
 #include "UIPackage_Category.h"
 #include "UIPackage_Type.h"
 #include "UIPackage_TypeDefault.h"
+#include "UIPackage_Param.h"
 
 namespace TCUIEdit
 {

@@ -5,7 +5,9 @@ set(SOURCE_FILES_BASE
         base/UIBase.cpp
         base/UIBase_Category.cpp
         base/UIBase_Type.cpp
-        base/UIBase_TypeDefault.cpp)
+        base/UIBase_TypeDefault.cpp
+        base/UIBase_Param.cpp
+        )
 
 set(SOURCE_FILES_PACKAGE
         package/UIPackage.cpp
@@ -13,7 +15,9 @@ set(SOURCE_FILES_PACKAGE
         package/UIPackage_Category.cpp
         package/UIPackage_Base.cpp
         package/UIPackage_Type.cpp
-        package/UIPackage_TypeDefault.cpp)
+        package/UIPackage_TypeDefault.cpp
+        package/UIPackage_Param.cpp
+        )
 
 set(SOURCE_FILES
         UIProject.cpp
