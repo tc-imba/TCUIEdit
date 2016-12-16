@@ -26,11 +26,12 @@ namespace TCUIEdit
     }
 
 
-    UIPackage::UIPackage(UIProject *project, const QString &basePath)
+    UIPackage::UIPackage(UIProject *project, const QString &basePath, const QString &name)
     {
         this->init();
         this->_proj = project;
         this->basePath = basePath;
+        this->name = name;
     }
 
     UIPackage_Base *UIPackage::getBase(UIBase::TYPE type) const

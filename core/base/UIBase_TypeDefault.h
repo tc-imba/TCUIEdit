@@ -24,11 +24,13 @@ namespace TCUIEdit
     protected:
         QString script;
     public:
-        UIBase_TypeDefault(UIPackage *package, QPair <QString, QStringList> pair);
+        UIBase_TypeDefault(UIPackage *package, QPair<QString, QStringList> pair);
 
         UIBase_Type *getOriginType() const;
 
         const QString getDisplayName() const;
+
+        void displayDetail(QStandardItemModel *treeModel);
 
     };
 

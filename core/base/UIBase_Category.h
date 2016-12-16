@@ -27,7 +27,10 @@ namespace TCUIEdit
         QString icon, displayFlag;
     public:
         UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair);
+
         const QString getDisplayName() const;
+
+        void displayDetail(QStandardItemModel *treeModel);
     };
 };
 

@@ -15,9 +15,9 @@ namespace TCUIEdit
         return pkg;
     }
 
-    UIPackage *UIProject::createPackage(const QString &basePath)
+    UIPackage *UIProject::createPackage(const QString &basePath, const QString &name)
     {
-        auto pkg = new UIPackage(this, basePath);
+        auto pkg = new UIPackage(this, basePath, name);
         this->uiPkg.push_back(pkg);
         return pkg;
     }

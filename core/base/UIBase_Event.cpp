@@ -63,4 +63,13 @@ namespace TCUIEdit
         return this->name;
     }
 
+    const QString& UIBase_Event::getCategory() const
+    {
+        return this->category;
+    }
+
+    void UIBase_Event::displayDetail(QStandardItemModel *treeModel)
+    {
+
+    }
 };

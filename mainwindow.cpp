@@ -6,6 +6,7 @@
 #include "ui_mainwindow.h"
 
 #include <QTreeView>
+#include <QHeaderView>
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QElapsedTimer>
@@ -28,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     UIProject proj;
 
-    auto uip = proj.createPackage(str);
+    auto uip = proj.createPackage(str, "ydwe");
 
     //UIPackage uip(&proj, str);
 
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto model = new QStandardItemModel(ui->treeView);
     //model->setHorizontalHeaderLabels(QStringList("List"));
-    auto package = new QStandardItem("ydwe");
+    auto package = new QStandardItem(uip->getName());
     model->appendRow(package);
 
     ui->treeView->setModel(model);
@@ -50,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
         if (uip->isBaseChanged())
         {
             auto item = new QStandardItem(UIBase::getTypeName(uip->getBaseTypeCurrent()));
+            item->setEditable(false);
             package->appendRow(item);
         }
     }
@@ -73,12 +75,22 @@ MainWindow::MainWindow(QWidget *parent) :
         for (auto it:base->getData())
         {
             auto item = new QStandardItem(it->getDisplayName());
+            item->setEditable(false);
             parentItem->appendRow(item);
         }
     }
 
     auto _ui = proj.matchUI("integer", UIBase::TRIGGER_TYPE);
     ui->textBrowser->append(_ui->getDisplayName());
+
+    ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    model = new QStandardItemModel(ui->treeView_2);
+
+    ui->treeView_2->setModel(model);
+
+
+    uip->getBase(UIBase::TYPE(0))->getData().value(18)->displayDetail(model);
+
 
     qDebug() << timer.elapsed();
 

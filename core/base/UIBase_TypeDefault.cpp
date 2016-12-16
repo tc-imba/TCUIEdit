@@ -44,4 +44,9 @@ namespace TCUIEdit
         return "";
     }
 
+    void UIBase_TypeDefault::displayDetail(QStandardItemModel *treeModel)
+    {
+
+    }
+
 };

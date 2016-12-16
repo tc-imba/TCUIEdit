@@ -55,7 +55,7 @@ namespace TCUIEdit
 
         UIPackage(UIProject *project);
 
-        UIPackage(UIProject *project, const QString &basePath);
+        UIPackage(UIProject *project, const QString &basePath, const QString &name);
 
         bool openFile(UIFileInput::TYPE fileType);
 
@@ -76,6 +76,9 @@ namespace TCUIEdit
 
         const UIBase::TYPE getBaseTypeCurrent() const
         { return this->baseTypeCurrent; }
+
+        const QString &getName() const
+        { return this->name; }
     };
 
 

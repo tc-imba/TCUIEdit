@@ -59,4 +59,8 @@ namespace TCUIEdit
         return this->_getDisplayName();
     }
 
+    void UIBase_Type::displayDetail(QStandardItemModel *treeModel)
+    {
+
+    }
 };

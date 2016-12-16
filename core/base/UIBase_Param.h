@@ -32,6 +32,9 @@ namespace TCUIEdit
         UIBase_Type *getOriginType() const;
 
         const QString getDisplayName() const;
+
+        void displayDetail(QStandardItemModel *treeModel);
+
     };
 
 };

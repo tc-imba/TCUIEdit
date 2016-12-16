@@ -7,6 +7,8 @@
 
 #include "../UICore.h"
 #include "../UIException.h"
+#include <QTreeView>
+#include <QStandardItemModel>
 
 namespace TCUIEdit
 {
@@ -48,6 +50,8 @@ namespace TCUIEdit
         void setName(const QString &name);
 
         UIPackage *getPackage() const;
+
+        virtual void displayDetail(QStandardItemModel *treeModel) = 0;
     };
 
 };

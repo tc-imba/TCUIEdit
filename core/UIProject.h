@@ -28,7 +28,7 @@ namespace TCUIEdit
 
         UIPackage *createPackage();
 
-        UIPackage *createPackage(const QString &basePath);
+        UIPackage *createPackage(const QString &basePath, const QString &name);
 
         UIBase *matchUI(const QString &name, UIBase::TYPE type) const;
 
