@@ -21,6 +21,7 @@
 #include "UIPackage_Type.h"
 #include "UIPackage_TypeDefault.h"
 #include "UIPackage_Param.h"
+#include "UIPackage_Event.h"
 
 namespace TCUIEdit
 {

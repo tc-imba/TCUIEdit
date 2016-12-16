@@ -20,7 +20,7 @@ namespace TCUIEdit
     QPair<QString, QStringList> UIPackage_Base::preprocessLine(QString &str)
     {
         auto pos = str.indexOf('=');
-        if (pos == -1 || pos == str.length() - 1)
+        if (pos == -1)
         {
             throw UIExceptionFormatError();
         }

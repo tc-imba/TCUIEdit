@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //uip->openWEString("ui/ydwe/ui/WorldEditStrings.txt");
 
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         auto parentItem = package->child(i);
         auto base = uip->getBase(UIBase::TYPE(i));

@@ -7,6 +7,7 @@ set(SOURCE_FILES_BASE
         base/UIBase_Type.cpp
         base/UIBase_TypeDefault.cpp
         base/UIBase_Param.cpp
+        base/UIBase_Event.cpp
         )
 
 set(SOURCE_FILES_PACKAGE
@@ -17,6 +18,7 @@ set(SOURCE_FILES_PACKAGE
         package/UIPackage_Type.cpp
         package/UIPackage_TypeDefault.cpp
         package/UIPackage_Param.cpp
+        package/UIPackage_Event.cpp
         )
 
 set(SOURCE_FILES

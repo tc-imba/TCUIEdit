@@ -105,7 +105,12 @@ namespace TCUIEdit
         while (this->stream->readLineInto(&line))
         {
             this->lineNum++;
-            line = line.trimmed();
+            auto pos = line.length();
+            while (pos > 0)
+            {
+                if (!line[--pos].isSpace())break;
+            }
+            line = line.left(pos + 1);
             if (!line.isEmpty())
             {
                 return this->lineNum;

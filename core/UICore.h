@@ -7,6 +7,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QDebug>
 
 namespace TCUIEdit
 {
@@ -19,6 +20,14 @@ namespace TCUIEdit
     class UIBase_TypeDefault;
 
     class UIBase_Param;
+
+    class UIBase_Event;
+
+    class UIBase_Condition;
+
+    class UIBase_Action;
+
+    class UIBase_Call;
 
     class WEString;
 
@@ -33,6 +42,14 @@ namespace TCUIEdit
     class UIPackage_TypeDefault;
 
     class UIPackage_Param;
+
+    class UIPackage_Event;
+
+    class UIPackage_Condition;
+
+    class UIPackage_Action;
+
+    class UIPackage_Call;
 
     class UIMap;
 
