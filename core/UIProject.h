@@ -20,11 +20,11 @@ namespace TCUIEdit
         QMultiHash<QString, WEString *> weStringMap;
         QList<UIPackage *> uiPkg;
     public:
-        UIMap &getUIMap()
-        { return this->uiMap; }
+        UIMap *getUIMap()
+        { return &this->uiMap; }
 
-        QMultiHash<QString, WEString *> &getWEStringMap()
-        { return this->weStringMap; }
+        QMultiHash<QString, WEString *> *getWEStringMap()
+        { return &this->weStringMap; }
 
         UIPackage *createPackage();
 

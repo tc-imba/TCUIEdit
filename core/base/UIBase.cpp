@@ -61,9 +61,9 @@ namespace TCUIEdit
 
     void UIBase::setName(const QString &name)
     {
-        _PROJ->getUIMap().removeUI(this);
+        _PROJ->getUIMap()->removeUI(this);
         this->name = name;
-        _PROJ->getUIMap().addUI(this);
+        _PROJ->getUIMap()->addUI(this);
     }
 
     UIPackage* UIBase::getPackage() const

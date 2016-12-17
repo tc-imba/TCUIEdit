@@ -38,7 +38,7 @@ namespace TCUIEdit
         auto weString = new WEString(this->_pkg);
         weString->name = name;
         weString->value = value;
-        _HASH.insert(name, weString);
+        _HASH->insert(name, weString);
         this->data.push_back(weString);
     }
 
@@ -48,7 +48,7 @@ namespace TCUIEdit
         {
             throw UIExceptionNotFound();
         }
-        _HASH.remove(weString->getName(), weString);
+        _HASH->remove(weString->getName(), weString);
         this->data.removeAll(weString);
         delete weString;
     }
@@ -59,8 +59,8 @@ namespace TCUIEdit
         QString value = name;
         while (value.left(8) == "WESTRING")
         {
-            auto it = _HASH.find(value);
-            if (it == _HASH.end())break;
+            auto it = _HASH->find(value);
+            if (it == _HASH->end())break;
             list.push_back(value);
             value = it.value()->getValue();
             if (list.contains(value))break;

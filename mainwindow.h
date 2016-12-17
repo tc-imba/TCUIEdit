@@ -6,21 +6,35 @@
 #define TCUIEDIT_MAINWINDOW_H
 
 #include <QtWidgets/QMainWindow>
+#include <QTreeView>
+#include <QHeaderView>
+#include <QStandardItemModel>
+#include "core/UICore.h"
+#include <QMultiHash>
 
-namespace Ui {
+
+namespace Ui
+{
     class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel* treeViewModel;
+    QStandardItemModel* displayModel;
+
+private slots:
+
+    void treeViewClicked(const QModelIndex &index);
 };
 
 #endif //TCUIEDIT_MAINWINDOW_H

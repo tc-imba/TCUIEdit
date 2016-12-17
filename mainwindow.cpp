@@ -5,14 +5,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QTreeView>
-#include <QHeaderView>
-#include <QStandardItemModel>
+
 #include <QDebug>
 #include <QElapsedTimer>
 #include "core/base/UIBase_All.h"
 #include "core/package/UIPackage.h"
 #include "core/UIProject.h"
+#include "view/UITreeViewItem.h"
 
 using namespace TCUIEdit;
 
@@ -27,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString str = "ui/ydwe/ui/";
 
-    UIProject proj;
+    UIProject *proj = new UIProject();
 
-    auto uip = proj.createPackage(str, "ydwe");
+    auto uip = proj->createPackage(str, "ydwe");
 
     //UIPackage uip(&proj, str);
 
@@ -39,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //msgBox.exec();
 
     auto model = new QStandardItemModel(ui->treeView);
+    this->treeViewModel = model;
     //model->setHorizontalHeaderLabels(QStringList("List"));
     auto package = new QStandardItem(uip->getName());
     model->appendRow(package);
@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         if (uip->isBaseChanged())
         {
-            auto item = new QStandardItem(UIBase::getTypeName(uip->getBaseTypeCurrent()));
+            auto item = new UITreeViewItem(UIBase::getTypeName(uip->getBaseTypeCurrent()));
             item->setEditable(false);
             package->appendRow(item);
         }
@@ -74,25 +74,47 @@ MainWindow::MainWindow(QWidget *parent) :
         auto base = uip->getBase(UIBase::TYPE(i));
         for (auto it:base->getData())
         {
-            auto item = new QStandardItem(it->getDisplayName());
+            auto item = new UITreeViewItem(it);
             item->setEditable(false);
             parentItem->appendRow(item);
         }
     }
 
-    auto _ui = proj.matchUI("integer", UIBase::TRIGGER_TYPE);
+    auto _ui = proj->matchUI("integer", UIBase::TRIGGER_TYPE);
     ui->textBrowser->append(_ui->getDisplayName());
 
     ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     model = new QStandardItemModel(ui->treeView_2);
-
+    this->displayModel = model;
     ui->treeView_2->setModel(model);
 
 
     uip->getBase(UIBase::TYPE(0))->getData().value(18)->displayDetail(model);
 
+    this->connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(treeViewClicked(QModelIndex)));
+
 
     qDebug() << timer.elapsed();
+
+    auto hash = uip->getProject()->getWEStringMap();
+    auto it = hash->find("WESTRING_TRIGCAT_");
+    qDebug() << (it != hash->end());
+
+}
+
+void MainWindow::treeViewClicked(const QModelIndex &index)
+{
+    auto item = static_cast<UITreeViewItem *>(this->treeViewModel->itemFromIndex(index));
+
+    qDebug() << item->getDepth() << item->text();
+
+
+    if (item->getDepth() < 0)
+    {
+        auto str = item->getBase()->getDisplayName();
+        //qDebug() << str;
+        item->getBase()->displayDetail(this->displayModel);
+    }
 
 }
 
