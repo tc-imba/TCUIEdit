@@ -63,13 +63,24 @@ namespace TCUIEdit
         return this->name;
     }
 
-    const QString& UIBase_Event::getCategory() const
+    const QString &UIBase_Event::getCategory() const
     {
         return this->category;
     }
 
-    void UIBase_Event::displayDetail(QStandardItemModel *treeModel)
+    void UIBase_Event::displayDetail(UIMainTree *tree)
     {
+        /*this->initDisplayDetail(treeModel);
 
+        treeModel->appendRow(this->formRow("First game version", this->version));
+
+        auto parent = new QStandardItem("Arguments");
+        parent->setEditable(false);
+        treeModel->appendRow(parent);
+
+        for (auto &it:this->arguments)
+        {
+            parent->appendRow(this->formRow(it.first, it.second, true));
+        }*/
     }
 };

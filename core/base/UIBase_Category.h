@@ -30,7 +30,7 @@ namespace TCUIEdit
 
         const QString getDisplayName() const;
 
-        void displayDetail(QStandardItemModel *treeModel);
+        void displayDetail(UIMainTree *tree);
     };
 };
 

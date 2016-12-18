@@ -46,4 +46,4 @@ set(SOURCE_FILES main.cpp mainwindow.cpp)
 add_executable(TCUIEdit ${SOURCE_FILES})
 
 # qt5_use_modules(TCUIEdit Core Widgets Gui)
-target_link_libraries(TCUIEdit Qt5::Widgets core view)
+target_link_libraries(TCUIEdit Qt5::Widgets view core)

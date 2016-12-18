@@ -84,21 +84,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textBrowser->append(_ui->getDisplayName());
 
     ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
     model = new QStandardItemModel(ui->treeView_2);
     this->displayModel = model;
-    ui->treeView_2->setModel(model);
+    //ui->treeView_2->setModel(model);
 
 
-    uip->getBase(UIBase::TYPE(0))->getData().value(18)->displayDetail(model);
 
     this->connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(treeViewClicked(QModelIndex)));
 
 
     qDebug() << timer.elapsed();
-
-    auto hash = uip->getProject()->getWEStringMap();
-    auto it = hash->find("WESTRING_TRIGCAT_");
-    qDebug() << (it != hash->end());
 
 }
 
@@ -113,7 +109,8 @@ void MainWindow::treeViewClicked(const QModelIndex &index)
     {
         auto str = item->getBase()->getDisplayName();
         //qDebug() << str;
-        item->getBase()->displayDetail(this->displayModel);
+        item->getBase()->displayDetail(this->ui->treeView_2);
+        this->ui->treeView_2->expandToDepth(0);
     }
 
 }

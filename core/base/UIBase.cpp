@@ -66,8 +66,23 @@ namespace TCUIEdit
         _PROJ->getUIMap()->addUI(this);
     }
 
-    UIPackage* UIBase::getPackage() const
+    UIPackage *UIBase::getPackage() const
     {
         return this->_pkg;
+    }
+
+    void UIBase::initDisplayDetail(UIMainTree *tree)
+    {
+        tree->clear();
+        tree->setColumnCount(2);
+        tree->setHeaderLabels(QStringList() << "Name" << "Value");
+        //treeModel->clear();
+        //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
+        //treeModel->appendRow(this->formRow("Name", this->name));
+    }
+
+    QTreeWidgetItem* UIBase::formRow(const QString &strName, const QString &strValue)
+    {
+        return new QTreeWidgetItem(QStringList()<<strName<<strValue);
     }
 }

@@ -7,6 +7,7 @@
 
 #include "../UICore.h"
 #include "../UIException.h"
+#include "../../view/UIMainTree.h"
 #include <QTreeView>
 #include <QStandardItemModel>
 
@@ -51,7 +52,11 @@ namespace TCUIEdit
 
         UIPackage *getPackage() const;
 
-        virtual void displayDetail(QStandardItemModel *treeModel) = 0;
+        virtual void displayDetail(UIMainTree *tree) = 0;
+
+        void initDisplayDetail(UIMainTree *tree);
+
+        static QTreeWidgetItem *formRow(const QString &strName, const QString &strValue);
     };
 
 };

@@ -44,26 +44,22 @@ namespace TCUIEdit
         return this->_getDisplayName();
     }
 
-    void UIBase_Category::displayDetail(QStandardItemModel *treeModel)
+    void UIBase_Category::displayDetail(UIMainTree *tree)
     {
-        treeModel->clear();
-        treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
-        auto row = QList<QStandardItem *>();
-        row << new QStandardItem("Name") << new QStandardItem(this->name);
-        row.first()->setEditable(false);
-        treeModel->appendRow(row);
-        row.clear();
-        row << new QStandardItem("Display text") << new QStandardItem(this->display);
-        row.first()->setEditable(false);
-        treeModel->appendRow(row);
-        row.clear();
-        row << new QStandardItem("Icon image file") << new QStandardItem(this->icon);
-        row.first()->setEditable(false);
-        treeModel->appendRow(row);
-        row.clear();
-        row << new QStandardItem("Display flag") << new QStandardItem(this->displayFlag);
-        row.first()->setEditable(false);
-        treeModel->appendRow(row);
+
+        this->initDisplayDetail(tree);
+        auto item = new QTreeWidgetItem(QStringList() << "Name" << this->name);
+
+
+        tree->addTopLevelItem(this->formRow("Name", this->name));
+        tree->addTopLevelItem(this->formRow("Display Text", this->display));
+
+        //tree->appendRow(this->formRow("Display text", this->display));
+
+        /*
+        treeModel->appendRow(this->formRow("Display text (In Editor)", this->getDisplay(), false, false));
+        treeModel->appendRow(this->formRow("Icon image file", this->icon));
+        treeModel->appendRow(this->formRow("Display flag (optional)", this->displayFlag));
 
         auto parent = new QStandardItem("Events");
         parent->setEditable(false);
@@ -74,17 +70,9 @@ namespace TCUIEdit
         {
             if (this->name == ((UIBase_Event *) it)->getCategory())
             {
-                row.clear();
-                auto item = new QStandardItem(it->getPackage()->getName());
-                item->setEditable(false);
-                row << item;
-                item = new QStandardItem(it->getDisplayName());
-                item->setEditable(false);
-                row << item;
-                parent->appendRow(row);
+                parent->appendRow(this->formRow(it->getPackage()->getName(), it->getDisplayName(), false, false));
             }
-        }
-
+        }*/
 
     }
 };

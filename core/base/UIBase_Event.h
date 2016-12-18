@@ -35,7 +35,7 @@ namespace TCUIEdit
 
         const QString &getCategory() const;
 
-        void displayDetail(QStandardItemModel *treeModel);
+        void displayDetail(UIMainTree *tree);
     };
 
 };
