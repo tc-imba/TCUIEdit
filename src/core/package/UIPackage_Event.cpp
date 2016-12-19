@@ -5,7 +5,7 @@
 #include "UIPackage_Event.h"
 #include "../base/UIBase_Event.h"
 #include "../UIProject.h"
-#include "UIPackage.h"
+#include "../package/UIPackage.h"
 
 namespace TCUIEdit
 {

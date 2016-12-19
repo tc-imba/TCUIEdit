@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
 project(TCUIEdit)
 
+include(CMakeConfig.txt)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Open moc and uic support of CMake
@@ -15,14 +17,10 @@ IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
     MESSAGE(STATUS "+-------------------------+")
     MESSAGE(STATUS "| Current Platform: Linux |")
     MESSAGE(STATUS "+-------------------------+")
-    # Set it to the Qt path
-    set(CMAKE_PREFIX_PATH "/opt/Qt5.7.0/5.7/gcc_64")
 ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     MESSAGE(STATUS "+---------------------------+")
     MESSAGE(STATUS "| Current Platform: Windows |")
     MESSAGE(STATUS "+---------------------------+")
-    # Set it to the Qt path
-    set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt5.7.0\\5.7\\mingw53_32")
     # Disable the console on Windows
     IF (NOT (CMAKE_BUILD_TYPE STREQUAL Debug))
         MESSAGE(STATUS "Console is disabled Under " ${CMAKE_BUILD_TYPE} " Mode")
@@ -39,11 +37,12 @@ ENDIF ()
 find_package(Qt5Widgets REQUIRED)
 #find_package(Qt5Gui REQUIRED)
 
-add_subdirectory(core)
-add_subdirectory(view)
+add_subdirectory(src/core core)
+add_subdirectory(src/view view)
 
-set(SOURCE_FILES main.cpp mainwindow.cpp)
+set(SOURCE_FILES src/main.cpp src/view/mainwindow.cpp)
 add_executable(TCUIEdit ${SOURCE_FILES})
 
 # qt5_use_modules(TCUIEdit Core Widgets Gui)
 target_link_libraries(TCUIEdit Qt5::Widgets view core)
+

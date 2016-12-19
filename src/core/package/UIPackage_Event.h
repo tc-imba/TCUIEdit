@@ -5,7 +5,7 @@
 #ifndef TCUIEDIT_UIPACKAGE_EVENT_H
 #define TCUIEDIT_UIPACKAGE_EVENT_H
 
-#include  "../UICore.h"
+#include "../UICore.h"
 #include "UIPackage_Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME

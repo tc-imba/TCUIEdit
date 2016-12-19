@@ -4,7 +4,7 @@
 
 #include "UIBase_Category.h"
 #include "UIBase_Event.h"
-#include "../package/UIPackage.h"
+#include "package/UIPackage.h"
 #include "../UIProject.h"
 
 namespace TCUIEdit

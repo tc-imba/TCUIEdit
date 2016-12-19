@@ -3,7 +3,7 @@
 //
 
 #include "UIBase.h"
-#include "UIProject.h"
+#include "../UIProject.h"
 #include "package/UIPackage.h"
 
 #define _PROJ this->_pkg->getProject()

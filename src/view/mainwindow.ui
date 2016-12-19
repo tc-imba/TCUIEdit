@@ -74,7 +74,7 @@
   <customwidget>
    <class>TCUIEdit::UIMainTree</class>
    <extends>QTreeView</extends>
-   <header>view/UIMainTree.h</header>
+   <header>src/view/UIMainTree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

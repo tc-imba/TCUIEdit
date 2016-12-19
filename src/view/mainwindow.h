@@ -9,7 +9,7 @@
 #include <QTreeView>
 #include <QHeaderView>
 #include <QStandardItemModel>
-#include "core/UICore.h"
+#include "../core/UICore.h"
 #include <QMultiHash>
 
 

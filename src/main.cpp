@@ -1,9 +1,6 @@
 #include <QtWidgets/QApplication>
-#include "mainwindow.h"
-#include "core/UICore.h"
-#include "core/UIProject.h"
-#include "core/base/UIBase.h"
-#include <iostream>
+#include "src/view/mainwindow.h"
+
 
 int main(int argc, char *argv[])
 {

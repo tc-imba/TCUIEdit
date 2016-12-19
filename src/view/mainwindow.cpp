@@ -8,10 +8,10 @@
 
 #include <QDebug>
 #include <QElapsedTimer>
-#include "core/base/UIBase_All.h"
-#include "core/package/UIPackage.h"
-#include "core/UIProject.h"
-#include "view/UITreeViewItem.h"
+#include "../core/base/UIBase_All.h"
+#include "../core/package/UIPackage.h"
+#include "../core/UIProject.h"
+#include "UITreeViewItem.h"
 
 using namespace TCUIEdit;
 
