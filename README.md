@@ -6,10 +6,13 @@ Build under Clion (CMake 3.6)
 Windows: mingw53_32
 Linux: gcc_64
 
+
 # Compiling
 
 In Clion, you should set Working Directory to the base path of he project in Configuration.
 
+After cloned, enter the command below
+``git update-index --assume-unchanged CMakeConfig.txt``
 Then, edit the file `CMakeConfig.txt` to config your QT Path.
 
 A version with Visual Studio 2015 will be released later.
