@@ -76,13 +76,15 @@ namespace TCUIEdit
         tree->clear();
         tree->setColumnCount(2);
         tree->setHeaderLabels(QStringList() << "Name" << "Value");
+        tree->addTopLevelItem(this->formRow("Name", this->name));
+
         //treeModel->clear();
         //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
         //treeModel->appendRow(this->formRow("Name", this->name));
     }
 
-    QTreeWidgetItem* UIBase::formRow(const QString &strName, const QString &strValue)
+    QTreeWidgetItem *UIBase::formRow(const QString &strName, const QString &strValue)
     {
-        return new QTreeWidgetItem(QStringList()<<strName<<strValue);
+        return new QTreeWidgetItem(QStringList() << strName << strValue);
     }
 }

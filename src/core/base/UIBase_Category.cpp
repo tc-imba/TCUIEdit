@@ -48,31 +48,23 @@ namespace TCUIEdit
     {
 
         this->initDisplayDetail(tree);
-        auto item = new QTreeWidgetItem(QStringList() << "Name" << this->name);
 
-
-        tree->addTopLevelItem(this->formRow("Name", this->name));
         tree->addTopLevelItem(this->formRow("Display Text", this->display));
 
-        //tree->appendRow(this->formRow("Display text", this->display));
+        tree->addTopLevelItem(this->formRow("Display text (In Editor)", this->getDisplay()));
+        tree->addTopLevelItem(this->formRow("Icon image file", this->icon));
+        tree->addTopLevelItem(this->formRow("Display flag (optional)", this->displayFlag));
 
-        /*
-        treeModel->appendRow(this->formRow("Display text (In Editor)", this->getDisplay(), false, false));
-        treeModel->appendRow(this->formRow("Icon image file", this->icon));
-        treeModel->appendRow(this->formRow("Display flag (optional)", this->displayFlag));
+        auto parent = this->formRow("Events");
+        tree->addTopLevelItem(parent);
 
-        auto parent = new QStandardItem("Events");
-        parent->setEditable(false);
-        treeModel->appendRow(parent);
-
-        auto base = this->_pkg->getBase(UIBase::TRIGGER_EVENT);
-        for (auto it:base->getData())
+        for (auto it:this->_pkg->getBase(UIBase::TRIGGER_EVENT)->getData())
         {
             if (this->name == ((UIBase_Event *) it)->getCategory())
             {
-                parent->appendRow(this->formRow(it->getPackage()->getName(), it->getDisplayName(), false, false));
+                parent->addChild(this->formRow(it->getPackage()->getName(), it->getDisplayName()));
             }
-        }*/
+        }
 
     }
 };

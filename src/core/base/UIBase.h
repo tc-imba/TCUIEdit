@@ -56,7 +56,7 @@ namespace TCUIEdit
 
         void initDisplayDetail(UIMainTree *tree);
 
-        static QTreeWidgetItem *formRow(const QString &strName, const QString &strValue);
+        static QTreeWidgetItem *formRow(const QString &strName, const QString &strValue = "");
     };
 
 };

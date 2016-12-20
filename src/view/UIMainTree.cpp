@@ -23,10 +23,22 @@ namespace TCUIEdit
 
         this->contextMenu->clear();
 
+        this->contextMenu->addAction(this->contextMenuActions[0]);
+
+
         QPoint point = event->pos(); //得到窗口坐标
         auto item = this->itemAt(point);
 
-        this->contextMenu->addAction(this->contextMenuActions[0]);
+        if (item == NULL)
+        {
+            this->contextMenuActions[0]->setEnabled(false);
+        }
+        else
+        {
+            this->contextMenuActions[0]->setEnabled(true);
+
+            qDebug() << item->text(1);
+        }
 
         this->contextMenu->exec(QCursor::pos());
 
