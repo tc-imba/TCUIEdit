@@ -1,0 +1,15 @@
+//
+// Created by liu on 2016/12/21.
+//
+
+#ifndef TCUIEDIT_UIPROPERTYBROWSERITEM_H
+#define TCUIEDIT_UIPROPERTYBROWSERITEM_H
+
+
+class UIPropertyBrowserItem
+{
+
+};
+
+
+#endif //TCUIEDIT_UIPROPERTYBROWSERITEM_H

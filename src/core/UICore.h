@@ -35,6 +35,8 @@ namespace TCUIEdit
 
     class UIPackage;
 
+    class UIPackage_Base;
+
     class UIPackage_Category;
 
     class UIPackage_Type;
