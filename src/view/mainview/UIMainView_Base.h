@@ -14,7 +14,7 @@ namespace TCUIEdit
     class UIMainView_Base
     {
     protected:
-        
+
     public:
         virtual void refresh() = 0;
     };
