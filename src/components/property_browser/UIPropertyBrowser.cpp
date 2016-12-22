@@ -15,8 +15,8 @@ namespace TCUIEdit
     {
         delete this->model;
     }
-    
-    void UIPropertyBrowser::addTitle()
+
+    void UIPropertyBrowser::addCategory()
     {
 
     }

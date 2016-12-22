@@ -1,0 +1,9 @@
+set(SOURCE_FILES_BASE
+        base/UIBase.cpp
+        base/UIBase_Category.cpp
+        base/UIBase_Type.cpp
+        base/UIBase_TypeDefault.cpp
+        base/UIBase_Param.cpp
+        base/UIBase_Event.cpp
+        base/UIBase_Condition.cpp
+        )

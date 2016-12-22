@@ -1,0 +1,11 @@
+set(SOURCE_FILES_PACKAGE
+        package/UIPackage.cpp
+        package/UIPackage_WEString.cpp
+        package/UIPackage_Category.cpp
+        package/UIPackage_Base.cpp
+        package/UIPackage_Type.cpp
+        package/UIPackage_TypeDefault.cpp
+        package/UIPackage_Param.cpp
+        package/UIPackage_Event.cpp
+        package/UIPackage_Condition.cpp
+        )

@@ -21,7 +21,7 @@ namespace TCUIEdit
 
         ~UIPropertyBrowser();
 
-        void addTitle();
+        void addCategory();
 
     };
 
