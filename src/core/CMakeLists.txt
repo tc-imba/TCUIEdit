@@ -6,12 +6,13 @@ include(ui/CMakeLists.txt)
 include(package/CMakeLists.txt)
 
 set(SOURCE_FILES
-        UIProject.cpp
+        Project.cpp
         ${SOURCE_FILES_PACKAGE}
-        UIMap.cpp
+        Map.cpp
         ${SOURCE_FILES_BASE}
-        UIException.cpp
-        UIFileInput.cpp
+        Exception.cpp
+        FileInput.cpp
+        core.cpp
         )
 
 add_library(core ${SOURCE_FILES})

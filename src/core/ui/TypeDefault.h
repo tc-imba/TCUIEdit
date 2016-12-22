@@ -2,13 +2,11 @@
 // Created by liu on 2016/12/11.
 //
 
-#ifndef TCUIEDIT_UIBASE_TYPEDEFAULT_H
-#define TCUIEDIT_UIBASE_TYPEDEFAULT_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     //***************************************************************************
     // [TriggerTypeDefaults]
@@ -24,13 +22,13 @@ namespace TCUIEdit{namespace UI
     protected:
         QString script;
     public:
-        TypeDefault(UIPackage *package, QPair<QString, QStringList> pair);
+        TypeDefault(Package::Package *package, QPair<QString, QStringList> pair);
 
-        UIBase_Type *getOriginType() const;
+        Type *getOriginType() const;
 
         const QString getDisplayName() const;
 
     };
 
-}};
-#endif //TCUIEDIT_UIBASE_TYPEDEFAULT_H
+}}}
+

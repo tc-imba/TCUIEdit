@@ -7,10 +7,10 @@
 namespace TCUIEdit
 {
 
-    UIMainView_Category::UIMainView_Category(UIPropertyBrowser *browser, UIBase *ui)
+    UIMainView_Category::UIMainView_Category(UIPropertyBrowser *browser, UI::Base *ui)
             : UIMainView_Base(browser)
     {
-        this->ui = (UIBase_Category *) ui;
+        this->ui = (UI::Category *) ui;
         this->refresh();
     }
 

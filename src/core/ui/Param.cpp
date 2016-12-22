@@ -4,13 +4,14 @@
 
 #include "Param.h"
 #include "Type.h"
-#include "../package/UIPackage.h"
-#include "../UIProject.h"
+#include "package/Package.h"
+#include "Project.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
 
-    Param::Param(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Param::Param(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_PARAM;
 
@@ -40,9 +41,9 @@ namespace TCUIEdit{namespace UI
 
     }
 
-    UIBase_Type *Param::getOriginType() const
+    Type *Param::getOriginType() const
     {
-        return (UIBase_Type *) (this->_pkg->getProject()->matchUI(this->variable, TRIGGER_TYPE));
+        return (Type *) (this->_pkg->getProject()->matchUI(this->variable, TRIGGER_TYPE));
     }
 
     const QString Param::getDisplayName() const
@@ -59,4 +60,4 @@ namespace TCUIEdit{namespace UI
         return this->name;
     }
 
-};
+}}}

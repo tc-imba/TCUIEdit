@@ -2,14 +2,12 @@
 // Created by liu on 2016/12/8.
 //
 
-#ifndef TCUIEDIT_UIBASE_TYPE_H
-#define TCUIEDIT_UIBASE_TYPE_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit{namespace UI
-    {
+namespace TCUIEdit { namespace Core { namespace UI
+{
     //***************************************************************************
     // [TriggerTypes]
     // Defines all trigger variable types to be used by the Script Editor
@@ -29,11 +27,11 @@ namespace TCUIEdit{namespace UI
     protected:
         QString version, globalFlag, compareFlag, baseType, importType, baseFlag;
     public:
-        Type(UIPackage *package, QPair<QString, QStringList> pair);
+        Type(Package::Package *package, QPair<QString, QStringList> pair);
 
         const QString getDisplayName() const;
 
     };
-}};
+}}}
 
-#endif //TCUIEDIT_UIBASE_TYPE_H
+

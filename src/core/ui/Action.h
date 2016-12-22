@@ -2,15 +2,11 @@
 // Created by sunyi on 2016/12/22.
 //
 
-#ifndef TCUIEDIT_UIBASE_ACTION_H
-#define TCUIEDIT_UIBASE_ACTION_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
-#include <QList>
-#include <QPair>
 
-namespace TCUIEdit { namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     //***************************************************************************
     // [TriggerActions]
@@ -29,7 +25,7 @@ namespace TCUIEdit { namespace UI
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        Action(UIPackage *package, QPair<QString, QStringList> pair);
+        Action(Package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -39,6 +35,6 @@ namespace TCUIEdit { namespace UI
 
     };
 
-}}
+}}}
 
-#endif //TCUIEDIT_UIBASE_ACTION_H
+

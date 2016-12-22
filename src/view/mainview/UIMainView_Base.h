@@ -2,12 +2,13 @@
 // Created by liu on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIMAINVIEW_BASE_H
-#define TCUIEDIT_UIMAINVIEW_BASE_H
+#pragma once
 
-#include "../../core/UICore.h"
-#include "../../core/base/base.h"
+#include "../../core/core.h"
+#include "../../core/ui/base.h"
 #include "../../components/property_browser/UIPropertyBrowser.h"
+
+using namespace TCUIEdit::Core;
 
 namespace TCUIEdit
 {
@@ -23,4 +24,4 @@ namespace TCUIEdit
 };
 
 
-#endif //TCUIEDIT_UIMAINVIEW_BASE_H
+

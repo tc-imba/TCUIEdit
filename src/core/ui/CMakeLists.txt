@@ -1,11 +1,13 @@
 set(SOURCE_FILES_BASE
         ui/Base.cpp
-        ui/UIBase_Category.cpp
-        ui/UIBase_Type.cpp
-        ui/UIBase_TypeDefault.cpp
-        ui/UIBase_Param.cpp
-        ui/UIBase_Event.cpp
-        ui/UIBase_Condition.cpp
+        ui/Category.cpp
+        ui/Type.cpp
+        ui/TypeDefault.cpp
+        ui/Param.cpp
+        ui/Event.cpp
+        ui/Condition.cpp
         ui/Action.cpp
-        ui/UIBase_Call.cpp
+        ui/Call.cpp
+
+        ui/WEString.cpp
         )

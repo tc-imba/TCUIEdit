@@ -8,12 +8,13 @@
 
 #include <QDebug>
 #include <QElapsedTimer>
-#include "../core/base/UIBase_All.h"
-#include "../core/package/UIPackage.h"
-#include "../core/UIProject.h"
+//#include "../core/ui/UIBase_All.h"
+#include "../core/package/Package.h"
+#include "src/core/Project.h"
 #include "UITreeViewItem.h"
 
 using namespace TCUIEdit;
+using namespace TCUIEdit::Core;
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -26,13 +27,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString str = "ui/ydwe/ui/";
 
-    UIProject *proj = new UIProject();
+    Project *proj = new Project();
 
     auto uip = proj->createPackage(str, "ydwe");
 
-    //UIPackage uip(&proj, str);
+    //Package uip(&proj, str);
 
-    uip->openFile(UIFileInput::CLASSIC_TRIG_DATA);
+    uip->openFile(FileInput::CLASSIC_TRIG_DATA);
 
     //msgBox.setText(uip->readLine());
     //msgBox.exec();
@@ -50,13 +51,13 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         if (uip->isBaseChanged())
         {
-            auto item = new UITreeViewItem(UIBase::getTypeName(uip->getBaseTypeCurrent()));
+            auto item = new UITreeViewItem(UI::Base::getTypeName(uip->getBaseTypeCurrent()));
             item->setEditable(false);
             package->appendRow(item);
         }
     }
 
-    uip->openFile(UIFileInput::CLASSIC_WE_STRINGS);
+    uip->openFile(FileInput::CLASSIC_WE_STRINGS);
     while (uip->readLine() > 0)
     {
         //ui->textBrowser->append("1");
@@ -71,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i = 0; i < 8; i++)
     {
         auto parentItem = package->child(i);
-        auto base = uip->getBase(UIBase::TYPE(i));
+        auto base = uip->getBase(UI::Base::TYPE(i));
         for (auto it:base->getData())
         {
             auto item = new UITreeViewItem(it);
@@ -80,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    auto _ui = proj->matchUI("integer", UIBase::TRIGGER_TYPE);
+    auto _ui = proj->matchUI("integer", UI::Base::TRIGGER_TYPE);
     ui->textBrowser->append(_ui->getDisplayName());
 
     //ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);

@@ -2,17 +2,12 @@
 // Created by liu on 2016/12/3.
 //
 
-#ifndef TCUIEDIT_UIBASE_H
-#define TCUIEDIT_UIBASE_H
+#pragma once
 
-#include "../UICore.h"
-#include "../UIException.h"
+#include "../core.h"
+#include "../Exception.h"
 
-namespace A { namespace B
-{
-}}
-
-namespace TCUIEdit { namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     class Base
     {
@@ -40,8 +35,8 @@ namespace TCUIEdit { namespace UI
         // Protected Properties
         //
 
-        // The parent UIPackage
-        UIPackage *_pkg;
+        // The parent Package
+        Package::Package *_pkg;
 
         // The TYPE of the UI
         TYPE type = UNKNOWN;
@@ -60,15 +55,15 @@ namespace TCUIEdit { namespace UI
         // Constructors
         //
 
-        Base(UIPackage *package);
+        Base(Package::Package *package);
 
         ~Base();
 
         // Public Functions
         //
 
-        // Get the parent UIPackage of the UI
-        UIPackage *getPackage() const;
+        // Get the parent Package of the UI
+        Package::Package *getPackage() const;
 
         // Return the TYPE of the UI
         TYPE getType() const;
@@ -108,6 +103,6 @@ namespace TCUIEdit { namespace UI
 
         static QTreeWidgetItem *formRow(const QString &strName, const QString &strValue = "") = delete;*/
     };
-}}
+}}}
 
-#endif //TCUIEDIT_UIBASE_H
+

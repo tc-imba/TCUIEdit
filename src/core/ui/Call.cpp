@@ -4,9 +4,11 @@
 
 #include "Call.h"
 
-namespace TCUIEdit {namespace UI{
+namespace TCUIEdit { namespace Core { namespace UI
+{
 
-    Call::Call(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Call::Call(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_CALL;
         this->defaultsFlag = this->categoryFlag = false;
@@ -67,4 +69,4 @@ namespace TCUIEdit {namespace UI{
         return this->category;
     }
 
-}};
+}}}

@@ -4,13 +4,14 @@
 
 #include "TypeDefault.h"
 #include "Type.h"
-#include "../package/UIPackage.h"
-#include "../UIProject.h"
+#include "package/Package.h"
+#include "Project.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
 
-    TypeDefault::TypeDefault(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    TypeDefault::TypeDefault(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_TYPE_DEFAULT;
 
@@ -29,9 +30,9 @@ namespace TCUIEdit{namespace UI
         }
     }
 
-    UIBase_Type *TypeDefault::getOriginType() const
+    Type *TypeDefault::getOriginType() const
     {
-        return (UIBase_Type *) (this->_pkg->getProject()->matchUI(this->name, TRIGGER_TYPE));
+        return (Type *) (this->_pkg->getProject()->matchUI(this->name, TRIGGER_TYPE));
     }
 
     const QString TypeDefault::getDisplayName() const
@@ -45,4 +46,4 @@ namespace TCUIEdit{namespace UI
     }
 
 
-}};
+}}}

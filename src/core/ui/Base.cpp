@@ -3,12 +3,12 @@
 //
 
 #include "Base.h"
-#include "../UIProject.h"
-#include "package/UIPackage.h"
+#include "Project.h"
+#include "package/Package.h"
 
 #define _PROJ this->_pkg->getProject()
 
-namespace TCUIEdit { namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     const char *Base::TYPE_NAME[Base::TYPE_NUM] =
             {"TriggerCategories", "TriggerTypes", "TriggerTypeDefaults", "TriggerParams",
@@ -19,7 +19,7 @@ namespace TCUIEdit { namespace UI
     // Constructors
     //
 
-    Base::Base(UIPackage *package)
+    Base::Base(Package::Package *package)
     {
         this->_pkg = package;
     }
@@ -44,7 +44,7 @@ namespace TCUIEdit { namespace UI
     // Public Functions
     //
 
-    UIPackage *Base::getPackage() const
+    Package::Package *Base::getPackage() const
     {
         return this->_pkg;
     }
@@ -107,4 +107,4 @@ namespace TCUIEdit { namespace UI
     {
         return new QTreeWidgetItem(QStringList() << strName << strValue);
     }*/
-}}
+}}}

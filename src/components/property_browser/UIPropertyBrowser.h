@@ -2,8 +2,7 @@
 // Created by liu on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIPROPERTYBROWSER_H
-#define TCUIEDIT_UIPROPERTYBROWSER_H
+#pragma once
 
 #include <QtWidgets/QTreeView>
 #include <QtWidgets/QHeaderView>
@@ -32,4 +31,4 @@ namespace TCUIEdit
 
 };
 
-#endif //TCUIEDIT_UIPROPERTYBROWSER_H
+

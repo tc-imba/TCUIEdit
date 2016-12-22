@@ -1,13 +1,13 @@
 set(SOURCE_FILES_PACKAGE
-        package/UIPackage.cpp
-        package/UIPackage_WEString.cpp
-        package/UIPackage_Category.cpp
-        package/UIPackage_Base.cpp
-        package/UIPackage_Type.cpp
-        package/UIPackage_TypeDefault.cpp
-        package/UIPackage_Param.cpp
-        package/UIPackage_Event.cpp
-        package/UIPackage_Condition.cpp
-        package/UIPackage_Action.cpp
-        package/UIPackage_Call.cpp
+        package/Package.cpp
+        package/WEString.cpp
+        package/Category.cpp
+        package/Base.cpp
+        package/Type.cpp
+        package/TypeDefault.cpp
+        package/Param.cpp
+        package/Event.cpp
+        package/Condition.cpp
+        package/Action.cpp
+        package/Call.cpp
         )

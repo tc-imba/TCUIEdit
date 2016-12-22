@@ -4,10 +4,11 @@
 
 #include "Event.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
 
-    Event::Event(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Event::Event(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_EVENT;
         this->defaultsFlag = this->categoryFlag = false;
@@ -83,4 +84,4 @@ namespace TCUIEdit{namespace UI
             parent->appendRow(this->formRow(it.first, it.second, true));
         }
     }*/
-};
+}}}

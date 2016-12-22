@@ -4,12 +4,14 @@
 
 #include "Category.h"
 //#include "UIBase_Event.h"
-#include "package/UIPackage.h"
-//#include "../UIProject.h"
+#include "package/Package.h"
+//#include "../Project.h"
 
-namespace TCUIEdit {namespace UI{
+namespace TCUIEdit { namespace Core { namespace UI
+{
 
-    Category::Category(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Category::Category(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_CATEGORY;
 
@@ -66,4 +68,4 @@ namespace TCUIEdit {namespace UI{
         }
 
     }*/
-}};
+}}}
