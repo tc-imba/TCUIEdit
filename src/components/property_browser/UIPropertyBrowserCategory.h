@@ -11,7 +11,8 @@ namespace TCUIEdit
 {
     class UIPropertyBrowserCategory : public UIPropertyBrowserItem
     {
-
+    public:
+        UIPropertyBrowserCategory(const QString &text);
     };
 };
 

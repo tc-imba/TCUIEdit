@@ -6,7 +6,7 @@
 #define TCUIEDIT_UIBASE_TYPEDEFAULT_H
 
 #include "../UICore.h"
-#include "UIBase.h"
+#include "Base.h"
 
 namespace TCUIEdit
 {
@@ -29,8 +29,6 @@ namespace TCUIEdit
         UIBase_Type *getOriginType() const;
 
         const QString getDisplayName() const;
-
-        void displayDetail(UIMainTree *tree);
 
     };
 

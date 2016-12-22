@@ -6,6 +6,10 @@
 
 namespace TCUIEdit
 {
+    UIPropertyBrowserCategory::UIPropertyBrowserCategory(const QString &text)
+            : UIPropertyBrowserItem(text)
+    {
 
+    }
 
 };

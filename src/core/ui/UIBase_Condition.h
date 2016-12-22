@@ -4,19 +4,21 @@
 
 #ifndef TCUIEDIT_UIBASE_CONDITION_H
 #define TCUIEDIT_UIBASE_CONDITION_H
+
 #include "../UICore.h"
-#include "UIBase.h"
+#include "Base.h"
 #include <QList>
 #include <QPair>
 
 namespace TCUIEdit
 {
     //***************************************************************************
-    //[TriggerConditions]
-// Defines boolean condition functions
-// Key: condition function name
-// Value 0: first game version in which this function is valid
-// Value 1+: argument types
+    // [TriggerConditions]
+    // Defines boolean condition functions
+    // Key: condition function name
+
+    // Value 0: first game version in which this function is valid
+    // Value 1+: argument types
     // Note that the first argument is always a `trigger`, and is excluded here
 
     class UIBase_Condition : public UIBase
@@ -34,7 +36,6 @@ namespace TCUIEdit
 
         const QString &getCategory() const;
 
-        void displayDetail(UIMainTree *tree);
     };
 
 };

@@ -5,23 +5,23 @@
 #ifndef TCUIEDIT_UIBASE_CALL_H
 #define TCUIEDIT_UIBASE_CALL_H
 #include "../UICore.h"
-#include "UIBase.h"
+#include "Base.h"
 #include <QList>
 #include <QPair>
 
 namespace TCUIEdit
 {
     //***************************************************************************
-    //[TriggerCalls]
+    // [TriggerCalls]
+    // Defines function calls which may be used as parameter values
+    // Key: Function name
 
-// Defines function calls which may be used as parameter values
-// Key: Function name
-// Value 0: first game version in which this function is valid
-// Value 1: flag (0 or 1) indicating if the call can be used in events
-// Value 2: return type
-// Value 3+: argument types
-//
-// Note: Operators are specially handled by the editor
+    // Value 0: first game version in which this function is valid
+    // Value 1: flag (0 or 1) indicating if the call can be used in events
+    // Value 2: return type
+    // Value 3+: argument types
+    //
+    // Note: Operators are specially handled by the editor
 
 
     class UIBase_Call : public UIBase
@@ -39,7 +39,7 @@ namespace TCUIEdit
 
         const QString &getCategory() const;
 
-        void displayDetail(UIMainTree *tree);
+        //void displayDetail(UIMainTree *tree);
     };
 
 };

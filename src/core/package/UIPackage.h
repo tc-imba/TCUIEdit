@@ -14,7 +14,7 @@
 
 #include "../UICore.h"
 #include "../UIFileInput.h"
-#include "../base/UIBase.h"
+#include "base/base.h"
 #include "UIPackage_WEString.h"
 #include "UIPackage_Base.h"
 #include "UIPackage_Category.h"

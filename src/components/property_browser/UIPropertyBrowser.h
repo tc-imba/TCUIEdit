@@ -6,14 +6,17 @@
 #define TCUIEDIT_UIPROPERTYBROWSER_H
 
 #include <QtWidgets/QTreeView>
+#include <QtWidgets/QHeaderView>
 #include "UIPropertyBrowserModel.h"
-#include "UIPropertyBrowser.h"
+#include "UIPropertyBrowserCategory.h"
+#include <QDebug>
 
 namespace TCUIEdit
 {
 
-    class UIPropertyBrowser : protected QTreeView
+    class UIPropertyBrowser : public QTreeView
     {
+    Q_OBJECT
     protected:
         UIPropertyBrowserModel *model;
     public:
@@ -21,7 +24,9 @@ namespace TCUIEdit
 
         ~UIPropertyBrowser();
 
-        void addCategory();
+        void init();
+
+        void addCategory(const QString &text);
 
     };
 

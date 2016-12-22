@@ -11,4 +11,9 @@ namespace TCUIEdit
     {
 
     }
+
+    void UIPropertyBrowserModel::reset()
+    {
+
+    }
 };

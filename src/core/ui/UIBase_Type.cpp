@@ -35,7 +35,7 @@ namespace TCUIEdit
         {
             this->display = *it++;
         }
-        // Value 4: base type, used only for custom types
+        // Value 4: ui type, used only for custom types
         if (it != pair.second.constEnd())
         {
             this->baseType = *it++;
@@ -45,7 +45,7 @@ namespace TCUIEdit
         {
             this->importType = *it++;
         }
-        // Value 6: flag (0 or 1) indicating to treat this type as the base type in the editor
+        // Value 6: flag (0 or 1) indicating to treat this type as the ui type in the editor
         if (it != pair.second.constEnd())
         {
             this->baseFlag = *it++;
@@ -59,8 +59,4 @@ namespace TCUIEdit
         return this->_getDisplayName();
     }
 
-    void UIBase_Type::displayDetail(UIMainTree *tree)
-    {
-
-    }
 };
