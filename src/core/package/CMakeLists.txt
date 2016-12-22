@@ -8,4 +8,6 @@ set(SOURCE_FILES_PACKAGE
         package/UIPackage_Param.cpp
         package/UIPackage_Event.cpp
         package/UIPackage_Condition.cpp
+        package/UIPackage_Action.cpp
+        package/UIPackage_Call.cpp
         )

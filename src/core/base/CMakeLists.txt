@@ -6,4 +6,6 @@ set(SOURCE_FILES_BASE
         base/UIBase_Param.cpp
         base/UIBase_Event.cpp
         base/UIBase_Condition.cpp
+        base/UIBase_Action.cpp
+        base/UIBase_Call.cpp
         )
