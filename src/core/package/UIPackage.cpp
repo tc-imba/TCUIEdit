@@ -16,6 +16,7 @@ namespace TCUIEdit
         this->base[UIBase::TRIGGER_TYPE_DEFAULT] = new UIPackage_TypeDefault(this);
         this->base[UIBase::TRIGGER_PARAM] = new UIPackage_Param(this);
         this->base[UIBase::TRIGGER_EVENT] = new UIPackage_Event(this);
+        this->base[UIBase::TRIGGER_CONDITION]=new UIPackage_Condition(this);
 
     }
 
@@ -86,7 +87,7 @@ namespace TCUIEdit
             return;
         }
 
-        if (getBaseTypeCurrent() < UIBase::TYPE(5))
+        if (getBaseTypeCurrent() < UIBase::TYPE(6))
         {
             this->getBaseCurrent()->readLine(line);
         }
