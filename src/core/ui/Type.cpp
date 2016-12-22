@@ -2,12 +2,12 @@
 // Created by liu on 2016/12/8.
 //
 
-#include "UIBase_Type.h"
+#include "Type.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
 
-    UIBase_Type::UIBase_Type(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    Type::Type(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
         this->type = TRIGGER_TYPE;
 
@@ -54,7 +54,7 @@ namespace TCUIEdit
 
     }
 
-    const QString UIBase_Type::getDisplayName() const
+    const QString Type::getDisplayName() const
     {
         return this->_getDisplayName();
     }

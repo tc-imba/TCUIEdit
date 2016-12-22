@@ -1,15 +1,16 @@
 //
-// Created by liu on 2016/12/15.
+// Created by sunyi on 2016/12/21.
 //
 
-#include "UIBase_Call.h"
 
-namespace TCUIEdit
+#include "Condition.h"
+
+namespace TCUIEdit{namespace UI
 {
 
-    UIBase_Call::UIBase_Call(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    Condition::Condition(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
-        this->type = TRIGGER_CALL;
+        this->type = TRIGGER_CONDITION;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -27,7 +28,7 @@ namespace TCUIEdit
         }
     }
 
-    void UIBase_Call::add(QPair<QString, QStringList> pair)
+    void Condition::add(QPair<QString, QStringList> pair)
     {
         if (pair.first == "_Defaults" && !this->defaultsFlag)
         {
@@ -58,14 +59,15 @@ namespace TCUIEdit
         }
     }
 
-    const QString UIBase_Call::getDisplayName() const
+    const QString Condition::getDisplayName() const
     {
         return this->name;
     }
 
-    const QString &UIBase_Call::getCategory() const
+    const QString &Condition::getCategory() const
     {
         return this->category;
     }
 
-};
+
+}};

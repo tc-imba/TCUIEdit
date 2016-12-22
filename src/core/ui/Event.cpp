@@ -1,16 +1,15 @@
 //
-// Created by sunyi on 2016/12/21.
+// Created by liu on 2016/12/15.
 //
 
+#include "Event.h"
 
-#include "UIBase_Condition.h"
-
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
 
-    UIBase_Condition::UIBase_Condition(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    Event::Event(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
-        this->type = TRIGGER_CONDITION;
+        this->type = TRIGGER_EVENT;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -28,7 +27,7 @@ namespace TCUIEdit
         }
     }
 
-    void UIBase_Condition::add(QPair<QString, QStringList> pair)
+    void Event::add(QPair<QString, QStringList> pair)
     {
         if (pair.first == "_Defaults" && !this->defaultsFlag)
         {
@@ -59,15 +58,29 @@ namespace TCUIEdit
         }
     }
 
-    const QString UIBase_Condition::getDisplayName() const
+    const QString Event::getDisplayName() const
     {
         return this->name;
     }
 
-    const QString &UIBase_Condition::getCategory() const
+    const QString &Event::getCategory() const
     {
         return this->category;
     }
 
+    /*void UIBase_Event::displayDetail(UIMainTree *tree)
+    {
+        this->initDisplayDetail(treeModel);
 
+        treeModel->appendRow(this->formRow("First game version", this->version));
+
+        auto parent = new QStandardItem("Arguments");
+        parent->setEditable(false);
+        treeModel->appendRow(parent);
+
+        for (auto &it:this->arguments)
+        {
+            parent->appendRow(this->formRow(it.first, it.second, true));
+        }
+    }*/
 };

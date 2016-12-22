@@ -10,7 +10,7 @@
 #include <QList>
 #include <QPair>
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
     //***************************************************************************
     // [TriggerEvents]
@@ -20,14 +20,14 @@ namespace TCUIEdit
     // Value 1+: argument types
     // Note that the first argument is always a `trigger`, and is excluded here
 
-    class UIBase_Event : public UIBase
+    class Event : public Base
     {
     protected:
         QString version, category;
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        UIBase_Event(UIPackage *package, QPair<QString, QStringList> pair);
+        Event(UIPackage *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -37,7 +37,7 @@ namespace TCUIEdit
 
     };
 
-};
+}};
 
 
 #endif //TCUIEDIT_UIBASE_EVENT_H

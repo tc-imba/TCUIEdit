@@ -8,7 +8,7 @@
 #include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
     //***************************************************************************
     // [TriggerTypeDefaults]
@@ -19,12 +19,12 @@ namespace TCUIEdit
     //
     // If a type does not have an entry here, it will be set to null if it is a handle
 
-    class UIBase_TypeDefault : public UIBase
+    class TypeDefault : public Base
     {
     protected:
         QString script;
     public:
-        UIBase_TypeDefault(UIPackage *package, QPair<QString, QStringList> pair);
+        TypeDefault(UIPackage *package, QPair<QString, QStringList> pair);
 
         UIBase_Type *getOriginType() const;
 
@@ -32,5 +32,5 @@ namespace TCUIEdit
 
     };
 
-};
+}};
 #endif //TCUIEDIT_UIBASE_TYPEDEFAULT_H

@@ -2,15 +2,15 @@
 // Created by liu on 2016/12/11.
 //
 
-#include "UIBase_TypeDefault.h"
-#include "UIBase_Type.h"
+#include "TypeDefault.h"
+#include "Type.h"
 #include "../package/UIPackage.h"
 #include "../UIProject.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
 
-    UIBase_TypeDefault::UIBase_TypeDefault(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    TypeDefault::TypeDefault(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
         this->type = TRIGGER_TYPE_DEFAULT;
 
@@ -29,12 +29,12 @@ namespace TCUIEdit
         }
     }
 
-    UIBase_Type *UIBase_TypeDefault::getOriginType() const
+    UIBase_Type *TypeDefault::getOriginType() const
     {
         return (UIBase_Type *) (this->_pkg->getProject()->matchUI(this->name, TRIGGER_TYPE));
     }
 
-    const QString UIBase_TypeDefault::getDisplayName() const
+    const QString TypeDefault::getDisplayName() const
     {
         auto type = this->getOriginType();
         if (type)
@@ -45,4 +45,4 @@ namespace TCUIEdit
     }
 
 
-};
+}};
