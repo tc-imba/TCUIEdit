@@ -8,10 +8,18 @@ namespace TCUIEdit
 {
     UIPropertyBrowser::UIPropertyBrowser(QWidget *parent) : QTreeView(parent)
     {
-        this->model = new QStandardItemModel(this);
+        this->model = new UIPropertyBrowserModel(this);
+    }
 
-
+    UIPropertyBrowser::~UIPropertyBrowser()
+    {
+        delete this->model;
+    }
+    
+    void UIPropertyBrowser::addTitle()
+    {
 
     }
+
 
 };

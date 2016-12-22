@@ -6,8 +6,8 @@
 #define TCUIEDIT_UIPROPERTYBROWSER_H
 
 #include <QtWidgets/QTreeView>
-#include <QtGui/QStandardItemModel>
-#include <QtGui/QStandardItem>
+#include "UIPropertyBrowserModel.h"
+#include "UIPropertyBrowser.h"
 
 namespace TCUIEdit
 {
@@ -15,10 +15,13 @@ namespace TCUIEdit
     class UIPropertyBrowser : protected QTreeView
     {
     protected:
-        QStandardItemModel *model;
+        UIPropertyBrowserModel *model;
     public:
         UIPropertyBrowser(QWidget *parent = Q_NULLPTR);
+
         ~UIPropertyBrowser();
+
+        void addTitle();
 
     };
 

@@ -12,7 +12,7 @@ namespace TCUIEdit
         this->ui = (UIBase_Category *) ui;
     }
 
-    UIMainView_Category::refresh()
+    void UIMainView_Category::refresh()
     {
 
     }

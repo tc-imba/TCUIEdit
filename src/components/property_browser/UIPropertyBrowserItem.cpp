@@ -3,3 +3,13 @@
 //
 
 #include "UIPropertyBrowserItem.h"
+
+namespace TCUIEdit
+{
+    UIPropertyBrowserItem::UIPropertyBrowserItem(const QString &text)
+            : QStandardItem(text)
+    {
+
+    }
+
+};
