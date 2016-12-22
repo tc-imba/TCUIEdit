@@ -6,7 +6,7 @@
 #define TCUIEDIT_UIBASE_TYPE_H
 
 #include "../UICore.h"
-#include "UIBase.h"
+#include "Base.h"
 
 namespace TCUIEdit
     {
@@ -19,9 +19,9 @@ namespace TCUIEdit
     // Value 1: flag (0 or 1) indicating if this type can be a global variable
     // Value 2: flag (0 or 1) indicating if this type can be used with comparison operators
     // Value 3: string to display in the editor
-    // Value 4: base type, used only for custom types
+    // Value 4: ui type, used only for custom types
     // Value 5: import type, for strings which represent files (optional)
-    // Value 6: flag (0 or 1) indicating to treat this type as the base type in the editor
+    // Value 6: flag (0 or 1) indicating to treat this type as the ui type in the editor
 
     class UIBase_Type : public UIBase
     {
@@ -32,8 +32,6 @@ namespace TCUIEdit
         UIBase_Type(UIPackage *package, QPair<QString, QStringList> pair);
 
         const QString getDisplayName() const;
-
-        void displayDetail(UIMainTree *tree);
 
     };
 };

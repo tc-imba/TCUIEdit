@@ -6,7 +6,7 @@
 #define TCUIEDIT_UIBASE_CATEGORY_H
 
 #include "../UICore.h"
-#include "UIBase.h"
+#include "Base.h"
 
 namespace TCUIEdit
 {
@@ -30,7 +30,6 @@ namespace TCUIEdit
 
         const QString getDisplayName() const;
 
-        void displayDetail(UIMainTree *tree);
     };
 };
 

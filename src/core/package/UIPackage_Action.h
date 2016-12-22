@@ -15,7 +15,7 @@ namespace TCUIEdit
     class UIPackage_Action : public UIPackage_Base
     {
     protected:
-        UIBase_Action* lastUI;
+        action* lastUI;
     public:
         UIPackage_Action(UIPackage *package);
 

@@ -83,13 +83,13 @@ MainWindow::MainWindow(QWidget *parent) :
     auto _ui = proj->matchUI("integer", UIBase::TRIGGER_TYPE);
     ui->textBrowser->append(_ui->getDisplayName());
 
-    ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    //ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    model = new QStandardItemModel(ui->treeView_2);
-    this->displayModel = model;
+    //model = new QStandardItemModel(ui->treeView_2);
+    //this->displayModel = model;
     //ui->treeView_2->setModel(model);
 
-
+    this->mainView = new UIMainView(this->ui->mainView);
 
     this->connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(treeViewClicked(QModelIndex)));
 
@@ -109,8 +109,8 @@ void MainWindow::treeViewClicked(const QModelIndex &index)
     {
         auto str = item->getBase()->getDisplayName();
         //qDebug() << str;
-        item->getBase()->displayDetail(this->ui->treeView_2);
-        this->ui->treeView_2->expandToDepth(0);
+        //item->getBase()->displayDetail(this->ui->treeView_2);
+        this->mainView->displayUI(item->getBase());
     }
 
 }

@@ -3,7 +3,9 @@ project(property_browser)
 
 set(SOURCE_FILES
         UIPropertyBrowser.cpp
+        UIPropertyBrowserModel.cpp
         UIPropertyBrowserItem.cpp
+        UIPropertyBrowserCategory.cpp
         )
 
 add_library(property_browser ${SOURCE_FILES})

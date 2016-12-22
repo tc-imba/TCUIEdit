@@ -8,7 +8,7 @@
 #include <QMultiHash>
 #include <QList>
 #include "UICore.h"
-#include "base/UIBase.h"
+#include "base/base.h"
 #include "UIException.h"
 
 namespace TCUIEdit

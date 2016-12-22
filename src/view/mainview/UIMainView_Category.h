@@ -13,9 +13,9 @@ namespace TCUIEdit
     class UIMainView_Category : public UIMainView_Base
     {
     protected:
-        UIBase_Category* ui;
+        UIBase_Category *ui;
     public:
-        UIMainView_Category(UIBase* ui);
+        UIMainView_Category(UIPropertyBrowser *browser, UIBase *ui);
 
         void refresh();
     };

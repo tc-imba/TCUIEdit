@@ -3,9 +3,9 @@
 //
 
 #include "UIBase_Category.h"
-#include "UIBase_Event.h"
+//#include "UIBase_Event.h"
 #include "package/UIPackage.h"
-#include "../UIProject.h"
+//#include "../UIProject.h"
 
 namespace TCUIEdit
 {
@@ -44,7 +44,7 @@ namespace TCUIEdit
         return this->_getDisplayName();
     }
 
-    void UIBase_Category::displayDetail(UIMainTree *tree)
+    /*void UIBase_Category::displayDetail(UIMainTree *tree)
     {
 
         this->initDisplayDetail(tree);
@@ -66,5 +66,5 @@ namespace TCUIEdit
             }
         }
 
-    }
+    }*/
 };

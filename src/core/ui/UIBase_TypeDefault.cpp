@@ -44,9 +44,5 @@ namespace TCUIEdit
         return "";
     }
 
-    void UIBase_TypeDefault::displayDetail(UIMainTree *tree)
-    {
-
-    }
 
 };

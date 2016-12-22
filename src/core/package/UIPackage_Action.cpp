@@ -19,7 +19,7 @@ namespace TCUIEdit
         auto pair = this->preprocessLine(str);
         if (pair.first[0] != '_')
         {
-            this->lastUI = new UIBase_Action(this->_pkg, pair);
+            this->lastUI = new action(this->_pkg, pair);
             auto item = static_cast<UIBase *>(this->lastUI);
             this->data.push_back(item);
         }

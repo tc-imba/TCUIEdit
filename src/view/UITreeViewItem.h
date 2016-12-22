@@ -7,7 +7,7 @@
 
 #include <QStandardItem>
 #include "../core/UICore.h"
-#include "../core/base/UIBase.h"
+#include "../core/base/base.h"
 
 namespace TCUIEdit
 {

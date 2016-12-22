@@ -50,7 +50,7 @@ namespace TCUIEdit
 
     void UIPackage::processTrigData(QString &line)
     {
-        // Match the sign [\w] when a new base is assigned.
+        // Match the sign [\w] when a new ui is assigned.
         QRegExp rx("^\\[\\w+\\]$");
         if (rx.indexIn(line) > -1)
         {
@@ -97,7 +97,7 @@ namespace TCUIEdit
 
     void UIPackage::processWEStrings(QString &line)
     {
-        // Match the sign [\w] when a new base is assigned.
+        // Match the sign [\w] when a new ui is assigned.
         QRegExp rx("^\\[\\w+\\]$");
         if (rx.indexIn(line) > -1)return;
         rx.setPattern("^//");

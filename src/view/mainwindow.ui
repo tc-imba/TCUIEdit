@@ -34,7 +34,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="TCUIEdit::UIMainTree" name="treeView_2">
+   <widget class="TCUIEdit::UIPropertyBrowser" name="mainView">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -72,9 +72,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>TCUIEdit::UIMainTree</class>
+   <class>TCUIEdit::UIPropertyBrowser</class>
    <extends>QTreeView</extends>
-   <header>src/view/UIMainTree.h</header>
+   <header>src/components/property_browser/UIPropertyBrowser.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

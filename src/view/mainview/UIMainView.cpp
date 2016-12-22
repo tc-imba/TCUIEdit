@@ -19,9 +19,10 @@ namespace TCUIEdit
         switch (ui->getType())
         {
         case UIBase::TRIGGER_CATEGORY:
-            this->base = new UIMainView_Category(ui);
+            this->base = new UIMainView_Category(this->browser, ui);
             break;
-        default:break;
+        default:
+            break;
         }
     }
 

@@ -68,9 +68,9 @@ namespace TCUIEdit
         return this->category;
     }
 
-    void UIBase_Event::displayDetail(UIMainTree *tree)
+    /*void UIBase_Event::displayDetail(UIMainTree *tree)
     {
-        /*this->initDisplayDetail(treeModel);
+        this->initDisplayDetail(treeModel);
 
         treeModel->appendRow(this->formRow("First game version", this->version));
 
@@ -81,6 +81,6 @@ namespace TCUIEdit
         for (auto &it:this->arguments)
         {
             parent->appendRow(this->formRow(it.first, it.second, true));
-        }*/
-    }
+        }
+    }*/
 };
