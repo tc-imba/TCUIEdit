@@ -10,7 +10,7 @@
 #include <QList>
 #include <QPair>
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
     //***************************************************************************
     // [TriggerConditions]
@@ -21,14 +21,14 @@ namespace TCUIEdit
     // Value 1+: argument types
     // Note that the first argument is always a `trigger`, and is excluded here
 
-    class UIBase_Condition : public UIBase
+    class Condition : public Base
     {
     protected:
         QString version, category;
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        UIBase_Condition(UIPackage *package, QPair<QString, QStringList> pair);
+        Condition(UIPackage *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -38,6 +38,6 @@ namespace TCUIEdit
 
     };
 
-};
+}};
 
 #endif //TCUIEDIT_UIBASE_CONDITION_H

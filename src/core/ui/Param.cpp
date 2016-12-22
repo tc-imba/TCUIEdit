@@ -2,15 +2,15 @@
 // Created by liu on 2016/12/13.
 //
 
-#include "UIBase_Param.h"
-#include "UIBase_Type.h"
+#include "Param.h"
+#include "Type.h"
 #include "../package/UIPackage.h"
 #include "../UIProject.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
 
-    UIBase_Param::UIBase_Param(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    Param::Param(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
         this->type = TRIGGER_PARAM;
 
@@ -40,12 +40,12 @@ namespace TCUIEdit
 
     }
 
-    UIBase_Type *UIBase_Param::getOriginType() const
+    UIBase_Type *Param::getOriginType() const
     {
         return (UIBase_Type *) (this->_pkg->getProject()->matchUI(this->variable, TRIGGER_TYPE));
     }
 
-    const QString UIBase_Param::getDisplayName() const
+    const QString Param::getDisplayName() const
     {
         auto type = this->getOriginType();
         if (type)

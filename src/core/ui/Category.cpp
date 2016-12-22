@@ -2,15 +2,14 @@
 // Created by liu on 2016/12/5.
 //
 
-#include "UIBase_Category.h"
+#include "Category.h"
 //#include "UIBase_Event.h"
 #include "package/UIPackage.h"
 //#include "../UIProject.h"
 
-namespace TCUIEdit
-{
+namespace TCUIEdit {namespace UI{
 
-    UIBase_Category::UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair) : UIBase(package)
+    Category::Category(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
     {
         this->type = TRIGGER_CATEGORY;
 
@@ -35,7 +34,7 @@ namespace TCUIEdit
         }
     }
 
-    const QString UIBase_Category::getDisplayName() const
+    const QString Category::getDisplayName() const
     {
         if (this->displayFlag == "1")
         {
@@ -67,4 +66,4 @@ namespace TCUIEdit
         }
 
     }*/
-};
+}};

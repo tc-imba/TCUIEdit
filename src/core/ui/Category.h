@@ -8,8 +8,8 @@
 #include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit
-{
+namespace TCUIEdit {namespace UI
+    {
     //***************************************************************************
     // [TriggerCategories]
     // Defines categories for organizing trigger functions
@@ -20,18 +20,18 @@ namespace TCUIEdit
     // Value 2: Optional flag (defaults to 0) indicating to disable display of category name
 
 
-    class UIBase_Category : public UIBase
+    class Category : public Base
     {
 
     protected:
         QString icon, displayFlag;
     public:
-        UIBase_Category(UIPackage *package, QPair<QString, QStringList> pair);
+        Category(UIPackage *package, QPair<QString, QStringList> pair);
 
         const QString getDisplayName() const;
 
     };
-};
+}};
 
 
 #endif //TCUIEDIT_UIBASE_CATEGORY_H

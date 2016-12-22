@@ -8,7 +8,7 @@
 #include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
     {
     //***************************************************************************
     // [TriggerTypes]
@@ -23,17 +23,17 @@ namespace TCUIEdit
     // Value 5: import type, for strings which represent files (optional)
     // Value 6: flag (0 or 1) indicating to treat this type as the ui type in the editor
 
-    class UIBase_Type : public UIBase
+    class Type : public Base
     {
 
     protected:
         QString version, globalFlag, compareFlag, baseType, importType, baseFlag;
     public:
-        UIBase_Type(UIPackage *package, QPair<QString, QStringList> pair);
+        Type(UIPackage *package, QPair<QString, QStringList> pair);
 
         const QString getDisplayName() const;
 
     };
-};
+}};
 
 #endif //TCUIEDIT_UIBASE_TYPE_H

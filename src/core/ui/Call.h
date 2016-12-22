@@ -9,8 +9,8 @@
 #include <QList>
 #include <QPair>
 
-namespace TCUIEdit
-{
+namespace TCUIEdit {namespace UI
+    {
     //***************************************************************************
     // [TriggerCalls]
     // Defines function calls which may be used as parameter values
@@ -24,14 +24,14 @@ namespace TCUIEdit
     // Note: Operators are specially handled by the editor
 
 
-    class UIBase_Call : public UIBase
+    class Call : public Base
     {
     protected:
         QString version, category;
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        UIBase_Call(UIPackage *package, QPair<QString, QStringList> pair);
+        Call(UIPackage *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -42,6 +42,6 @@ namespace TCUIEdit
         //void displayDetail(UIMainTree *tree);
     };
 
-};
+}};
 
 #endif //TCUIEDIT_UIBASE_CALL_H

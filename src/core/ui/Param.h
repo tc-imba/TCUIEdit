@@ -8,7 +8,7 @@
 #include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit
+namespace TCUIEdit{namespace UI
 {
     //***************************************************************************
     // [TriggerParams]
@@ -22,12 +22,12 @@ namespace TCUIEdit
     // Note: If the code text is a literal string, surround it with backward single quotes (`),
     //       and they will be converted to double quotes in the script.
 
-    class UIBase_Param : public UIBase
+    class Param : public Base
     {
     protected:
         QString version, variable, script;
     public:
-        UIBase_Param(UIPackage *package, QPair<QString, QStringList> pair);
+        Param(UIPackage *package, QPair<QString, QStringList> pair);
 
         UIBase_Type *getOriginType() const;
 
@@ -36,6 +36,6 @@ namespace TCUIEdit
 
     };
 
-};
+}};
 
 #endif //TCUIEDIT_UIBASE_PARAM_H
