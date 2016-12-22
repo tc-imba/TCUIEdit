@@ -11,7 +11,7 @@
 #include <QStandardItemModel>
 #include "../core/UICore.h"
 #include <QMultiHash>
-
+#include "../components/property_browser/UIPropertyBrowser.h"
 
 namespace Ui
 {

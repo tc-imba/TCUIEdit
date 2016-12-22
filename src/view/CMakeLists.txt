@@ -6,6 +6,10 @@ set(SOURCE_FILES
         UITreeViewItem.cpp
         )
 
+include(mainview/CMakeLists.txt)
+
+MESSAGE(STATUS ${SOURCE_FILES})
+
 add_library(view ${SOURCE_FILES})
 
 target_link_libraries(view Qt5::Widgets)
