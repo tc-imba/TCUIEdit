@@ -8,7 +8,7 @@
 
 namespace TCUIEdit { namespace Core { namespace UI
 {
-            enum FLAG{DEFAULT,CATEGORY};
+            enum FLAG{FLAG_DEFAULT,FLAG_CATEGORY};
             class Argument{
             public:
                 QString name;
