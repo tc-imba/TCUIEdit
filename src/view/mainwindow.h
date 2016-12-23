@@ -2,14 +2,13 @@
 // Created by liu on 2016/11/29.
 //
 
-#ifndef TCUIEDIT_MAINWINDOW_H
-#define TCUIEDIT_MAINWINDOW_H
+#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include <QTreeView>
 #include <QHeaderView>
 #include <QStandardItemModel>
-#include "../core/UICore.h"
+#include "src/core/core.h"
 #include <QMultiHash>
 #include "../components/property_browser/UIPropertyBrowser.h"
 #include "mainview/UIMainView.h"
@@ -40,4 +39,4 @@ private slots:
     void treeViewClicked(const QModelIndex &index);
 };
 
-#endif //TCUIEDIT_MAINWINDOW_H
+

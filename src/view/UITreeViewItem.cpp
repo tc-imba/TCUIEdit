@@ -19,7 +19,7 @@ namespace TCUIEdit
         this->depth = item->depth + 1;
     }
 
-    UITreeViewItem::UITreeViewItem(UIBase *base) : QStandardItem(base->getDisplayName())
+    UITreeViewItem::UITreeViewItem(UI::Base *base) : QStandardItem(base->getDisplayName())
     {
         this->titleFlag = false;
         this->base = base;
@@ -31,7 +31,7 @@ namespace TCUIEdit
 
     }
 
-    UIBase *UITreeViewItem::getBase() const
+    UI::Base *UITreeViewItem::getBase() const
     {
         return this->base;
     }

@@ -2,14 +2,13 @@
 // Created by liu on 16-12-18.
 //
 
-#ifndef TCUIEDIT_UIMAINTREEVIEW_H
-#define TCUIEDIT_UIMAINTREEVIEW_H
+#pragma once
 
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QAction>
 #include <QtCore/QVector>
-#include "../core/UICore.h"
+#include "../core/core.h"
 
 namespace TCUIEdit
 {
@@ -30,4 +29,4 @@ namespace TCUIEdit
 
 };
 
-#endif //TCUIEDIT_UIMAINTREEVIEW_H
+

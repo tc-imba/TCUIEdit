@@ -2,8 +2,7 @@
 // Created by liu on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIMAINVIEW_H
-#define TCUIEDIT_UIMAINVIEW_H
+#pragma once
 
 #include "UIMainView_Base.h"
 #include "UIMainView_Category.h"
@@ -20,14 +19,14 @@ namespace TCUIEdit
     public:
         UIMainView(UIPropertyBrowser *browser);
 
-        void displayUI(UIBase* ui);
+        void displayUI(UI::Base* ui);
 
-        void displayPackageBase(UIPackage_Base* pkgBase);
+        void displayPackageBase(UI::Base* pkgBase);
 
-        void displayPackage(UIPackage* pkg);
+        void displayPackage(Package::Package* pkg);
 
     };
 };
 
 
-#endif //TCUIEDIT_UIMAINVIEW_H
+

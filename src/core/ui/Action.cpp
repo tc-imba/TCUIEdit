@@ -4,10 +4,11 @@
 
 #include "Action.h"
 
-namespace TCUIEdit { namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
 
-    Action::Action(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Action::Action(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_ACTION;
         this->defaultsFlag = this->categoryFlag = false;
@@ -69,4 +70,4 @@ namespace TCUIEdit { namespace UI
     }
 
 
-}}
+}}}

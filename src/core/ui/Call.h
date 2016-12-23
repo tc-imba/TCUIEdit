@@ -2,15 +2,12 @@
 // Created by sunyi on 2016/12/22.
 //
 
-#ifndef TCUIEDIT_UIBASE_CALL_H
-#define TCUIEDIT_UIBASE_CALL_H
-#include "../UICore.h"
-#include "Base.h"
-#include <QList>
-#include <QPair>
+#pragma once
 
-namespace TCUIEdit {namespace UI
-    {
+#include "Base.h"
+
+namespace TCUIEdit { namespace Core { namespace UI
+{
     //***************************************************************************
     // [TriggerCalls]
     // Defines function calls which may be used as parameter values
@@ -31,7 +28,7 @@ namespace TCUIEdit {namespace UI
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        Call(UIPackage *package, QPair<QString, QStringList> pair);
+        Call(Package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -42,6 +39,6 @@ namespace TCUIEdit {namespace UI
         //void displayDetail(UIMainTree *tree);
     };
 
-}};
+}}}
 
-#endif //TCUIEDIT_UIBASE_CALL_H
+

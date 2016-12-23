@@ -38,8 +38,12 @@ find_package(Qt5Widgets REQUIRED)
 #find_package(Qt5Gui REQUIRED)
 
 add_subdirectory(src/core core)
-add_subdirectory(src/view view)
 add_subdirectory(src/components)
+add_subdirectory(src/view view)
+
+
+add_dependencies(property_browser core)
+add_dependencies(view property_browser core)
 
 set(SOURCE_FILES src/main.cpp src/view/mainwindow.cpp)
 add_executable(TCUIEdit ${SOURCE_FILES})

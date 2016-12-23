@@ -4,10 +4,11 @@
 
 #include "Type.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
 
-    Type::Type(UIPackage *package, QPair<QString, QStringList> pair) : Base(package)
+    Type::Type(Package::Package *package, QPair<QString, QStringList> pair)
+            : Base(package)
     {
         this->type = TRIGGER_TYPE;
 
@@ -59,4 +60,4 @@ namespace TCUIEdit{namespace UI
         return this->_getDisplayName();
     }
 
-};
+}}}

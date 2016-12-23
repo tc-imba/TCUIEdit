@@ -2,8 +2,7 @@
 // Created by liu on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIPROPERTYBROWSERITEM_H
-#define TCUIEDIT_UIPROPERTYBROWSERITEM_H
+#pragma once
 
 #include <QtGui/QStandardItem>
 
@@ -17,4 +16,4 @@ namespace TCUIEdit
 
 };
 
-#endif //TCUIEDIT_UIPROPERTYBROWSERITEM_H
+

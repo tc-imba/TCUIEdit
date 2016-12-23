@@ -2,24 +2,23 @@
 // Created by liu on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIMAINVIEW_CATEGORY_H
-#define TCUIEDIT_UIMAINVIEW_CATEGORY_H
+#pragma once
 
 #include "UIMainView_Base.h"
-#include "../../core/base/UIBase_Category.h"
+#include "../../core/ui/Category.h"
 
 namespace TCUIEdit
 {
     class UIMainView_Category : public UIMainView_Base
     {
     protected:
-        UIBase_Category *ui;
+        UI::Category *ui;
     public:
-        UIMainView_Category(UIPropertyBrowser *browser, UIBase *ui);
+        UIMainView_Category(UIPropertyBrowser *browser, UI::Base *ui);
 
         void refresh();
     };
 
 };
 
-#endif //TCUIEDIT_UIMAINVIEW_CATEGORY_H
+

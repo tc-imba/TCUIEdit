@@ -2,14 +2,12 @@
 // Created by liu on 2016/12/5.
 //
 
-#ifndef TCUIEDIT_UIBASE_CATEGORY_H
-#define TCUIEDIT_UIBASE_CATEGORY_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit {namespace UI
-    {
+namespace TCUIEdit { namespace Core { namespace UI
+{
     //***************************************************************************
     // [TriggerCategories]
     // Defines categories for organizing trigger functions
@@ -26,12 +24,12 @@ namespace TCUIEdit {namespace UI
     protected:
         QString icon, displayFlag;
     public:
-        Category(UIPackage *package, QPair<QString, QStringList> pair);
+        Category(Package::Package *package, QPair<QString, QStringList> pair);
 
         const QString getDisplayName() const;
 
     };
-}};
+}}}
 
 
-#endif //TCUIEDIT_UIBASE_CATEGORY_H
+

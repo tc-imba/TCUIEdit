@@ -2,15 +2,11 @@
 // Created by sunyi on 2016/12/21.
 //
 
-#ifndef TCUIEDIT_UIBASE_CONDITION_H
-#define TCUIEDIT_UIBASE_CONDITION_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
-#include <QList>
-#include <QPair>
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     //***************************************************************************
     // [TriggerConditions]
@@ -28,7 +24,7 @@ namespace TCUIEdit{namespace UI
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        Condition(UIPackage *package, QPair<QString, QStringList> pair);
+        Condition(Package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -38,6 +34,6 @@ namespace TCUIEdit{namespace UI
 
     };
 
-}};
+}}}
 
-#endif //TCUIEDIT_UIBASE_CONDITION_H
+

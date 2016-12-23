@@ -2,8 +2,7 @@
 // Created by liu on 2016/12/22.
 //
 
-#ifndef TCUIEDIT_UIPROPERTYBROWSERCATEGORY_H
-#define TCUIEDIT_UIPROPERTYBROWSERCATEGORY_H
+#pragma once
 
 #include "UIPropertyBrowserItem.h"
 
@@ -16,4 +15,4 @@ namespace TCUIEdit
     };
 };
 
-#endif //TCUIEDIT_UIPROPERTYBROWSERCATEGORY_H
+

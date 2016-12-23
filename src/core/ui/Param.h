@@ -2,13 +2,11 @@
 // Created by liu on 2016/12/13.
 //
 
-#ifndef TCUIEDIT_UIBASE_PARAM_H
-#define TCUIEDIT_UIBASE_PARAM_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     //***************************************************************************
     // [TriggerParams]
@@ -27,15 +25,15 @@ namespace TCUIEdit{namespace UI
     protected:
         QString version, variable, script;
     public:
-        Param(UIPackage *package, QPair<QString, QStringList> pair);
+        Param(Package::Package *package, QPair<QString, QStringList> pair);
 
-        UIBase_Type *getOriginType() const;
+        Type *getOriginType() const;
 
         const QString getDisplayName() const;
 
 
     };
 
-}};
+}}}
 
-#endif //TCUIEDIT_UIBASE_PARAM_H
+

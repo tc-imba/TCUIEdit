@@ -2,15 +2,11 @@
 // Created by liu on 2016/12/15.
 //
 
-#ifndef TCUIEDIT_UIBASE_EVENT_H
-#define TCUIEDIT_UIBASE_EVENT_H
+#pragma once
 
-#include "../UICore.h"
 #include "Base.h"
-#include <QList>
-#include <QPair>
 
-namespace TCUIEdit{namespace UI
+namespace TCUIEdit { namespace Core { namespace UI
 {
     //***************************************************************************
     // [TriggerEvents]
@@ -27,7 +23,7 @@ namespace TCUIEdit{namespace UI
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        Event(UIPackage *package, QPair<QString, QStringList> pair);
+        Event(Package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
@@ -37,7 +33,7 @@ namespace TCUIEdit{namespace UI
 
     };
 
-}};
+}}}
 
 
-#endif //TCUIEDIT_UIBASE_EVENT_H
+

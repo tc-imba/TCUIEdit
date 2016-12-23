@@ -2,12 +2,13 @@
 // Created by liu on 2016/12/17.
 //
 
-#ifndef TCUIEDIT_UITREEVIEWITEM_H
-#define TCUIEDIT_UITREEVIEWITEM_H
+#pragma once
 
 #include <QStandardItem>
-#include "../core/UICore.h"
-#include "../core/base/base.h"
+#include "../core/core.h"
+#include "../core/ui/Base.h"
+
+using namespace TCUIEdit::Core;
 
 namespace TCUIEdit
 {
@@ -15,7 +16,7 @@ namespace TCUIEdit
     class UITreeViewItem : public QStandardItem
     {
     protected:
-        UIBase *base;
+        UI::Base *base;
         bool titleFlag;
         int depth;
 
@@ -24,14 +25,14 @@ namespace TCUIEdit
 
         UITreeViewItem(const QString &text, UITreeViewItem *item);
 
-        UITreeViewItem(UIBase *base);
+        UITreeViewItem(UI::Base *base);
 
         ~UITreeViewItem();
 
-        UIBase *getBase() const;
+        UI::Base *getBase() const;
 
         int getDepth() const;
     };
 
 };
-#endif //TCUIEDIT_UITREEVIEWITEM_H
+
