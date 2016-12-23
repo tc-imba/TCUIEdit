@@ -8,6 +8,29 @@
 
 namespace TCUIEdit { namespace Core { namespace UI
 {
+            enum FLAG{DEFAULT,CATEGORY};
+            class Argument{
+            public:
+                QString name;
+                QString type;
+                QString Default;
+                QString min;
+                QString max;
+                QString script;
+                QString aiDefault;
+                Argument(QPair<QString,QStringList> pair){
+                    name=pair.first;
+                    auto it = pair.second.constBegin();
+                    while (it != pair.second.constEnd())
+                    {
+                        if(*it=="type"){type=*it++;}
+                        if(*it=="default"){Default=*it++;}
+                        if(*it=="limit"){min=*it++;max=*it++;}
+                        if(*it=="script"){script=*it++;}
+                        if(*it=="aiDefault"){aiDefault=*it++;}
+                    }
+                }
+            };
     //***************************************************************************
     // [TriggerEvents]
     // Defines events available in the editor
@@ -19,9 +42,9 @@ namespace TCUIEdit { namespace Core { namespace UI
     class Event : public Base
     {
     protected:
-        QString version, category;
-        QList<QPair<QString, QString> > arguments;
-        bool defaultsFlag, categoryFlag;
+        QString version, category,useWithAI;
+        QList<Argument> arguments;
+        bool Flag[2];
     public:
         Event(Package::Package *package, QPair<QString, QStringList> pair);
 

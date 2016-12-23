@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace Core { namespace UI
             : Base(package)
     {
         this->type = TRIGGER_EVENT;
-        this->defaultsFlag = this->categoryFlag = false;
+        this->Flag[FLAG::DEFAULT] = this->Flag[FLAG::CATEGORY] = false;
 
         this->setName(pair.first);
 
@@ -22,17 +22,15 @@ namespace TCUIEdit { namespace Core { namespace UI
             this->version = *it++;
         }
         // Value 1+: argument types
-        while (it != pair.second.constEnd())
-        {
-            this->arguments.push_back(QPair<QString, QString>(*it++, ""));
-        }
+        arguments.push_back(Argument(pair));
+
     }
 
     void Event::add(QPair<QString, QStringList> pair)
     {
-        if (pair.first == "_Defaults" && !this->defaultsFlag)
+        if (pair.first == "_Defaults" && !this->Flag[FLAG::DEFAULT])
         {
-            this->defaultsFlag = true;
+            this->Flag[FLAG::DEFAULT] = true;
             auto it = pair.second.constBegin();
             auto it2 = this->arguments.begin();
             while (it != pair.second.constEnd())
@@ -48,9 +46,9 @@ namespace TCUIEdit { namespace Core { namespace UI
                 }
             }
         }
-        else if (pair.first == "_Category" && !this->categoryFlag)
+        else if (pair.first == "_Category" && !this->Flag[FLAG::CATEGORY])
         {
-            this->categoryFlag = true;
+            this->Flag[FLAG::CATEGORY] = true;
             auto it = pair.second.constBegin();
             if (it != pair.second.constEnd())
             {
