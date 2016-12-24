@@ -5,7 +5,7 @@
 #include "Type.h"
 #include "../ui/Type.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     Type::Type(Package *package) : Base(package)
     {
@@ -14,9 +14,9 @@ namespace TCUIEdit { namespace Core { namespace Package
 
     void Type::readLine(QString &str)
     {
-        auto pair = this->preprocessLine(str);
-        auto item = static_cast<UI::Base *>(new UI::Type(this->_pkg, pair));
-        this->data.push_back(item);
+        auto pair = this->_preprocessLine(str);
+        auto item = static_cast<ui::Base *>(new ui::Type(m_pkg, pair));
+        m_data.push_back(item);
     }
 
 

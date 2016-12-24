@@ -4,7 +4,7 @@
 
 #include "Map.h"
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
 
     Map::Map()
@@ -12,14 +12,14 @@ namespace TCUIEdit { namespace Core
 
     }
 
-    void Map::addUI(UI::Base *UI)
+    void Map::addUI(ui::Base *UI)
     {
         if (UI == NULL)
         {
             throw ExceptionUndefined();
         }
 
-        auto name = UI->getName();
+        auto name = UI->name();
 
         if (this->hashtable.find(name, UI) == this->hashtable.end())
         {
@@ -37,19 +37,19 @@ namespace TCUIEdit { namespace Core
         return this->hashtable.values(name);
     }*/
 
-    QList<UI::Base *> Map::getUI(const QString &name) const
+    QList<ui::Base *> Map::getUI(const QString &name) const
     {
         return this->hashtable.values(name);
     }
 
-    void Map::removeUI(UI::Base *UI)
+    void Map::removeUI(ui::Base *UI)
     {
         if (UI == NULL)
         {
             throw ExceptionUndefined();
         }
 
-        auto name = UI->getName();
+        auto name = UI->name();
 
         /*if (this->hashtable.find(name, UI) == this->hashtable.end())
         {

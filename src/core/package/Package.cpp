@@ -4,47 +4,49 @@
 
 #include "Package.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
-    void Package::init()
-    {
-        this->weString = new WEString(this);
 
-        this->base[UI::Base::TRIGGER_CATEGORY] = new Category(this);
-        this->base[UI::Base::TRIGGER_TYPE] = new Type(this);
-        this->base[UI::Base::TRIGGER_TYPE_DEFAULT] = new TypeDefault(this);
-        this->base[UI::Base::TRIGGER_PARAM] = new Param(this);
-        this->base[UI::Base::TRIGGER_EVENT] = new Event(this);
-        this->base[UI::Base::TRIGGER_CONDITION]=new Condition(this);
-        this->base[UI::Base::TRIGGER_ACTION]=new Action(this);
-        this->base[UI::Base::TRIGGER_CALL]=new Call(this);
-
-    }
+    // Constructors
+    //
 
     Package::Package(Project *project)
     {
         this->init();
-        this->_proj = project;
+        m_proj = project;
     }
 
 
     Package::Package(Project *project, const QString &basePath, const QString &name)
     {
         this->init();
-        this->_proj = project;
-        this->basePath = basePath;
-        this->name = name;
+        m_proj = project;
+        m_basePath = basePath;
+        m_name = name;
     }
 
-    Base *Package::getBase(UI::Base::TYPE type) const
+    Package::~Package()
     {
-        if (type == UI::Base::UNKNOWN)return NULL;
-        return this->base[type];
+        delete m_weString;
+
     }
 
-    Base *Package::getBaseCurrent() const
+    // Protected Fcuntions
+    //
+
+    void Package::init()
     {
-        return this->getBase(this->baseTypeCurrent);
+        m_weString = new WEString(this);
+
+        m_base[ui::Base::TRIGGER_CATEGORY] = new Category(this);
+        m_base[ui::Base::TRIGGER_TYPE] = new Type(this);
+        m_base[ui::Base::TRIGGER_TYPE_DEFAULT] = new TypeDefault(this);
+        m_base[ui::Base::TRIGGER_PARAM] = new Param(this);
+        m_base[ui::Base::TRIGGER_EVENT] = new Event(this);
+        m_base[ui::Base::TRIGGER_CONDITION] = new Condition(this);
+        m_base[ui::Base::TRIGGER_ACTION] = new Action(this);
+        m_base[ui::Base::TRIGGER_CALL] = new Call(this);
+
     }
 
     void Package::processTrigData(QString &line)
@@ -55,14 +57,14 @@ namespace TCUIEdit { namespace Core { namespace Package
         {
             QString tempStr = rx.cap(0);
             tempStr = tempStr.mid(1, tempStr.length() - 2);
-            for (int i = 0; i < UI::Base::TYPE_NUM; i++)
+            for (int i = 0; i < ui::Base::TYPE_NUM; i++)
             {
-                if (tempStr == UI::Base::getTypeName(UI::Base::TYPE(i)))
+                if (tempStr == ui::Base::typeName(ui::Base::TYPE(i)))
                 {
-                    if (this->baseTypeCurrent != i)
+                    if (m_baseTypeCurrent != i)
                     {
-                        this->baseTypeCurrent = UI::Base::TYPE(i);
-                        this->baseChangedFlag = true;
+                        m_baseTypeCurrent = ui::Base::TYPE(i);
+                        m_baseChangedFlag = true;
                     }
                     return;
                 }
@@ -74,23 +76,23 @@ namespace TCUIEdit { namespace Core { namespace Package
              * But if we never have a correct one,
              * there will be a fatal error.
              */
-            // this->baseTypeCurrent = UI::Base::UNKNOWN;
+            // m_baseTypeCurrent = ui::Base::UNKNOWN;
             return;
         }
-        this->baseChangedFlag = false;
+        m_baseChangedFlag = false;
 
 
         // Match the comments
         rx.setPattern("^//");
         if (rx.indexIn(line) > -1)
         {
-            this->getBaseCurrent()->readComment(line);
+            this->baseCurrent()->readComment(line);
             return;
         }
 
-        if (getBaseTypeCurrent() < UI::Base::TYPE(8))
+        if (baseTypeCurrent() < ui::Base::TYPE(8))
         {
-            this->getBaseCurrent()->readLine(line);
+            this->baseCurrent()->readLine(line);
         }
     }
 
@@ -104,24 +106,65 @@ namespace TCUIEdit { namespace Core { namespace Package
         {
             return;
         }
-        this->weString->readLine(line);
+        m_weString->readLine(line);
+    }
+
+    // Public Functions
+    //
+
+    Project *Package::project() const
+    {
+        return m_proj;
+    }
+
+    WEString *Package::weString() const
+    {
+        return m_weString;
+    }
+
+    Base *Package::base(ui::Base::TYPE type) const
+    {
+        if (type == ui::Base::UNKNOWN)return NULL;
+        return m_base[type];
+    }
+
+    Base *Package::baseCurrent() const
+    {
+        return this->base(m_baseTypeCurrent);
+    }
+
+    const ui::Base::TYPE Package::baseTypeCurrent() const
+    {
+        return m_baseTypeCurrent;
+    }
+
+    const bool Package::isBaseChanged() const
+    {
+        return m_baseChangedFlag;
+    }
+
+    const QString &Package::name() const
+    {
+        return m_name;
+    }
+
+    void Package::setName(const QString &name)
+    {
+        m_name = name;
     }
 
     bool Package::openFile(FileInput::TYPE fileType)
     {
-        this->file.open(this->basePath, fileType);
-        if (this->file.is_open())
+        m_file.open(m_basePath, fileType);
+        if (m_file.is_open())
         {
             switch (fileType)
             {
-            case FileInput::CLASSIC_TRIG_DATA:
-                this->processLine = &Package::processTrigData;
+            case FileInput::CLASSIC_TRIG_DATA:m_processLine = &Package::processTrigData;
                 break;
-            case FileInput::CLASSIC_WE_STRINGS:
-                this->processLine = &Package::processWEStrings;
+            case FileInput::CLASSIC_WE_STRINGS:m_processLine = &Package::processWEStrings;
                 break;
-            default:
-                return false;
+            default:return false;
             }
             return true;
         }
@@ -131,10 +174,10 @@ namespace TCUIEdit { namespace Core { namespace Package
     int Package::readLine()
     {
         QString line;
-        auto lineNum = this->file.readLineInto(line);
+        auto lineNum = m_file.readLineInto(line);
         if (lineNum > 0)
         {
-            (this->*processLine)(line);
+            (this->*m_processLine)(line);
         }
         return lineNum;
     }

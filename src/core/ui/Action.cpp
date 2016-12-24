@@ -4,13 +4,13 @@
 
 #include "Action.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Action::Action(Package::Package *package, QPair<QString, QStringList> pair)
+    Action::Action(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_ACTION;
+        m_type = TRIGGER_ACTION;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -59,9 +59,9 @@ namespace TCUIEdit { namespace Core { namespace UI
         }
     }
 
-    const QString Action::getDisplayName() const
+    const QString Action::formDisplay() const
     {
-        return this->name;
+        return m_name;
     }
 
     const QString &Action::getCategory() const

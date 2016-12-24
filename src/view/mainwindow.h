@@ -28,7 +28,7 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+	Ui::MainWindow *ui;
     QStandardItemModel* treeViewModel;
     QStandardItemModel* displayModel;
 

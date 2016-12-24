@@ -6,14 +6,14 @@
 #include "Project.h"
 #include "Exception.h"
 
-#define _HASH this->_pkg->getProject()->getWEStringMap()
+#define _HASH m_pkg->project()->getWEStringMap()
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
 
     WEString::WEString(Package *package)
     {
-        this->_pkg = package;
+        m_pkg = package;
     }
 
     void WEString::readLine(const QString &line)
@@ -35,21 +35,21 @@ namespace TCUIEdit { namespace Core { namespace Package
 
     void WEString::add(const QString &name, const QString &value)
     {
-        auto weString = new UI::WEString(this->_pkg);
-        weString->name = name;
-        weString->value = value;
+        auto weString = new ui::WEString(m_pkg);
+        weString->m_name = name;
+        weString->m_value = value;
         _HASH->insert(name, weString);
-        this->data.push_back(weString);
+        m_data.push_back(weString);
     }
 
-    void WEString::remove(UI::WEString *weString)
+    void WEString::remove(ui::WEString *weString)
     {
         if (weString == NULL)
         {
             throw ExceptionNotFound();
         }
-        _HASH->remove(weString->getName(), weString);
-        this->data.removeAll(weString);
+        _HASH->remove(weString->name(), weString);
+        m_data.removeAll(weString);
         delete weString;
     }
 
@@ -62,14 +62,14 @@ namespace TCUIEdit { namespace Core { namespace Package
             auto it = _HASH->find(value);
             if (it == _HASH->end())break;
             list.push_back(value);
-            value = it.value()->getValue();
+            value = it.value()->value();
             if (list.contains(value))break;
         }
         return value;
     }
 
-    Package *WEString::getPackage() const
+    Package *WEString::package() const
     {
-        return this->_pkg;
+        return m_pkg;
     }
 }}}

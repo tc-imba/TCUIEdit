@@ -7,13 +7,13 @@
 #include "package/Package.h"
 #include "Project.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Param::Param(Package::Package *package, QPair<QString, QStringList> pair)
+    Param::Param(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_PARAM;
+        m_type = TRIGGER_PARAM;
 
         this->setName(pair.first);
 
@@ -36,28 +36,28 @@ namespace TCUIEdit { namespace Core { namespace UI
         // Value 3: display text
         if (it != pair.second.constEnd())
         {
-            this->display = *it++;
+            m_display =  *it++;
         }
 
     }
 
     Type *Param::getOriginType() const
     {
-        return (Type *) (this->_pkg->getProject()->matchUI(this->variable, TRIGGER_TYPE));
+        return (Type *) (m_pkg->project()->matchUI(this->variable, TRIGGER_TYPE));
     }
 
-    const QString Param::getDisplayName() const
+    const QString Param::formDisplay() const
     {
         auto type = this->getOriginType();
         if (type)
         {
-            QString str = type->getDisplayName();
+            QString str = type->formDisplay();
             if (str != "")
             {
-                return this->name + " ( " + str + " )";
+                return m_name + " ( " + str + " )";
             }
         }
-        return this->name;
+        return m_name;
     }
 
 }}}

@@ -9,7 +9,7 @@
 #include <QTextStream>
 #include <QByteArray>
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
 
     class FileInput
@@ -32,13 +32,15 @@ namespace TCUIEdit { namespace Core
 
     protected:
 
-        int lineNum;
-        QByteArray data;
-        QTextStream *stream;
-        CATEGORY category;
-        TYPE type;
+        int m_lineNum;
+        QByteArray m_data;
+        QTextStream *m_stream;
+        CATEGORY m_category;
+        TYPE m_type;
 
     public:
+        // Constructors
+        //
 
         FileInput();
 
@@ -46,23 +48,25 @@ namespace TCUIEdit { namespace Core
 
         ~FileInput();
 
-        void open(const QString &path, TYPE type);
+        // Public Functions
+        //
+
+        CATEGORY category() const;
+
+        TYPE type() const;
+
+        void setType(TYPE type);
 
         void reset();
 
-        bool is_open() const
-        { return !this->data.isEmpty(); }
+        void open(const QString &path, TYPE type);
 
-        bool eof() const
-        { return this->lineNum < 0; }
+        bool is_open() const;
+
+        bool eof() const;
 
         int readLineInto(QString &line);
 
-        CATEGORY getCategory() const;
-
-        TYPE getType() const;
-
-        void setType(TYPE type);
     };
 
 }}

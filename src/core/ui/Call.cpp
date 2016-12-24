@@ -4,13 +4,13 @@
 
 #include "Call.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Call::Call(Package::Package *package, QPair<QString, QStringList> pair)
+    Call::Call(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_CALL;
+        m_type = TRIGGER_CALL;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -59,9 +59,9 @@ namespace TCUIEdit { namespace Core { namespace UI
         }
     }
 
-    const QString Call::getDisplayName() const
+    const QString Call::formDisplay() const
     {
-        return this->name;
+        return m_name;
     }
 
     const QString &Call::getCategory() const

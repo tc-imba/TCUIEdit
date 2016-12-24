@@ -15,11 +15,11 @@
 
 #include <QDebug>
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
 
 
-    namespace UI
+    namespace ui
     {
         class WEString;
 
@@ -42,7 +42,7 @@ namespace TCUIEdit { namespace Core
         class Call;
     }
 
-    namespace Package
+    namespace package
     {
         class WEString;
 

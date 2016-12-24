@@ -4,13 +4,13 @@
 
 #include "Type.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Type::Type(Package::Package *package, QPair<QString, QStringList> pair)
+    Type::Type(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_TYPE;
+        m_type = TRIGGER_TYPE;
 
         this->setName(pair.first);
 
@@ -34,7 +34,7 @@ namespace TCUIEdit { namespace Core { namespace UI
         // Value 3: string to display in the editor
         if (it != pair.second.constEnd())
         {
-            this->display = *it++;
+            m_display =  *it++;
         }
         // Value 4: ui type, used only for custom types
         if (it != pair.second.constEnd())
@@ -55,9 +55,9 @@ namespace TCUIEdit { namespace Core { namespace UI
 
     }
 
-    const QString Type::getDisplayName() const
+    const QString Type::formDisplay() const
     {
-        return this->_getDisplayName();
+        return this->_formDisplay();
     }
 
 }}}

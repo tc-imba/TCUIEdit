@@ -7,7 +7,7 @@
 #include "Project.h"
 #include "Package.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     Call::Call(Package *package) : Base(package)
     {
@@ -16,21 +16,21 @@ namespace TCUIEdit { namespace Core { namespace Package
 
     void Call::readLine(QString &str)
     {
-        auto pair = this->preprocessLine(str);
+        auto pair = this->_preprocessLine(str);
         if (pair.first[0] != '_')
         {
-            this->lastUI = new UI::Call(this->_pkg, pair);
-            auto item = static_cast<UI::Base *>(this->lastUI);
-            this->data.push_back(item);
+            m_lastUI = new ui::Call(m_pkg, pair);
+            auto item = static_cast<ui::Base *>(m_lastUI);
+            m_data.push_back(item);
         }
-        else if (lastUI != NULL)
+        else if (m_lastUI != NULL)
         {
-            auto lastName = this->lastUI->getName();
+            auto lastName = m_lastUI->name();
             auto name = pair.first.mid(1, lastName.length());
             if (lastName == name)
             {
                 pair.first = pair.first.mid(1 + lastName.length());
-                this->lastUI->add(pair);
+                m_lastUI->add(pair);
             }
         }
     }

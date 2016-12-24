@@ -4,13 +4,13 @@
 
 #include "Event.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Event::Event(Package::Package *package, QPair<QString, QStringList> pair)
+    Event::Event(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_EVENT;
+        m_type = TRIGGER_EVENT;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -59,9 +59,9 @@ namespace TCUIEdit { namespace Core { namespace UI
         }
     }
 
-    const QString Event::getDisplayName() const
+    const QString Event::formDisplay() const
     {
-        return this->name;
+        return m_name;
     }
 
     const QString &Event::getCategory() const

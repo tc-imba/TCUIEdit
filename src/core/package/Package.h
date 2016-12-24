@@ -18,62 +18,75 @@
 #include "Action.h"
 #include "Call.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Package
     {
     protected:
-        Project *_proj;
+        // Protected Properties
+        //
+
+        Project *m_proj;
+
+        FileInput m_file;
+
+        QString m_basePath, m_name;
+
+        bool m_baseChangedFlag = false;
+
+        ui::Base::TYPE m_baseTypeCurrent = ui::Base::TYPE::UNKNOWN;
+
+        Base *m_base[ui::Base::TYPE_NUM];
+
+        WEString *m_weString;
+
+        void (Package::*m_processLine)(QString &);
+
+
+
+        //Protected Functions
+        //
 
         void init();
-
-        FileInput file;
-
-        QString basePath, name;
-
-        bool baseChangedFlag = false;
-        UI::Base::TYPE baseTypeCurrent = UI::Base::TYPE::UNKNOWN;
-
-        //Category *category;
-
-        Base *base[UI::Base::TYPE_NUM];
-
-        WEString *weString;
 
         void processTrigData(QString &line);
 
         void processWEStrings(QString &line);
 
-        void (Package::*processLine)(QString &);
 
     public:
+        // Constructors
+        //
 
         Package(Project *project);
 
         Package(Project *project, const QString &basePath, const QString &name);
 
+        ~Package();
+
+        // Public Functions
+        //
+
+        Project *project() const;
+
+        WEString *weString() const;
+
+        Base *base(ui::Base::TYPE type) const;
+
+        Base *baseCurrent() const;
+
+        const ui::Base::TYPE baseTypeCurrent() const;
+
+        const bool isBaseChanged() const;
+
+        const QString &name() const;
+
+        void setName(const QString &name);
+
         bool openFile(FileInput::TYPE fileType);
 
         int readLine();
 
-        Project *getProject() const
-        { return this->_proj; }
-
-        WEString *getWEString() const
-        { return this->weString; }
-
-        Base *getBase(UI::Base::TYPE type) const;
-
-        Base *getBaseCurrent() const;
-
-        const bool isBaseChanged() const
-        { return this->baseChangedFlag; }
-
-        const UI::Base::TYPE getBaseTypeCurrent() const
-        { return this->baseTypeCurrent; }
-
-        const QString &getName() const
-        { return this->name; }
     };
 
 

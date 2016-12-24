@@ -6,9 +6,7 @@
 #include "Project.h"
 #include "package/Package.h"
 
-#define _PROJ this->_pkg->getProject()
-
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
     const char *Base::TYPE_NAME[Base::TYPE_NUM] =
             {"TriggerCategories", "TriggerTypes", "TriggerTypeDefaults", "TriggerParams",
@@ -19,9 +17,9 @@ namespace TCUIEdit { namespace Core { namespace UI
     // Constructors
     //
 
-    Base::Base(Package::Package *package)
+    Base::Base(package::Package *package)
     {
-        this->_pkg = package;
+        m_pkg = package;
     }
 
     Base::~Base()
@@ -32,29 +30,29 @@ namespace TCUIEdit { namespace Core { namespace UI
     // Protected Functions
     //
 
-    const QString Base::_getDisplayName() const
+    const QString Base::_formDisplay() const
     {
-        if (this->display == "")
+        if (m_display == "")
         {
-            return this->name;
+            return m_name;
         }
-        return this->name + " - " + this->getDisplay();
+        return m_name + " - " + this->display();
     }
 
     // Public Functions
     //
 
-    Package::Package *Base::getPackage() const
+    package::Package *Base::package() const
     {
-        return this->_pkg;
+        return m_pkg;
     }
 
-    Base::TYPE Base::getType() const
+    Base::TYPE Base::type() const
     {
-        return this->type;
+        return m_type;
     }
 
-    const char *Base::getTypeName(TYPE type)
+    const char *Base::typeName(TYPE type)
     {
         if (type >= 0 && type < Base::TYPE_NUM)
         {
@@ -63,32 +61,32 @@ namespace TCUIEdit { namespace Core { namespace UI
         return "UNKNOWN_TYPE";
     }
 
-    const char *Base::getTypeName() const
+    const char *Base::typeName() const
     {
-        return this->getTypeName(this->type);
+        return this->typeName(m_type);
     }
 
-    const QString &Base::getName() const
+    const QString &Base::name() const
     {
-        return this->name;
+        return m_name;
     }
 
     void Base::setName(const QString &name)
     {
-        _PROJ->getUIMap()->removeUI(this);
-        this->name = name;
-        _PROJ->getUIMap()->addUI(this);
+        m_pkg->project()->getUIMap()->removeUI(this);
+        m_name = name;
+        m_pkg->project()->getUIMap()->addUI(this);
     }
 
-    const QString Base::getDisplay(bool origin) const
+    const QString Base::display(bool origin) const
     {
-        if (origin)return this->display;
-        return this->_pkg->getWEString()->getValue(this->display);
+        if (origin)return m_display;
+        return m_pkg->weString()->getValue(m_display);
     }
 
     void Base::setDisplay(const QString &display)
     {
-        this->display = display;
+        m_display = display;
     }
 
     /*void Base::initDisplayDetail(UIMainTree *tree)
@@ -96,11 +94,11 @@ namespace TCUIEdit { namespace Core { namespace UI
         tree->clear();
         tree->setColumnCount(2);
         tree->setHeaderLabels(QStringList() << "Name" << "Value");
-        tree->addTopLevelItem(this->formRow("Name", this->name));
+        tree->addTopLevelItem(this->formRow("Name", m_name));
 
         //treeModel->clear();
         //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
-        //treeModel->appendRow(this->formRow("Name", this->name));
+        //treeModel->appendRow(this->formRow("Name", m_name));
     }
 
     QTreeWidgetItem *Base::formRow(const QString &strName, const QString &strValue)

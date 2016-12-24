@@ -5,33 +5,33 @@
 #include "Project.h"
 #include "package/Package.h"
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
 
-    Package::Package *Project::createPackage()
+    package::Package *Project::createPackage()
     {
-        auto pkg = new Package::Package(this);
+        auto pkg = new package::Package(this);
         this->uiPkg.push_back(pkg);
         return pkg;
     }
 
-    Package::Package *Project::createPackage(const QString &basePath, const QString &name)
+    package::Package *Project::createPackage(const QString &basePath, const QString &name)
     {
-        auto pkg = new Package::Package(this, basePath, name);
+        auto pkg = new package::Package(this, basePath, name);
         this->uiPkg.push_back(pkg);
         return pkg;
     }
 
-    UI::Base *Project::matchUI(const QString &name, UI::Base::TYPE type) const
+    ui::Base *Project::matchUI(const QString &name, ui::Base::TYPE type) const
     {
         auto list = this->uiMap.getUI(name);
-        UI::Base *base = NULL;
+        ui::Base *base = NULL;
         int index = -1;
         for (auto it:list)
         {
-            if (it->getType() == type)
+            if (it->type() == type)
             {
-                auto itIndex = this->uiPkg.indexOf(it->getPackage());
+                auto itIndex = this->uiPkg.indexOf(it->package());
                 if (itIndex >= 0 && (index < 0 || itIndex < index))
                 {
                     index = itIndex;

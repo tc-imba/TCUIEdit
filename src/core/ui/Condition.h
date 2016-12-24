@@ -6,7 +6,7 @@
 
 #include "Base.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
     //***************************************************************************
     // [TriggerConditions]
@@ -24,11 +24,11 @@ namespace TCUIEdit { namespace Core { namespace UI
         QList<QPair<QString, QString> > arguments;
         bool defaultsFlag, categoryFlag;
     public:
-        Condition(Package::Package *package, QPair<QString, QStringList> pair);
+        Condition(package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
-        const QString getDisplayName() const;
+        const QString formDisplay() const;
 
         const QString &getCategory() const;
 

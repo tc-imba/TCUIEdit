@@ -7,7 +7,7 @@
 #include "../core.h"
 #include "../Exception.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
     class Base
     {
@@ -36,26 +36,26 @@ namespace TCUIEdit { namespace Core { namespace UI
         //
 
         // The parent Package
-        Package::Package *_pkg;
+        package::Package *m_pkg;
 
         // The TYPE of the UI
-        TYPE type = UNKNOWN;
+        TYPE m_type = UNKNOWN;
 
         // The basic attributes
-        QString name, display;
+        QString m_name, m_display;
 
         // Protected Functions
         //
 
         // A common method to get the information to be displayed
-        // Only called by virtual const QString getDisplayName() const in child classes
-        const QString _getDisplayName() const;
+        // Only called by virtual const QString formDisplay() const in child classes
+        const QString _formDisplay() const;
 
     public:
         // Constructors
         //
 
-        Base(Package::Package *package);
+        Base(package::Package *package);
 
         ~Base();
 
@@ -63,20 +63,20 @@ namespace TCUIEdit { namespace Core { namespace UI
         //
 
         // Get the parent Package of the UI
-        Package::Package *getPackage() const;
+        package::Package *package() const;
 
         // Return the TYPE of the UI
-        TYPE getType() const;
+        TYPE type() const;
 
         // Return the name of the TYPE
         // If the TYPE is undefined or unknown, return "UNKNOWN_TYPE"
-        static const char *getTypeName(TYPE type);
+        static const char *typeName(TYPE type);
 
-        // Return this->getTypeName(this->type)
-        const char *getTypeName() const;
+        // Return this->typeName(this->type)
+        const char *typeName() const;
 
         // Return the name of the UI
-        const QString &getName() const;
+        const QString &name() const;
 
         // Set the name of the UI
         // The hashtable of UIs will be updated
@@ -84,7 +84,7 @@ namespace TCUIEdit { namespace Core { namespace UI
 
         // Return the display text of the UI (subsitituted by WE_STRINGs)
         // If origin is set to true, the origin value display will be returned
-        const QString getDisplay(bool origin = false) const;
+        const QString display(bool origin = false) const;
 
         // Set the display of the UI
         // TODO: judge whether the setting is valid
@@ -92,7 +92,7 @@ namespace TCUIEdit { namespace Core { namespace UI
 
         // A pure virtual function
         // Return the actual information to be displayed
-        virtual const QString getDisplayName() const = 0;
+        virtual const QString formDisplay() const = 0;
 
         // Deleted Functions
         //

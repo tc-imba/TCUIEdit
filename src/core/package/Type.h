@@ -7,15 +7,15 @@
 #include "Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UI::Type
+#define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Type
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Type : public Base
     {
 
     protected:
-        //QVector<UI::Type *> data;
+        //QVector<ui::Type *> data;
     public:
         Type(Package *package);
 

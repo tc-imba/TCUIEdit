@@ -5,7 +5,7 @@
 #include "TypeDefault.h"
 #include "../ui/TypeDefault.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     TypeDefault::TypeDefault(Package *package) : Base(package)
     {
@@ -14,9 +14,9 @@ namespace TCUIEdit { namespace Core { namespace Package
 
     void TypeDefault::readLine(QString &str)
     {
-        auto pair = this->preprocessLine(str);
-        auto item = static_cast<UI::Base *>(new UI::TypeDefault(this->_pkg, pair));
-        this->data.push_back(item);
+        auto pair = this->_preprocessLine(str);
+        auto item = static_cast<ui::Base *>(new ui::TypeDefault(m_pkg, pair));
+        m_data.push_back(item);
     }
 
 
