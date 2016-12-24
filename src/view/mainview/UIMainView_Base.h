@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../../core/core.h"
-#include "../../core/ui/base.h"
+#include "../../core/ui/Base.h"
 #include "../../components/property_browser/UIPropertyBrowser.h"
 
 using namespace TCUIEdit::Core;
