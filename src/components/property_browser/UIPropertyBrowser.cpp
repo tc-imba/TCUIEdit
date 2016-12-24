@@ -25,19 +25,17 @@ namespace TCUIEdit
     {
         this->model->clear();
         this->model->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
-        //this->header()->setStretchLastSection(true);
-        //this->header()->setSectionResizeMode(QHeaderView::Fixed);
-        this->header()->resizeSection(0, this->rect().width() * 0.4);
-        qDebug() << "Frame" << this->header()->frameWidth() << this->header()->geometry().height();
+        this->header()->resizeSection(0, this->rect().width() * 0.3);
+        this->header()->resizeSection(1, this->rect().width() * 0.7);
+        this->header()->setSectionResizeMode(QHeaderView::Fixed);
+        //qDebug() << "Frame" << this->rect().width() << this->rect().height();
     }
 
-    void UIPropertyBrowser::addCategory(const QString &text)
+    UIPropertyBrowserCategory* UIPropertyBrowser::addCategory(const QString &text)
     {
         auto category = new UIPropertyBrowserCategory(text);
-        auto category_2 = new UIPropertyBrowserCategory(text);
-        auto row = QList<QStandardItem *>() << category << category_2;
-        this->model->appendRow(row);
-
+        this->model->appendRow(category);
+        return category;
     }
 
 

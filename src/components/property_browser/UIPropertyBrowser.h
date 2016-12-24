@@ -25,7 +25,7 @@ namespace TCUIEdit
 
         void init();
 
-        void addCategory(const QString &text);
+        UIPropertyBrowserCategory* addCategory(const QString &text);
 
     };
 

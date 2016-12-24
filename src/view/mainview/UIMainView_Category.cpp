@@ -16,7 +16,7 @@ namespace TCUIEdit
 
     void UIMainView_Category::refresh()
     {
-        this->browser->addCategory("testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+        this->browser->addCategory("Properties");
     }
 
 };

@@ -22,6 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //qDebug() << this->ui->mainView->rect().width() << this->ui->mainView->rect().height();
+
+    this->ui->mainView->init();
+
     QElapsedTimer timer;
     timer.start();
 
