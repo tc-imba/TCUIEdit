@@ -12,12 +12,12 @@ namespace TCUIEdit
     class UIMainView
     {
     protected:
-        UIPropertyBrowser *browser;
+        property_browser::Browser *browser;
 
         UIMainView_Base *base;
 
     public:
-        UIMainView(UIPropertyBrowser *browser);
+        UIMainView(property_browser::Browser *browser);
 
         void displayUI(UI::Base* ui);
 

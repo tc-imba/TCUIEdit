@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.6)
 project(property_browser)
 
 set(SOURCE_FILES
-        UIPropertyBrowser.cpp
-        UIPropertyBrowserModel.cpp
-        UIPropertyBrowserItem.cpp
-        UIPropertyBrowserCategory.cpp
-        )
+        Browser.cpp
+        Model.cpp
+        Item.cpp
+        Category.cpp
+        common.h)
 
 add_library(property_browser ${SOURCE_FILES})
 

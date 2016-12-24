@@ -7,7 +7,7 @@
 namespace TCUIEdit
 {
 
-    UIMainView::UIMainView(UIPropertyBrowser *browser)
+    UIMainView::UIMainView(property_browser::Browser *browser)
     {
         this->browser = browser;
         this->base = NULL;
