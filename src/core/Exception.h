@@ -7,7 +7,7 @@
 #include "core.h"
 #include <QException>
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
     class Exception : QException
     {

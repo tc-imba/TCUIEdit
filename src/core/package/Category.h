@@ -7,15 +7,15 @@
 #include "Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UI::Category
+#define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Category
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Category : public Base
     {
 
     protected:
-        // QVector<UI::Category *> data;
+        // QVector<ui::Category *> data;
     public:
         Category(Package *package);
 

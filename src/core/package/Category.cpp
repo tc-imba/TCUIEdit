@@ -5,7 +5,7 @@
 #include "Category.h"
 #include "../ui/Category.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     Category::Category(Package *package) : Base(package)
     {
@@ -17,9 +17,9 @@ namespace TCUIEdit { namespace Core { namespace Package
     {
         //QRegExp rx("$");
 
-        auto pair = this->preprocessLine(str);
-        auto item = static_cast<UI::Base *>(new UI::Category(this->_pkg, pair));
-        this->data.push_back(item);
+        auto pair = this->_preprocessLine(str);
+        auto item = static_cast<ui::Base *>(new ui::Category(m_pkg, pair));
+        m_data.push_back(item);
 
     }
 

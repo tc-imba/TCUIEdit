@@ -12,7 +12,7 @@ namespace TCUIEdit
     class UIMainView_Category : public UIMainView_Base
     {
     protected:
-        UI::Category *ui;
+        ui::Category *ui;
     public:
         UIMainView_Category(property_browser::Browser *browser, UI::Base *ui);
 

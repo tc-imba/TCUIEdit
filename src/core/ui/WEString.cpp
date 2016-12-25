@@ -4,27 +4,27 @@
 
 #include "WEString.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    WEString::WEString(Package::Package *package)
+    WEString::WEString(package::Package *package)
     {
-        this->_pkg = package;
+        m_pkg = package;
     }
 
-    const QString &WEString::getName() const
+    const QString &WEString::name() const
     {
-        return this->name;
+        return m_name;
     }
 
-    const QString &WEString::getValue() const
+    const QString &WEString::value() const
     {
-        return this->value;
+        return m_value;
     }
 
-    Package::Package *WEString::getPackage() const
+    package::Package *WEString::package() const
     {
-        return this->_pkg;
+        return m_pkg;
     }
 
 }}}

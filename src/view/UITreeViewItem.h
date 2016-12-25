@@ -8,7 +8,7 @@
 #include "../core/core.h"
 #include "../core/ui/Base.h"
 
-using namespace TCUIEdit::Core;
+using namespace TCUIEdit::core;
 
 namespace TCUIEdit
 {
@@ -16,7 +16,7 @@ namespace TCUIEdit
     class UITreeViewItem : public QStandardItem
     {
     protected:
-        UI::Base *base;
+        ui::Base *base;
         bool titleFlag;
         int depth;
 
@@ -25,11 +25,11 @@ namespace TCUIEdit
 
         UITreeViewItem(const QString &text, UITreeViewItem *item);
 
-        UITreeViewItem(UI::Base *base);
+        UITreeViewItem(ui::Base *base);
 
         ~UITreeViewItem();
 
-        UI::Base *getBase() const;
+        ui::Base *getBase() const;
 
         int getDepth() const;
     };

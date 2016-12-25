@@ -14,7 +14,7 @@
 #include "UITreeViewItem.h"
 
 using namespace TCUIEdit;
-using namespace TCUIEdit::Core;
+using namespace TCUIEdit::core;
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     auto model = new QStandardItemModel(ui->treeView);
     this->treeViewModel = model;
     //model->setHorizontalHeaderLabels(QStringList("List"));
-    auto package = new QStandardItem(uip->getName());
+    auto package = new QStandardItem(uip->name());
     model->appendRow(package);
 
     ui->treeView->setModel(model);
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         if (uip->isBaseChanged())
         {
-            auto item = new UITreeViewItem(UI::Base::getTypeName(uip->getBaseTypeCurrent()));
+            auto item = new UITreeViewItem(ui::Base::typeName(uip->baseTypeCurrent()));
             item->setEditable(false);
             package->appendRow(item);
         }
@@ -76,8 +76,8 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int i = 0; i < 8; i++)
     {
         auto parentItem = package->child(i);
-        auto base = uip->getBase(UI::Base::TYPE(i));
-        for (auto it:base->getData())
+        auto base = uip->base(ui::Base::TYPE(i));
+        for (auto it:base->data())
         {
             auto item = new UITreeViewItem(it);
             item->setEditable(false);
@@ -85,8 +85,8 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    auto _ui = proj->matchUI("integer", UI::Base::TRIGGER_TYPE);
-    ui->textBrowser->append(_ui->getDisplayName());
+    auto _ui = proj->matchUI("integer", ui::Base::TRIGGER_TYPE);
+    ui->textBrowser->append(_ui->formDisplay());
 
     //ui->treeView_2->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -112,7 +112,7 @@ void MainWindow::treeViewClicked(const QModelIndex &index)
 
     if (item->getDepth() < 0)
     {
-        auto str = item->getBase()->getDisplayName();
+        auto str = item->getBase()->formDisplay();
         //qDebug() << str;
         //item->getBase()->displayDetail(this->ui->treeView_2);
         this->mainView->displayUI(item->getBase());

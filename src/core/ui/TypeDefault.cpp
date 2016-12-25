@@ -7,13 +7,13 @@
 #include "package/Package.h"
 #include "Project.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    TypeDefault::TypeDefault(Package::Package *package, QPair<QString, QStringList> pair)
+    TypeDefault::TypeDefault(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_TYPE_DEFAULT;
+        m_type = TRIGGER_TYPE_DEFAULT;
 
         this->setName(pair.first);
 
@@ -26,21 +26,21 @@ namespace TCUIEdit { namespace Core { namespace UI
         // Value 1: display text (if not present, script text will be used)
         if (it != pair.second.constEnd())
         {
-            this->display = *it++;
+            m_display =  *it++;
         }
     }
 
     Type *TypeDefault::getOriginType() const
     {
-        return (Type *) (this->_pkg->getProject()->matchUI(this->name, TRIGGER_TYPE));
+        return (Type *) (m_pkg->project()->matchUI(m_name, TRIGGER_TYPE));
     }
 
-    const QString TypeDefault::getDisplayName() const
+    const QString TypeDefault::formDisplay() const
     {
         auto type = this->getOriginType();
         if (type)
         {
-            return type->getDisplayName();
+            return type->formDisplay();
         }
         return "";
     }

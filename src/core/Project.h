@@ -8,7 +8,7 @@
 #include "Map.h"
 #include <QMultiHash>
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
     class Project
     {
@@ -16,20 +16,20 @@ namespace TCUIEdit { namespace Core
 
     protected:
         Map uiMap;
-        QMultiHash<QString, UI::WEString *> weStringMap;
-        QList<Package::Package *> uiPkg;
+        QMultiHash<QString, ui::WEString *> weStringMap;
+        QList<package::Package *> uiPkg;
     public:
         Map *getUIMap()
         { return &this->uiMap; }
 
-        QMultiHash<QString, UI::WEString *> *getWEStringMap()
+        QMultiHash<QString, ui::WEString *> *getWEStringMap()
         { return &this->weStringMap; }
 
-        Package::Package *createPackage();
+        package::Package *createPackage();
 
-        Package::Package *createPackage(const QString &basePath, const QString &name);
+        package::Package *createPackage(const QString &basePath, const QString &name);
 
-        UI::Base *matchUI(const QString &name, UI::Base::TYPE type) const;
+        ui::Base *matchUI(const QString &name, ui::Base::TYPE type) const;
 
 
     };

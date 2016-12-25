@@ -7,14 +7,14 @@
 #include "Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UI::Event
+#define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Event
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Event : public Base
     {
     protected:
-        UI::Event* lastUI;
+        ui::Event* m_lastUI;
     public:
         Event(Package *package);
 

@@ -7,9 +7,9 @@
 #include "Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UI::Param
+#define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Param
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Param : public Base
     {

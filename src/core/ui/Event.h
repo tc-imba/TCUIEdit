@@ -6,7 +6,7 @@
 
 #include "Base.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
             enum FLAG{FLAG_DEFAULT,FLAG_CATEGORY};
             class Argument{
@@ -44,11 +44,11 @@ namespace TCUIEdit { namespace Core { namespace UI
         QList<Argument> arguments;
         bool Flag[2];
     public:
-        Event(Package::Package *package, QPair<QString, QStringList> pair);
+        Event(package::Package *package, QPair<QString, QStringList> pair);
 
         void add(QPair<QString, QStringList> pair);
 
-        const QString getDisplayName() const;
+        const QString formDisplay() const;
 
         const QString &getCategory() const;
 

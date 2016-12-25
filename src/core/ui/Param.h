@@ -6,7 +6,7 @@
 
 #include "Base.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
     //***************************************************************************
     // [TriggerParams]
@@ -25,11 +25,11 @@ namespace TCUIEdit { namespace Core { namespace UI
     protected:
         QString version, variable, script;
     public:
-        Param(Package::Package *package, QPair<QString, QStringList> pair);
+        Param(package::Package *package, QPair<QString, QStringList> pair);
 
         Type *getOriginType() const;
 
-        const QString getDisplayName() const;
+        const QString formDisplay() const;
 
 
     };

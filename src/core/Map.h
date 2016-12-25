@@ -10,7 +10,7 @@
 #include "ui/Base.h"
 #include "Exception.h"
 
-namespace TCUIEdit { namespace Core
+namespace TCUIEdit { namespace core
 {
     class Map
     {
@@ -20,7 +20,7 @@ namespace TCUIEdit { namespace Core
         /**
          * The Map is saved as an unordered_map (hash map)
          */
-        QMultiHash<QString, UI::Base *> hashtable;
+        QMultiHash<QString, ui::Base *> hashtable;
         //std::unordered_map<std::string, std::list<UIBase *>> map;
     public:
         Map();
@@ -29,7 +29,7 @@ namespace TCUIEdit { namespace Core
          * Add a UI to the Map
          * @param UI
          */
-        void addUI(UI::Base *UI);
+        void addUI(ui::Base *UI);
 
         /**
          * Get all UIs of this name from the Map
@@ -38,13 +38,13 @@ namespace TCUIEdit { namespace Core
          */
         //QList<UIBase *> getUI(QString &name) const;
 
-        QList<UI::Base *> getUI(const QString &name) const;
+        QList<ui::Base *> getUI(const QString &name) const;
 
         /**
          * Remove a UI to the Map
          * @param UI
          */
-        void removeUI(UI::Base *UI);
+        void removeUI(ui::Base *UI);
     };
 }}
 

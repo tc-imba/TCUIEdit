@@ -13,12 +13,12 @@ namespace TCUIEdit
         this->base = NULL;
     }
 
-    void UIMainView::displayUI(UI::Base *ui)
+    void UIMainView::displayUI(ui::Base *ui)
     {
         if (!this->base) delete this->base;
-        switch (ui->getType())
+        switch (ui->type())
         {
-        case UI::Base::TRIGGER_CATEGORY:
+        case ui::Base::TRIGGER_CATEGORY:
             this->base = new UIMainView_Category(this->browser, ui);
             break;
         default:

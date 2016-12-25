@@ -4,11 +4,16 @@
 
 #include "Base.h"
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     Base::Base(Package *package)
     {
-        this->_pkg = package;
+        m_pkg = package;
+    }
+
+    QList<ui::Base *> Base::data()
+    {
+        return m_data;
     }
 
     void Base::readComment(QString &str)
@@ -17,7 +22,7 @@ namespace TCUIEdit { namespace Core { namespace Package
     }
 
 
-    QPair<QString, QStringList> Base::preprocessLine(QString &str)
+    QPair<QString, QStringList> Base::_preprocessLine(QString &str)
     {
         auto pos = str.indexOf('=');
         if (pos == -1)

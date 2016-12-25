@@ -6,7 +6,7 @@
 
 #include "Base.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
     //***************************************************************************
     // [TriggerCategories]
@@ -24,9 +24,9 @@ namespace TCUIEdit { namespace Core { namespace UI
     protected:
         QString icon, displayFlag;
     public:
-        Category(Package::Package *package, QPair<QString, QStringList> pair);
+        Category(package::Package *package, QPair<QString, QStringList> pair);
 
-        const QString getDisplayName() const;
+        const QString formDisplay() const;
 
     };
 }}}

@@ -10,7 +10,7 @@ namespace TCUIEdit
     UIMainView_Category::UIMainView_Category(property_browser::Browser *browser, UI::Base *ui)
             : UIMainView_Base(browser)
     {
-        this->ui = (UI::Category *) ui;
+        this->ui = (ui::Category *) ui;
         this->refresh();
     }
 

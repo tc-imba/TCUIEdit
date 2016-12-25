@@ -6,24 +6,24 @@
 
 #include "../core.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
     class WEString
     {
     protected:
-        QString name, value;
-        Package::Package *_pkg;
+        QString m_name, m_value;
+        package::Package *m_pkg;
     public:
-        friend class Package::WEString;
+        friend class package::WEString;
 
-        WEString(Package::Package *package);
+        WEString(package::Package *package);
 
-        const QString &getName() const;
+        const QString &name() const;
 
-        const QString &getValue() const;
+        const QString &value() const;
 
-        Package::Package *getPackage() const;
+        package::Package *package() const;
 
     };
 

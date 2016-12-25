@@ -6,14 +6,14 @@
 #include "Base.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
-#define TCUIEDIT_UIPACKAGE_BASE_NAME UI::Condition
+#define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Condition
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
     class Condition : public Base
     {
     protected:
-        UI::Condition* lastUI;
+        ui::Condition* m_lastUI;
     public:
         Condition(Package *package);
 

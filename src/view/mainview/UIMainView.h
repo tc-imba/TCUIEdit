@@ -19,11 +19,11 @@ namespace TCUIEdit
     public:
         UIMainView(property_browser::Browser *browser);
 
-        void displayUI(UI::Base* ui);
+        void displayUI(ui::Base* ui);
 
-        void displayPackageBase(UI::Base* pkgBase);
+        void displayPackageBase(ui::Base* pkgBase);
 
-        void displayPackage(Package::Package* pkg);
+        void displayPackage(package::Package* pkg);
 
     };
 };

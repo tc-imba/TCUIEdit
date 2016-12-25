@@ -7,13 +7,13 @@
 #include "package/Package.h"
 //#include "../Project.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Category::Category(Package::Package *package, QPair<QString, QStringList> pair)
+    Category::Category(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_CATEGORY;
+        m_type = TRIGGER_CATEGORY;
 
         this->setName(pair.first);
 
@@ -22,7 +22,7 @@ namespace TCUIEdit { namespace Core { namespace UI
         // Value 0: Display text
         if (it != pair.second.constEnd())
         {
-            this->display = *it++;
+            m_display =  *it++;
         }
         // Value 1: Icon image file
         if (it != pair.second.constEnd())
@@ -36,13 +36,13 @@ namespace TCUIEdit { namespace Core { namespace UI
         }
     }
 
-    const QString Category::getDisplayName() const
+    const QString Category::formDisplay() const
     {
         if (this->displayFlag == "1")
         {
-            return this->name;
+            return m_name;
         }
-        return this->_getDisplayName();
+        return this->_formDisplay();
     }
 
     /*void UIBase_Category::displayDetail(UIMainTree *tree)
@@ -59,11 +59,11 @@ namespace TCUIEdit { namespace Core { namespace UI
         auto parent = this->formRow("Events");
         tree->addTopLevelItem(parent);
 
-        for (auto it:this->_pkg->getBase(UIBase::TRIGGER_EVENT)->getData())
+        for (auto it:m_pkg->getBase(UIBase::TRIGGER_EVENT)->getData())
         {
-            if (this->name == ((UIBase_Event *) it)->getCategory())
+            if (m_name == ((UIBase_Event *) it)->getCategory())
             {
-                parent->addChild(this->formRow(it->getPackage()->getName(), it->getDisplayName()));
+                parent->addChild(this->formRow(it->package()->name(), it->formDisplay()));
             }
         }
 

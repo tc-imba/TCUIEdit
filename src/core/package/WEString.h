@@ -10,14 +10,14 @@
 #include <QMultiHash>
 #include <QList>
 
-namespace TCUIEdit { namespace Core { namespace Package
+namespace TCUIEdit { namespace core { namespace package
 {
 
     class WEString
     {
     protected:
-        QList<UI::WEString *> data;
-        Package *_pkg;
+        QList<ui::WEString *> m_data;
+        Package *m_pkg;
     public:
         WEString(Package *package);
 
@@ -25,11 +25,11 @@ namespace TCUIEdit { namespace Core { namespace Package
 
         void add(const QString &name = "", const QString &value = "");
 
-        void remove(UI::WEString *weString);
+        void remove(ui::WEString *weString);
 
         const QString getValue(const QString &name) const;
 
-        Package *getPackage() const;
+        Package *package() const;
     };
 
 }}}

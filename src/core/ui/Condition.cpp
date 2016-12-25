@@ -5,13 +5,13 @@
 
 #include "Condition.h"
 
-namespace TCUIEdit { namespace Core { namespace UI
+namespace TCUIEdit { namespace core { namespace ui
 {
 
-    Condition::Condition(Package::Package *package, QPair<QString, QStringList> pair)
+    Condition::Condition(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
     {
-        this->type = TRIGGER_CONDITION;
+        m_type = TRIGGER_CONDITION;
         this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
@@ -60,9 +60,9 @@ namespace TCUIEdit { namespace Core { namespace UI
         }
     }
 
-    const QString Condition::getDisplayName() const
+    const QString Condition::formDisplay() const
     {
-        return this->name;
+        return m_name;
     }
 
     const QString &Condition::getCategory() const

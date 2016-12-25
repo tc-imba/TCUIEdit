@@ -8,7 +8,7 @@
 #include "../../core/ui/Base.h"
 #include "../../components/property_browser/Browser.h"
 
-using namespace TCUIEdit::Core;
+using namespace TCUIEdit::core;
 
 namespace TCUIEdit
 {
