@@ -2,13 +2,13 @@
 // Created by liu on 2016/12/21.
 //
 
-#include "UIPropertyBrowser.h"
+#include "Browser.h"
 
-namespace TCUIEdit
+namespace TCUIEdit { namespace property_browser
 {
-    UIPropertyBrowser::UIPropertyBrowser(QWidget *parent) : QTreeView(parent)
+    Browser::Browser(QWidget *parent) : QTreeView(parent)
     {
-        this->model = new UIPropertyBrowserModel(this);
+        this->model = new Model(this);
         this->setModel(this->model);
         this->header()->setStretchLastSection(true);
 
@@ -16,13 +16,15 @@ namespace TCUIEdit
         //
     }
 
-    UIPropertyBrowser::~UIPropertyBrowser()
+    Browser::~Browser()
     {
         delete this->model;
     }
 
-    void UIPropertyBrowser::init()
+    void Browser::init()
     {
+        m_category.clear();
+
         this->model->clear();
         this->model->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
         this->header()->resizeSection(0, this->rect().width() * 0.3);
@@ -31,12 +33,13 @@ namespace TCUIEdit
         //qDebug() << "Frame" << this->rect().width() << this->rect().height();
     }
 
-    UIPropertyBrowserCategory* UIPropertyBrowser::addCategory(const QString &text)
+    Category *Browser::addCategory(const QString &text)
     {
-        auto category = new UIPropertyBrowserCategory(text);
-        this->model->appendRow(category);
+        auto category = new Category(text);
+        this->model->appendRow(category->nameItem());
+        m_category[text] = category;
         return category;
     }
 
 
-};
+}}

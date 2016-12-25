@@ -10,7 +10,7 @@
 #include <QStandardItemModel>
 #include "src/core/core.h"
 #include <QMultiHash>
-#include "../components/property_browser/UIPropertyBrowser.h"
+#include "src/components/property_browser/Browser.h"
 #include "mainview/UIMainView.h"
 
 namespace Ui

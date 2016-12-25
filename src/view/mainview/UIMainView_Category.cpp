@@ -7,7 +7,7 @@
 namespace TCUIEdit
 {
 
-    UIMainView_Category::UIMainView_Category(UIPropertyBrowser *browser, ui::Base *ui)
+    UIMainView_Category::UIMainView_Category(property_browser::Browser *browser, UI::Base *ui)
             : UIMainView_Base(browser)
     {
         this->ui = (ui::Category *) ui;
@@ -16,7 +16,9 @@ namespace TCUIEdit
 
     void UIMainView_Category::refresh()
     {
-        this->browser->addCategory("Properties");
+        this->_refresh();
+        auto parent = m_browser->addCategory("Property");
+
     }
 
 };

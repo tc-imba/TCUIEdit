@@ -6,7 +6,7 @@
 
 #include "../../core/core.h"
 #include "../../core/ui/Base.h"
-#include "../../components/property_browser/UIPropertyBrowser.h"
+#include "../../components/property_browser/Browser.h"
 
 using namespace TCUIEdit::core;
 
@@ -15,9 +15,12 @@ namespace TCUIEdit
     class UIMainView_Base
     {
     protected:
-        UIPropertyBrowser *browser;
+        property_browser::Browser *m_browser;
+
+        void _refresh();
+
     public:
-        UIMainView_Base(UIPropertyBrowser *browser);
+        UIMainView_Base(property_browser::Browser *browser);
 
         virtual void refresh() = 0;
     };
