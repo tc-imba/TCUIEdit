@@ -39,11 +39,12 @@ namespace TCUIEdit { namespace core { namespace ui
 
         static const int FLAG_NUM = 2;
 
+
         enum FLAG
         {
             FLAG_DEFAULT, FLAG_CATEGORY
         };
-
+        
         static const char *FLAG_NAME[FLAG_NUM];
 
     protected:

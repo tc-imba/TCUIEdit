@@ -28,6 +28,7 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+    
     void Event::add(QPair<QString, QStringList> pair)
     {
         if (pair.first == FLAG_NAME[FLAG_DEFAULT] && !m_flag[FLAG_DEFAULT])
