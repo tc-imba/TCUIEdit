@@ -8,27 +8,6 @@
 
 namespace TCUIEdit { namespace core { namespace ui
 {
-            enum FLAG{FLAG_DEFAULT,FLAG_CATEGORY};
-            class Argument{
-            public:
-                QString type;
-                QString Default;
-                QString min;
-                QString max;
-                QString script;
-                QString aiDefault;
-                Argument(QPair<QString,QStringList> pair):type(""),Default(""),min(""),max(""),script(""),aiDefault(""){
-                    auto it = pair.second.constBegin();
-                    while (it != pair.second.constEnd())
-                    {
-                        if(*it=="type"){this->type=*++it;}
-                        if(*it=="default"){this->Default=*++it;}
-                        if(*it=="limit"){this->min=*++it;this->max=*++it;}
-                        if(*it=="script"){this->script=*++it;}
-                        if(*it=="aiDefault"){this->aiDefault=*++it;}
-                    }
-                }
-            };
     //***************************************************************************
     // [TriggerEvents]
     // Defines events available in the editor
@@ -39,10 +18,41 @@ namespace TCUIEdit { namespace core { namespace ui
 
     class Event : public Base
     {
+    public:
+        class Argument
+        {
+        public:
+            static const int DATA_NUM = 5;
+
+            enum DATA
+            {
+                TYPE, DEFAULT, AI_DEFAULT, MIN, MAX
+            };
+
+            QString m_data[DATA_NUM];
+
+            Argument(const QString &type)
+            {
+                m_data[TYPE] = type;
+            }
+        };
+
+        static const int FLAG_NUM = 2;
+
+        enum FLAG
+        {
+            FLAG_DEFAULT, FLAG_CATEGORY
+        };
+
+        static const char *FLAG_NAME[FLAG_NUM];
+
     protected:
-        QString version, category,useWithAI;
-        QList<Argument> arguments;
-        bool Flag[2];
+        QString m_version, m_category, m_useWithAI, m_script;
+        QList<Argument> m_arguments;
+        bool m_flag[2];
+
+        
+
     public:
         Event(package::Package *package, QPair<QString, QStringList> pair);
 
