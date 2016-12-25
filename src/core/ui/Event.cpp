@@ -6,6 +6,9 @@
 
 namespace TCUIEdit { namespace core { namespace ui
 {
+    const char *Event::FLAG_NAME[Event::FLAG_NUM] =
+            {"_Defaults", "_Category"};
+
 
     Event::Event(package::Package *package, QPair<QString, QStringList> pair)
             : Base(package)
@@ -28,33 +31,41 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
-    
+    void Event::_addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType)
+    {
+        auto itArg = m_arguments.begin();
+        auto itList = list.constBegin();
+        while (itList != list.constEnd())
+        {
+            if (itArg != m_arguments.end())
+            {
+                (*itArg++).m_data[dataType] = (*itList++);
+            }
+            else
+            {
+                Argument arg("");
+                arg.m_data[dataType] = (*itList++);
+                m_arguments.push_back(arg);
+            }
+        }
+    }
+
+    bool Event::_matchFlag(QString &text, FLAG flag)
+    {
+        return text == FLAG_NAME[flag] && !m_flag[flag];
+    }
+
     void Event::add(QPair<QString, QStringList> pair)
     {
-        if (pair.first == FLAG_NAME[FLAG_DEFAULT] && !m_flag[FLAG_DEFAULT])
+        if (_matchFlag(pair.first, FLAG_DEFAULTS))
         {
-            m_flag[FLAG_DEFAULT] = true;
-            auto it = pair.second.constBegin();
-            auto it2 = this->arguments.begin();
-            while (it != pair.second.constEnd())
-            {
-                if (it2 != this->arguments.end())
-                {
-                    (*it2++).second = (*it++);
-                } else
-                {
-                    this->arguments.push_back(QPair<QString, QString>("", *it++));
-                    it2++;
-                }
-            }
-        } else if (pair.first == "_Category" && !this->Flag[FLAG_CATEGORY])
+            m_flag[FLAG_DEFAULTS] = true;
+            this->_addArgumentData(pair.second, Argument::DEFAULT);
+        }
+        else if (_matchFlag(pair.first, FLAG_CATEGORY))
         {
-            this->Flag[FLAG_CATEGORY] = true;
-            auto it = pair.second.constBegin();
-            if (it != pair.second.constEnd())
-            {
-                this->category = *it++;
-            }
+            m_flag[FLAG_CATEGORY] = true;
+            if(pair.second.size()>0)m_category=pair.second.first();
         }
     }
 
@@ -63,9 +74,9 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_name;
     }
 
-    const QString &Event::getCategory() const
+    const QString &Event::category() const
     {
-        return this->category;
+        return m_category;
     }
 
     /*void UIBase_Event::displayDetail(UIMainTree *tree)

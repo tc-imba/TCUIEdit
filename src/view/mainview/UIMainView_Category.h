@@ -14,7 +14,7 @@ namespace TCUIEdit
     protected:
         ui::Category *ui;
     public:
-        UIMainView_Category(property_browser::Browser *browser, UI::Base *ui);
+        UIMainView_Category(property_browser::Browser *browser, ui::Base *ui);
 
         void refresh();
     };

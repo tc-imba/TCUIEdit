@@ -22,19 +22,18 @@ namespace TCUIEdit { namespace core { namespace ui
         class Argument
         {
         public:
-            static const int DATA_NUM = 5;
-
-            enum DATA
+            friend class Event;
+            static const int DATA_TYPE_NUM = 5;
+            enum DATA_TYPE
             {
                 TYPE, DEFAULT, AI_DEFAULT, MIN, MAX
             };
-
-            QString m_data[DATA_NUM];
-
             Argument(const QString &type)
             {
                 m_data[TYPE] = type;
             }
+        protected:
+            QString m_data[DATA_TYPE_NUM];
         };
 
         static const int FLAG_NUM = 2;
@@ -42,9 +41,9 @@ namespace TCUIEdit { namespace core { namespace ui
 
         enum FLAG
         {
-            FLAG_DEFAULT, FLAG_CATEGORY
+            FLAG_DEFAULTS, FLAG_CATEGORY
         };
-        
+
         static const char *FLAG_NAME[FLAG_NUM];
 
     protected:
@@ -52,7 +51,9 @@ namespace TCUIEdit { namespace core { namespace ui
         QList<Argument> m_arguments;
         bool m_flag[2];
 
-        
+        void _addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType);
+
+        bool _matchFlag(QString& text, FLAG flag);
 
     public:
         Event(package::Package *package, QPair<QString, QStringList> pair);
@@ -61,7 +62,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         const QString formDisplay() const;
 
-        const QString &getCategory() const;
+        const QString &category() const;
 
     };
 
