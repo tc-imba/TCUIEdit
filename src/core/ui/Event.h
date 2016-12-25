@@ -11,23 +11,21 @@ namespace TCUIEdit { namespace Core { namespace UI
             enum FLAG{FLAG_DEFAULT,FLAG_CATEGORY};
             class Argument{
             public:
-                QString name;
                 QString type;
                 QString Default;
                 QString min;
                 QString max;
                 QString script;
                 QString aiDefault;
-                Argument(QPair<QString,QStringList> pair){
-                    name=pair.first;
+                Argument(QPair<QString,QStringList> pair):type(""),Default(""),min(""),max(""),script(""),aiDefault(""){
                     auto it = pair.second.constBegin();
                     while (it != pair.second.constEnd())
                     {
-                        if(*it=="type"){type=*it++;}
-                        if(*it=="default"){Default=*it++;}
-                        if(*it=="limit"){min=*it++;max=*it++;}
-                        if(*it=="script"){script=*it++;}
-                        if(*it=="aiDefault"){aiDefault=*it++;}
+                        if(*it=="type"){this->type=*++it;}
+                        if(*it=="default"){this->Default=*++it;}
+                        if(*it=="limit"){this->min=*++it;this->max=*++it;}
+                        if(*it=="script"){this->script=*++it;}
+                        if(*it=="aiDefault"){this->aiDefault=*++it;}
                     }
                 }
             };
