@@ -49,7 +49,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         // A common method to get the information to be displayed
         // Only called by virtual const QString formDisplay() const in child classes
-        const QString _formDisplay() const;
+        // const QString _formDisplay() const;
 
     public:
         // Constructors
@@ -92,7 +92,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         // A pure virtual function
         // Return the actual information to be displayed
-        virtual const QString formDisplay() const = 0;
+        virtual const QString formDisplay() const;
 
         // Deleted Functions
         //

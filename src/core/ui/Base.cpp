@@ -30,14 +30,7 @@ namespace TCUIEdit { namespace core { namespace ui
     // Protected Functions
     //
 
-    const QString Base::_formDisplay() const
-    {
-        if (m_display == "")
-        {
-            return m_name;
-        }
-        return m_name + " - " + this->display();
-    }
+
 
     // Public Functions
     //
@@ -87,6 +80,15 @@ namespace TCUIEdit { namespace core { namespace ui
     void Base::setDisplay(const QString &display)
     {
         m_display = display;
+    }
+
+    const QString Base::formDisplay() const
+    {
+        if (m_display == "")
+        {
+            return m_name;
+        }
+        return m_name + " - " + this->display();
     }
 
     /*void Base::initDisplayDetail(UIMainTree *tree)

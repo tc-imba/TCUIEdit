@@ -42,7 +42,7 @@ namespace TCUIEdit { namespace core { namespace ui
         {
             return m_name;
         }
-        return this->_formDisplay();
+        return this->Base::formDisplay();
     }
 
     /*void UIBase_Category::displayDetail(UIMainTree *tree)

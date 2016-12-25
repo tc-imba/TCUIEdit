@@ -8,6 +8,6 @@ set(SOURCE_FILES_BASE
         ui/Condition.cpp
         ui/Action.cpp
         ui/Call.cpp
-
+        ui/Function.cpp
         ui/WEString.cpp
         )

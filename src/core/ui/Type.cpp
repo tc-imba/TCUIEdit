@@ -55,9 +55,5 @@ namespace TCUIEdit { namespace core { namespace ui
 
     }
 
-    const QString Type::formDisplay() const
-    {
-        return this->_formDisplay();
-    }
 
 }}}

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Base.h"
+#include "Function.h"
 
 namespace TCUIEdit { namespace core { namespace ui
 {
@@ -18,20 +18,10 @@ namespace TCUIEdit { namespace core { namespace ui
 
     // Note that the first argument is always a `trigger`, and is excluded here
 
-    class Action : public Base
+    class Action : public Function
     {
-    protected:
-        QString version, category;
-        QList<QPair<QString, QString> > arguments;
-        bool defaultsFlag, categoryFlag;
     public:
         Action(package::Package *package, QPair<QString, QStringList> pair);
-
-        void add(QPair<QString, QStringList> pair);
-
-        const QString formDisplay() const;
-
-        const QString &getCategory() const;
 
     };
 

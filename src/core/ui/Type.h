@@ -29,8 +29,6 @@ namespace TCUIEdit { namespace core { namespace ui
     public:
         Type(package::Package *package, QPair<QString, QStringList> pair);
 
-        const QString formDisplay() const;
-
     };
 }}}
 

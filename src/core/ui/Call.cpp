@@ -8,10 +8,9 @@ namespace TCUIEdit { namespace core { namespace ui
 {
 
     Call::Call(package::Package *package, QPair<QString, QStringList> pair)
-            : Base(package)
+            : Function(package)
     {
         m_type = TRIGGER_CALL;
-        this->defaultsFlag = this->categoryFlag = false;
 
         this->setName(pair.first);
 
@@ -19,54 +18,23 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 0: first game version in which this function is valid
         if (it != pair.second.constEnd())
         {
-            this->version = *it++;
+            m_version = *it++;
         }
-        // Value 1+: argument types
+        // Value 1: flag (0 or 1) indicating if the call can be used in events
+        if (it != pair.second.constEnd())
+        {
+            m_eventFlag = *it++;
+        }
+        // Value 2: return type
+        if (it != pair.second.constEnd())
+        {
+            m_returnType = *it++;
+        }
+        // Value 3+: argument types
         while (it != pair.second.constEnd())
         {
-            this->arguments.push_back(QPair<QString, QString>(*it++, ""));
+            m_arguments.push_back(Argument(*it++));
         }
-    }
-
-    void Call::add(QPair<QString, QStringList> pair)
-    {
-        if (pair.first == "_Defaults" && !this->defaultsFlag)
-        {
-            this->defaultsFlag = true;
-            auto it = pair.second.constBegin();
-            auto it2 = this->arguments.begin();
-            while (it != pair.second.constEnd())
-            {
-                if (it2 != this->arguments.end())
-                {
-                    (*it2++).second = (*it++);
-                }
-                else
-                {
-                    this->arguments.push_back(QPair<QString, QString>("", *it++));
-                    it2++;
-                }
-            }
-        }
-        else if (pair.first == "_Category" && !this->categoryFlag)
-        {
-            this->categoryFlag = true;
-            auto it = pair.second.constBegin();
-            if (it != pair.second.constEnd())
-            {
-                this->category = *it++;
-            }
-        }
-    }
-
-    const QString Call::formDisplay() const
-    {
-        return m_name;
-    }
-
-    const QString &Call::getCategory() const
-    {
-        return this->category;
     }
 
 }}}

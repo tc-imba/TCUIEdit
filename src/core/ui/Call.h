@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Base.h"
+#include "Function.h"
 
 namespace TCUIEdit { namespace core { namespace ui
 {
@@ -21,22 +21,12 @@ namespace TCUIEdit { namespace core { namespace ui
     // Note: Operators are specially handled by the editor
 
 
-    class Call : public Base
+    class Call : public Function
     {
     protected:
-        QString version, category;
-        QList<QPair<QString, QString> > arguments;
-        bool defaultsFlag, categoryFlag;
+        QString m_eventFlag, m_returnType;
     public:
         Call(package::Package *package, QPair<QString, QStringList> pair);
-
-        void add(QPair<QString, QStringList> pair);
-
-        const QString formDisplay() const;
-
-        const QString &getCategory() const;
-
-        //void displayDetail(UIMainTree *tree);
     };
 
 }}}
