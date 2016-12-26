@@ -7,8 +7,14 @@
 namespace TCUIEdit { namespace property_browser
 {
     Editor::Editor(Browser *browser, const QString &name, const QString &value)
-            : Item(browser, name, value)
+            : Row(browser, name, value)
     {
 
     }
+
+    void Editor::emitEditSignal()
+    {
+        emit this->edited(this);
+    }
+
 }}

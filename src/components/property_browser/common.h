@@ -10,7 +10,9 @@
 #include <QtGui/QStandardItem>
 
 #ifdef QT_DEBUG
+
 #include <QDebug>
+
 #endif
 
 namespace TCUIEdit { namespace property_browser
@@ -21,6 +23,8 @@ namespace TCUIEdit { namespace property_browser
     class Model;
 
     class Item;
+
+    class Row;
 
     class Category;
 

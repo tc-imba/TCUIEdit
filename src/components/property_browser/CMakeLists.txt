@@ -7,6 +7,7 @@ set(SOURCE_FILES
         Category.cpp
         Editor.cpp
         Text.cpp
+        Row.cpp
         Item.cpp
         common.h)
 

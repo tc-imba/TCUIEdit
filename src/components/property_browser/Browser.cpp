@@ -26,7 +26,7 @@ namespace TCUIEdit { namespace property_browser
         m_propertyMap.clear();
 
         m_model->clear();
-        m_model->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
+        m_model->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Row") << QStringLiteral("Value"));
 
         this->header()->resizeSection(0, this->rect().width() * 0.3);
         this->header()->resizeSection(1, this->rect().width() * 0.7);
@@ -35,23 +35,39 @@ namespace TCUIEdit { namespace property_browser
         //qDebug() << "Frame" << this->rect().width() << this->rect().height();
     }
 
-    bool Browser::addAlias(Item *item, const QString &alias)
+    bool Browser::addAlias(Row *item, const QString &alias)
     {
         if (alias.length() > 0 && !m_propertyMap.contains(alias))
         {
             m_propertyMap[alias] = item;
+            item->m_alias = alias;
             return true;
         }
         return false;
     }
 
+    Row *Browser::aliasRow(const QString &alias)
+    {
+        if (m_propertyMap.contains(alias))return m_propertyMap[alias];
+        return NULL;
+    }
+
     Category *Browser::addCategory(const QString &text, const QString &alias)
     {
         auto category = new Category(this, text);
-        m_model->appendRow(category->nameItem());
+        m_model->appendRow(category->formRow());
         this->addAlias(category, alias.length() > 0 ? alias : text);
         return category;
     }
 
+
+    void Browser::dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
+    {
+        auto item = (Item *) m_model->itemFromIndex(topLeft);
+        item->row()->emitEditSignal();
+        /*item = (Item *) m_model->itemFromIndex(bottomRight);
+        item->row()->emitEditSignal();
+        qDebug() << roles;*/
+    }
 
 }}

@@ -99,7 +99,7 @@ namespace TCUIEdit { namespace core { namespace ui
         tree->addTopLevelItem(this->formRow("Name", m_name));
 
         //treeModel->clear();
-        //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Item") << QStringLiteral("Value"));
+        //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Row") << QStringLiteral("Value"));
         //treeModel->appendRow(this->formRow("Name", m_name));
     }
 

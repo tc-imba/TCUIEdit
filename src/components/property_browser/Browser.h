@@ -17,7 +17,11 @@ namespace TCUIEdit { namespace property_browser
     protected:
         Model *m_model;
 
-        QMap<QString, Item *> m_propertyMap;
+        QMap<QString, Row *> m_propertyMap;
+
+        void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight,
+                         const QVector<int> &roles = QVector<int>());
+
 
     public:
         Browser(QWidget *parent = Q_NULLPTR);
@@ -26,9 +30,12 @@ namespace TCUIEdit { namespace property_browser
 
         void init();
 
-        bool addAlias(Item* item, const QString& alias);
+        bool addAlias(Row *item, const QString &alias);
 
-        Category* addCategory(const QString &text, const QString &alias = "");
+        Row *aliasRow(const QString &alias);
+
+        Category *addCategory(const QString &text, const QString &alias = "");
+
 
     };
 

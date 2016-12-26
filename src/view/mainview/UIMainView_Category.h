@@ -11,6 +11,7 @@ namespace TCUIEdit
 {
     class UIMainView_Category : public UIMainView_Base
     {
+    Q_OBJECT
     protected:
         ui::Category *m_ui;
     public:

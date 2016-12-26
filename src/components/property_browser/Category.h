@@ -4,12 +4,13 @@
 
 #pragma once
 
-#include "Item.h"
+#include "Row.h"
 
 namespace TCUIEdit { namespace property_browser
 {
-    class Category : public Item
+    class Category : public Row
     {
+    Q_OBJECT
     public:
         Category(Browser *browser, const QString &name);
 

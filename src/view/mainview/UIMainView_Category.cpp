@@ -19,7 +19,11 @@ namespace TCUIEdit
         UIMainView_Base::refresh();
 
         auto parent = m_browser->addCategory("Property");
-        parent->addEditor("Name", m_ui->name());
+        auto item = parent->addEditor("Name", m_ui->name());
+
+        this->connect(item, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(nameEdited(TCUIEdit::property_browser::Row * )));
+
         parent->addEditor("Display", m_ui->display(true));
         parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
         parent->addEditor("Icon", m_ui->icon());
@@ -40,7 +44,7 @@ namespace TCUIEdit
                 {
                     if (m_ui->name() == ((core::ui::Function *) itUI)->category())
                     {
-                        auto item = parent->addText(itPkg->name(), itUI->name(), "");
+                        item = parent->addText(itPkg->name(), itUI->name(), "");
                         item->setData(itUI);
                     }
                 }

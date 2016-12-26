@@ -32,6 +32,10 @@ namespace TCUIEdit { namespace core { namespace ui
         auto itArg = m_arguments.begin();
         auto itList = list.constBegin();
         bool endFlag = false;
+        if (itArg == m_arguments.end() && list.size() == 1)
+        {
+            if (list.first() == "")return;
+        }
         while (itList != list.constEnd())
         {
             if (itArg != m_arguments.end() & !endFlag)
@@ -42,6 +46,9 @@ namespace TCUIEdit { namespace core { namespace ui
             }
             else
             {
+#ifdef QT_DEBUG
+                qDebug() << typeName() << m_name << list;
+#endif
                 endFlag = true;
                 Argument arg("");
                 arg.m_data[dataType] = (*itList++);

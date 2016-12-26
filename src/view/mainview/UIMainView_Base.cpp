@@ -16,4 +16,11 @@ namespace TCUIEdit
     {
 
     }
+
+    void UIMainView_Base::nameEdited(TCUIEdit::property_browser::Row *row)
+    {
+#ifdef QT_DEBUG
+        qDebug() << "Name Edited" << row->name() << row->value();
+#endif
+    }
 };

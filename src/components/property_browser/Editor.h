@@ -4,14 +4,22 @@
 
 #pragma once
 
-#include "Item.h"
+#include "Row.h"
 
 namespace TCUIEdit { namespace property_browser
 {
-    class Editor : public Item
+    class Editor : public Row
     {
+    Q_OBJECT
     public:
         Editor(Browser *browser, const QString &name, const QString &value = "");
+
+        void emitEditSignal();
+
+
+    signals:
+
+        void edited(TCUIEdit::property_browser::Row *);
     };
 
 }}

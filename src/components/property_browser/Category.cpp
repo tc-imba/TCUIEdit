@@ -7,7 +7,7 @@
 namespace TCUIEdit { namespace property_browser
 {
     Category::Category(Browser *browser, const QString &name)
-            : Item(browser, name)
+            : Row(browser, name)
     {
         m_valueItem->setEditable(false);
     }

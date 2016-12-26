@@ -9,7 +9,7 @@ namespace TCUIEdit { namespace property_browser
 {
 
     Text::Text(Browser *browser, const QString &name, const QString &value)
-            : Item(browser, name, value)
+            : Row(browser, name, value)
     {
         m_valueItem->setEditable(false);
     }
