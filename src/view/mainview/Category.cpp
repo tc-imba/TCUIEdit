@@ -2,21 +2,21 @@
 // Created by liu on 2016/12/21.
 //
 
-#include "UIMainView_Category.h"
+#include "Category.h"
 
-namespace TCUIEdit
+namespace TCUIEdit { namespace mainview
 {
 
-    UIMainView_Category::UIMainView_Category(property_browser::Browser *browser, ui::Base *ui)
-            : UIMainView_Base(browser)
+    Category::Category(property_browser::Browser *browser, core::ui::Base *ui)
+            : Base(browser, ui)
     {
-        m_ui = (ui::Category *) ui;
+        m_ui = (core::ui::Category *) ui;
         this->refresh();
     }
 
-    void UIMainView_Category::refresh()
+    void Category::refresh()
     {
-        UIMainView_Base::refresh();
+        Base::refresh();
 
         auto parent = m_browser->addCategory("Property");
         auto item = parent->addEditor("Name", m_ui->name());
@@ -54,4 +54,4 @@ namespace TCUIEdit
         m_browser->expandToDepth(0);
     }
 
-};
+}}

@@ -11,18 +11,18 @@
 #include "../../components/property_browser/Browser.h"
 #include "../../components/property_browser/Editor.h"
 
-using namespace TCUIEdit::core;
+//using namespace TCUIEdit::core;
 
-namespace TCUIEdit
+namespace TCUIEdit { namespace mainview
 {
-    class UIMainView_Base : public QObject
+    class Base : public QObject
     {
     Q_OBJECT
     protected:
         property_browser::Browser *m_browser;
-
+        core::ui::Base *m_uiBase;
     public:
-        UIMainView_Base(property_browser::Browser *browser);
+        Base(property_browser::Browser *browser, core::ui::Base *ui);
 
         virtual void refresh();
 
@@ -31,7 +31,7 @@ namespace TCUIEdit
         virtual void nameEdited(TCUIEdit::property_browser::Row *row);
 
     };
-};
+}}
 
 
 

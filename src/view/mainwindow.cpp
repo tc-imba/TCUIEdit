@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //this->displayModel = model;
     //ui->treeView_2->setModel(model);
 
-    this->mainView = new UIMainView(this->ui->mainView);
+    this->mainView = new mainview::MainView(this->ui->mainView);
 
     this->connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this, SLOT(treeViewClicked(QModelIndex)));
 

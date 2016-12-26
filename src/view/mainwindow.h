@@ -11,7 +11,7 @@
 #include "src/core/core.h"
 #include <QMultiHash>
 #include "src/components/property_browser/Browser.h"
-#include "mainview/UIMainView.h"
+#include "src/view/mainview/MainView.h"
 
 namespace Ui
 {
@@ -32,7 +32,7 @@ private:
     QStandardItemModel* treeViewModel;
     QStandardItemModel* displayModel;
 
-    TCUIEdit::UIMainView *mainView;
+    TCUIEdit::mainview::MainView *mainView;
 
 protected slots:
 
