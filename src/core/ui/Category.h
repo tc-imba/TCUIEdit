@@ -22,9 +22,13 @@ namespace TCUIEdit { namespace core { namespace ui
     {
 
     protected:
-        QString icon, displayFlag;
+        QString m_icon, m_displayFlag;
     public:
         Category(package::Package *package, QPair<QString, QStringList> pair);
+
+        const QString &icon();
+
+        const QString &displayFlag();
 
         const QString formDisplay() const;
 

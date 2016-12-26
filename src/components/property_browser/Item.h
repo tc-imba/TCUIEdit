@@ -12,13 +12,18 @@ namespace TCUIEdit { namespace property_browser
     {
     protected:
 
-        Browser* m_browser;
+        Browser *m_browser;
+
         QString m_name, m_value;
+
         QStandardItem *m_nameItem, *m_valueItem;
+
+        void *m_data;
 
     public:
 
-        Item(const QString &name, const QString &value = "");
+        Item(Browser *browser, const QString &name, const QString &value = "");
+
 
         QList<QStandardItem *> formRow();
 
@@ -26,8 +31,18 @@ namespace TCUIEdit { namespace property_browser
 
         QStandardItem *valueItem();
 
+        void *data();
 
-        Item* addEditor();
+        void setData(void* data);
+
+        Item *addEditor(const QString &name, const QString &value, const QString &alias);
+
+        Item *addEditor(const QString &name, const QString &value);
+
+        Item *addText(const QString &name, const QString &value, const QString &alias);
+
+        Item *addText(const QString &name, const QString &value);
+
 
     };
 

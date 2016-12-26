@@ -4,8 +4,10 @@ project(property_browser)
 set(SOURCE_FILES
         Browser.cpp
         Model.cpp
-        Item.cpp
         Category.cpp
+        Editor.cpp
+        Text.cpp
+        Item.cpp
         common.h)
 
 add_library(property_browser ${SOURCE_FILES})

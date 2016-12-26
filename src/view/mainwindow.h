@@ -34,7 +34,7 @@ private:
 
     TCUIEdit::UIMainView *mainView;
 
-private slots:
+protected slots:
 
     void treeViewClicked(const QModelIndex &index);
 };

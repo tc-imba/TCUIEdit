@@ -17,7 +17,7 @@ namespace TCUIEdit { namespace core
     protected:
         Map uiMap;
         QMultiHash<QString, ui::WEString *> weStringMap;
-        QList<package::Package *> uiPkg;
+        QList<package::Package *> m_packages;
     public:
         Map *getUIMap()
         { return &this->uiMap; }
@@ -28,6 +28,8 @@ namespace TCUIEdit { namespace core
         package::Package *createPackage();
 
         package::Package *createPackage(const QString &basePath, const QString &name);
+
+        QList<package::Package *> *packages();
 
         ui::Base *matchUI(const QString &name, ui::Base::TYPE type) const;
 

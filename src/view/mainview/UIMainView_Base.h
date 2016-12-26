@@ -5,7 +5,9 @@
 #pragma once
 
 #include "../../core/core.h"
-#include "../../core/ui/Base.h"
+#include "../../core/ui/all.h"
+#include "../../core/package/Package.h"
+#include "../../core/Project.h"
 #include "../../components/property_browser/Browser.h"
 
 using namespace TCUIEdit::core;
@@ -17,12 +19,10 @@ namespace TCUIEdit
     protected:
         property_browser::Browser *m_browser;
 
-        void _refresh();
-
     public:
         UIMainView_Base(property_browser::Browser *browser);
 
-        virtual void refresh() = 0;
+        virtual void refresh();
     };
 };
 

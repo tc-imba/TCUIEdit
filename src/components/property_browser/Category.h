@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace property_browser
     class Category : public Item
     {
     public:
-        Category(const QString &name);
+        Category(Browser *browser, const QString &name);
 
     };
 }}

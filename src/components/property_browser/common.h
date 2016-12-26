@@ -25,4 +25,6 @@ namespace TCUIEdit { namespace property_browser
     class Category;
 
     class Editor;
+
+    class Text;
 }}

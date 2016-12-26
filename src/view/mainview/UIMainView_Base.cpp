@@ -12,7 +12,7 @@ namespace TCUIEdit
         m_browser->init();
     }
 
-    void UIMainView_Base::_refresh()
+    void UIMainView_Base::refresh()
     {
 
     }
