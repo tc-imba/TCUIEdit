@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TCUIEdit v0.0.1rc</string>
+   <string>TCUIEdit v0.0.0rc</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextBrowser" name="textBrowser">
@@ -54,13 +54,13 @@
      <height>19</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTCUIEdit_v0_0_1_rc">
+   <widget class="QMenu" name="menuTCUIEdit">
     <property name="title">
      <string>Files</string>
     </property>
     <addaction name="separator"/>
    </widget>
-   <addaction name="menuTCUIEdit_v0_0_1_rc"/>
+   <addaction name="menuTCUIEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAaa">
