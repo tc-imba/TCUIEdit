@@ -27,7 +27,7 @@ namespace TCUIEdit { namespace mainview
         core::ui::Base *m_uiBase;
 
         QMenu *m_menu;
-        QAction *m_menuCopy, *m_menuOpen, *m_memuRedirect;
+        QAction *m_menuCopy, *m_menuOpen, *m_menuRedirect;
         property_browser::Row *m_currentRow;
 
     public:
