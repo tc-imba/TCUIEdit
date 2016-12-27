@@ -29,11 +29,17 @@ namespace TCUIEdit { namespace property_browser
 
         Row(Browser *browser, const QString &name, const QString &value = "");
 
+        ~Row();
+
         QList<QStandardItem *> formRow();
 
         const QString &name();
 
         const QString &value();
+
+        void setName(const QString& name);
+
+        void setValue(const QString& value);
 
         Item *nameItem();
 
@@ -53,6 +59,7 @@ namespace TCUIEdit { namespace property_browser
 
         Row *addText(const QString &name, const QString &value);
 
+        void removeChildren();
 
         virtual void emitEditSignal();
 

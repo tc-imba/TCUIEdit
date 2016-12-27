@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include <QColor>
+#include <QTextStream>
+
 #include "../../core/core.h"
 #include "../../core/ui/all.h"
 #include "../../core/package/Package.h"
@@ -25,6 +28,8 @@ namespace TCUIEdit { namespace mainview
         Base(property_browser::Browser *browser, core::ui::Base *ui);
 
         virtual void refresh();
+
+        virtual void examineName(property_browser::Row *row);
 
     protected slots:
 

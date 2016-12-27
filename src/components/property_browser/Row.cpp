@@ -20,6 +20,11 @@ namespace TCUIEdit { namespace property_browser
         m_valueItem = new Item(this, m_value);
     }
 
+    Row::~Row()
+    {
+
+    }
+
     QList<QStandardItem *> Row::formRow()
     {
         return QList<QStandardItem *>() << m_nameItem << m_valueItem;
@@ -33,6 +38,16 @@ namespace TCUIEdit { namespace property_browser
     const QString &Row::value()
     {
         return m_value;
+    }
+
+    void Row::setName(const QString &name)
+    {
+        m_name = name;
+    }
+
+    void Row::setValue(const QString &value)
+    {
+        m_value = value;
     }
 
     Item *Row::nameItem()
@@ -55,7 +70,7 @@ namespace TCUIEdit { namespace property_browser
         m_data = data;
     }
 
-    const QString& Row::alias()
+    const QString &Row::alias()
     {
         return m_alias;
     }
@@ -84,6 +99,17 @@ namespace TCUIEdit { namespace property_browser
     Row *Row::addText(const QString &name, const QString &value)
     {
         return this->addText(name, value, name);
+    }
+
+    void Row::removeChildren()
+    {
+        while (auto item = (Item *) m_nameItem->child(0, 0))
+        {
+            auto row = item->row();
+            row->removeChildren();
+            m_browser->model()->removeRow(0, m_nameItem->index());
+            delete row;
+        }
     }
 
     void Row::emitEditSignal()

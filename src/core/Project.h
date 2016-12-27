@@ -5,7 +5,7 @@
 #pragma once
 
 #include "core.h"
-#include "Map.h"
+#include "ui/Base.h"
 #include <QMultiHash>
 
 namespace TCUIEdit { namespace core
@@ -15,12 +15,12 @@ namespace TCUIEdit { namespace core
         // friend class UIBase;
 
     protected:
-        Map uiMap;
+        QMultiHash<QString, ui::Base *> m_uiMap;
         QMultiHash<QString, ui::WEString *> weStringMap;
         QList<package::Package *> m_packages;
     public:
-        Map *getUIMap()
-        { return &this->uiMap; }
+        /*Map *getUIMap()
+        { return &this->uiMap; }*/
 
         QMultiHash<QString, ui::WEString *> *getWEStringMap()
         { return &this->weStringMap; }
@@ -31,7 +31,16 @@ namespace TCUIEdit { namespace core
 
         QList<package::Package *> *packages();
 
+        void addUI(ui::Base *UI);
+
+        QList<ui::Base *> getUI(const QString &name) const;
+
+        QList<ui::Base *> examineUI(const ui::Base *UI) const;
+
+        void removeUI(ui::Base *UI);
+
         ui::Base *matchUI(const QString &name, ui::Base::TYPE type) const;
+
 
 
     };

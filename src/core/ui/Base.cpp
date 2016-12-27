@@ -66,9 +66,14 @@ namespace TCUIEdit { namespace core { namespace ui
 
     void Base::setName(const QString &name)
     {
-        m_pkg->project()->getUIMap()->removeUI(this);
+        m_pkg->project()->removeUI(this);
         m_name = name;
-        m_pkg->project()->getUIMap()->addUI(this);
+        m_pkg->project()->addUI(this);
+    }
+
+    QList<ui::Base *> Base::examineName() const
+    {
+        return m_pkg->project()->examineUI(this);
     }
 
     const QString Base::display(bool origin) const

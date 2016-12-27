@@ -82,6 +82,10 @@ namespace TCUIEdit { namespace core { namespace ui
         // The hashtable of UIs will be updated
         void setName(const QString &name);
 
+        // Examine whether the name of the UI is redefined
+        // Return a list of all the redefined UIs
+        QList<ui::Base *> examineName() const;
+
         // Return the display text of the UI (subsitituted by WE_STRINGs)
         // If origin is set to true, the origin value display will be returned
         const QString display(bool origin = false) const;

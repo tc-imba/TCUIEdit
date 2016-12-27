@@ -8,7 +8,6 @@ include(package/CMakeLists.txt)
 set(SOURCE_FILES
         Project.cpp
         ${SOURCE_FILES_PACKAGE}
-        Map.cpp
         ${SOURCE_FILES_BASE}
         Exception.cpp
         FileInput.cpp
