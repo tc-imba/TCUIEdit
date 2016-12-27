@@ -22,6 +22,8 @@ namespace TCUIEdit { namespace property_browser
         void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight,
                          const QVector<int> &roles = QVector<int>());
 
+        void contextMenuEvent(QContextMenuEvent *event);
+
 
     public:
         Browser(QWidget *parent = Q_NULLPTR);
@@ -36,6 +38,9 @@ namespace TCUIEdit { namespace property_browser
 
         Category *addCategory(const QString &text, const QString &alias = "");
 
+    signals:
+
+        void rightClicked(TCUIEdit::property_browser::Row *);
 
     };
 

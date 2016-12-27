@@ -31,9 +31,13 @@ namespace TCUIEdit { namespace mainview
 
         virtual void examineName(property_browser::Row *row);
 
+        virtual void updateDisplay(property_browser::Row *row);
+
     protected slots:
 
-        virtual void nameEdited(TCUIEdit::property_browser::Row *row);
+        virtual void onNameEdited(TCUIEdit::property_browser::Row *row);
+
+        virtual void onDisplayEdited(TCUIEdit::property_browser::Row *row);
 
     };
 }}

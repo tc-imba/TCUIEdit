@@ -70,4 +70,10 @@ namespace TCUIEdit { namespace property_browser
         qDebug() << roles;*/
     }
 
+    void Browser::contextMenuEvent(QContextMenuEvent *event)
+    {
+        
+        event->accept();
+    }
+
 }}

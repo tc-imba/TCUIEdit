@@ -18,16 +18,23 @@ namespace TCUIEdit { namespace mainview
     {
         Base::refresh();
 
-        auto parent = m_browser->addCategory("Property");
-        auto item = parent->addEditor("Name", m_ui->name());
+        auto parent = m_browser->aliasRow("Property");
 
-        this->connect(item, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
-                      this, SLOT(nameEdited(TCUIEdit::property_browser::Row * )));
+        auto row = parent->addEditor("Display", m_ui->display(true));
+        row->nameItem()->setData("编辑器中显示的名字（可以为WE_STRING）", Qt::ToolTipRole);
+        this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
+        row = parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
+        row->nameItem()->setData("编辑器中最终显示的名字", Qt::ToolTipRole);
 
-        parent->addEditor("Display", m_ui->display(true));
-        parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
-        parent->addEditor("Icon", m_ui->icon());
-        parent->addEditor("Display Flag", m_ui->displayFlag());
+
+        row = parent->addEditor("Icon", m_ui->icon());
+        row->nameItem()->setData("编辑器中显示的图标", Qt::ToolTipRole);
+
+        row = parent->addEditor("Display Flag", m_ui->displayFlag());
+        row->nameItem()->setData("编辑器中是否显示该类", Qt::ToolTipRole);
+
+
 
         QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
         core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
@@ -44,8 +51,8 @@ namespace TCUIEdit { namespace mainview
                 {
                     if (m_ui->name() == ((core::ui::Function *) itUI)->category())
                     {
-                        item = parent->addText(itPkg->name(), itUI->name(), "");
-                        item->setData(itUI);
+                        row = parent->addText(itPkg->name(), itUI->name(), "");
+                        row->setData(itUI);
                     }
                 }
             }

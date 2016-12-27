@@ -8,6 +8,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtGui/QStandardItemModel>
 #include <QtGui/QStandardItem>
+#include <QtGui/QContextMenuEvent>
 
 #ifdef QT_DEBUG
 

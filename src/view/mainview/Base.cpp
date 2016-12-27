@@ -15,6 +15,12 @@ namespace TCUIEdit { namespace mainview
 
     void Base::refresh()
     {
+        auto parent = m_browser->addCategory("Property");
+        auto row = parent->addEditor("Name", m_uiBase->name());
+        row->nameItem()->setData("本条UI的名字", Qt::ToolTipRole);
+        this->examineName(row);
+        this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
 
     }
 
@@ -44,13 +50,31 @@ namespace TCUIEdit { namespace mainview
         }
     }
 
-    void Base::nameEdited(TCUIEdit::property_browser::Row *row)
+    void Base::updateDisplay(property_browser::Row *row)
+    {
+        row->setValue(m_uiBase->display(false));
+        row->valueItem()->setText(row->value());
+    }
+
+    void Base::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
 #ifdef QT_DEBUG
         qDebug() << "Name Edited" << row->name() << row->valueItem()->text();
 #endif
-        row->setName(row->valueItem()->text());
-        m_uiBase->setName(row->name());
+        row->setValue(row->valueItem()->text());
+        m_uiBase->setName(row->value());
         this->examineName(row);
     }
+
+    void Base::onDisplayEdited(TCUIEdit::property_browser::Row *row)
+    {
+        row->setValue(row->valueItem()->text());
+        m_uiBase->setDisplay(row->value());
+        auto displayRow = m_browser->aliasRow("DisplayName");
+        if (displayRow)
+        {
+            this->updateDisplay(displayRow);
+        }
+    }
+
 }}
