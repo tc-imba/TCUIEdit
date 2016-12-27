@@ -72,7 +72,9 @@ namespace TCUIEdit { namespace property_browser
 
     void Browser::contextMenuEvent(QContextMenuEvent *event)
     {
-        
+        auto item = (Item *) m_model->itemFromIndex(this->currentIndex());
+        auto row = item ? item->row() : NULL;
+        emit this->rightClicked(row);
         event->accept();
     }
 

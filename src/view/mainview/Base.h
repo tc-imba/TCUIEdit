@@ -6,6 +6,7 @@
 
 #include <QColor>
 #include <QTextStream>
+#include <QMenu>
 
 #include "../../core/core.h"
 #include "../../core/ui/all.h"
@@ -24,8 +25,15 @@ namespace TCUIEdit { namespace mainview
     protected:
         property_browser::Browser *m_browser;
         core::ui::Base *m_uiBase;
+
+        QMenu *m_menu;
+        QAction *m_menuCopy, *m_menuOpen, *m_memuRedirect;
+        property_browser::Row *m_currentRow;
+
     public:
         Base(property_browser::Browser *browser, core::ui::Base *ui);
+
+        virtual ~Base();
 
         virtual void refresh();
 
@@ -38,6 +46,14 @@ namespace TCUIEdit { namespace mainview
         virtual void onNameEdited(TCUIEdit::property_browser::Row *row);
 
         virtual void onDisplayEdited(TCUIEdit::property_browser::Row *row);
+
+        virtual void onRightClicked(TCUIEdit::property_browser::Row *row);
+
+        virtual void onMenuOpenClicked();
+
+        virtual void onMenuRedirectClicked();
+
+        virtual void onMenuCopyClicked();
 
     };
 }}

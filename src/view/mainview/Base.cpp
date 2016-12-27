@@ -11,10 +11,32 @@ namespace TCUIEdit { namespace mainview
         m_uiBase = ui;
         m_browser = browser;
         m_browser->init();
+
+        m_menu = new QMenu();
+
+        m_menuOpen = new QAction(m_menu);
+        m_menuOpen->setText("Open - 在新窗口打开");
+        m_menu->addAction(m_menuOpen);
+        m_memuRedirect = new QAction(m_menu);
+        m_memuRedirect->setText("Redirect - 跳转到");
+        m_menu->addAction(m_memuRedirect);
+        m_menuCopy = new QAction(m_menu);
+        m_menuCopy->setText("Copy - 复制");
+        m_menu->addAction(m_menuCopy);
+
+        m_currentRow = NULL;
+    }
+
+    Base::~Base()
+    {
+        delete m_menu;
     }
 
     void Base::refresh()
     {
+        this->connect(m_browser, SIGNAL(rightClicked(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onRightClicked(TCUIEdit::property_browser::Row * )));
+
         auto parent = m_browser->addCategory("Property");
         auto row = parent->addEditor("Name", m_uiBase->name());
         row->nameItem()->setData("本条UI的名字", Qt::ToolTipRole);
@@ -58,9 +80,6 @@ namespace TCUIEdit { namespace mainview
 
     void Base::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
-#ifdef QT_DEBUG
-        qDebug() << "Name Edited" << row->name() << row->valueItem()->text();
-#endif
         row->setValue(row->valueItem()->text());
         m_uiBase->setName(row->value());
         this->examineName(row);
@@ -75,6 +94,40 @@ namespace TCUIEdit { namespace mainview
         {
             this->updateDisplay(displayRow);
         }
+    }
+
+    void Base::onRightClicked(TCUIEdit::property_browser::Row *row)
+    {
+        if (row)
+        {
+            m_currentRow = row;
+            if (row->data())
+            {
+                m_menuOpen->setEnabled(true);
+                m_memuRedirect->setEnabled(true);
+            }
+            else
+            {
+                m_menuOpen->setEnabled(false);
+                m_memuRedirect->setEnabled(false);
+            }
+            m_menu->exec(QCursor::pos());
+        }
+    }
+
+    void Base::onMenuOpenClicked()
+    {
+
+    }
+
+    void Base::onMenuRedirectClicked()
+    {
+
+    }
+
+    void Base::onMenuCopyClicked()
+    {
+
     }
 
 }}
