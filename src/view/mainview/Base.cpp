@@ -2,6 +2,7 @@
 // Created by liu on 2016/12/21.
 //
 
+#include <QtWidgets/QAction>
 #include "Base.h"
 
 namespace TCUIEdit { namespace mainview
@@ -16,12 +17,15 @@ namespace TCUIEdit { namespace mainview
 
         m_menuOpen = new QAction(m_menu);
         m_menuOpen->setText("Open - 在新窗口打开");
+        this->connect(m_menuOpen, SIGNAL(triggered()), this, SLOT(onMenuOpenClicked()));
         m_menu->addAction(m_menuOpen);
-        m_memuRedirect = new QAction(m_menu);
-        m_memuRedirect->setText("Redirect - 跳转到");
-        m_menu->addAction(m_memuRedirect);
+        m_menuRedirect = new QAction(m_menu);
+        m_menuRedirect->setText("Redirect - 跳转到");
+        this->connect(m_menuRedirect, SIGNAL(triggered()), this, SLOT(onMenuRedirectClicked()));
+        m_menu->addAction(m_menuRedirect);
         m_menuCopy = new QAction(m_menu);
         m_menuCopy->setText("Copy - 复制");
+        this->connect(m_menuCopy, SIGNAL(triggered()), this, SLOT(onMenuCopyClicked()));
         m_menu->addAction(m_menuCopy);
 
         m_currentRow = NULL;
@@ -104,12 +108,12 @@ namespace TCUIEdit { namespace mainview
             if (row->data())
             {
                 m_menuOpen->setEnabled(true);
-                m_memuRedirect->setEnabled(true);
+                m_menuRedirect->setEnabled(true);
             }
             else
             {
                 m_menuOpen->setEnabled(false);
-                m_memuRedirect->setEnabled(false);
+                m_menuRedirect->setEnabled(false);
             }
             m_menu->exec(QCursor::pos());
         }
@@ -127,7 +131,7 @@ namespace TCUIEdit { namespace mainview
 
     void Base::onMenuCopyClicked()
     {
-
+        qDebug() << "Copy";
     }
 
 }}
