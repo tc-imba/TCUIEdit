@@ -36,5 +36,23 @@ namespace TCUIEdit { namespace core { namespace ui
             m_arguments.push_back(Argument(*it++));
         }
     }
+            QString Call::version(){
+                return this->m_version;
+            }
+            void Call::setVersion(QString version) {
+                this->m_version=version;
+            }
+            bool *Call::flag() {
+                return this->m_flag;
+            }
+            void Call::setFlag(bool *flag) {
+                this->m_flag=flag;
+            }
+            TYPE Call::type()  {
+                return this->m_type;
+            }
+            void Call::setType(TYPE type){
+                this->m_type=type;
+            }
 
 }}}

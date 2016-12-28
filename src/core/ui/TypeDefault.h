@@ -20,13 +20,15 @@ namespace TCUIEdit { namespace core { namespace ui
     class TypeDefault : public Base
     {
     protected:
-        QString script;
+        QString m_script;
     public:
         TypeDefault(package::Package *package, QPair<QString, QStringList> pair);
 
         Type *getOriginType() const;
 
         const QString formDisplay() const;
+        QString script();
+        void setScript(QString script);
 
     };
 

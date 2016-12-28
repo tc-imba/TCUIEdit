@@ -6,8 +6,7 @@
 
 namespace TCUIEdit { namespace core { namespace ui
 {
-
-    Action::Action(package::Package *package, QPair<QString, QStringList> pair)
+            Action::Action(package::Package *package, QPair<QString, QStringList> pair)
             : Function(package)
     {
         m_type = TRIGGER_ACTION;
@@ -27,5 +26,12 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+
+            QString Action::version() {
+                return this->m_version;
+            }
+            void Action::setVersion(QString version) {
+                m_version=version;
+            }
 
 }}}

@@ -22,7 +22,8 @@ namespace TCUIEdit { namespace core { namespace ui
     {
     public:
         Action(package::Package *package, QPair<QString, QStringList> pair);
-
+        QString version();
+        void setVersion(QString version);
     };
 
 }}}
