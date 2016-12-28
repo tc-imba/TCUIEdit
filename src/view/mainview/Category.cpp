@@ -20,11 +20,11 @@ namespace TCUIEdit { namespace mainview
 
         auto parent = m_browser->aliasRow("Property");
 
-        auto row = parent->addEditor("Display", m_ui->display(true));
+        auto row = parent->addEditor("Display", m_ui->display());
         row->nameItem()->setData("编辑器中显示的名字（可以为WE_STRING）", Qt::ToolTipRole);
         this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
                       this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
-        row = parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
+        row = parent->addText("Display (in Editor)", m_ui->display(), "DisplayName");
         row->nameItem()->setData("编辑器中最终显示的名字", Qt::ToolTipRole);
 
 
