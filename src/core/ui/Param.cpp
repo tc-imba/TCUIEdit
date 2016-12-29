@@ -26,7 +26,7 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 1: variable type
         if (it != pair.second.constEnd())
         {
-            this->m_variable = *it++;
+            this->m_variableType = *it++;
         }
         // Value 2: code text (used in script)
         if (it != pair.second.constEnd())
@@ -36,14 +36,24 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 3: display text
         if (it != pair.second.constEnd())
         {
-            m_display =  *it++;
+            m_display = *it++;
         }
 
     }
 
+    const QString &Param::version() const
+    {
+        return m_version;
+    }
+
+    void Param::setVersion(const QString &version)
+    {
+        m_version = version;
+    }
+
     Type *Param::getOriginType() const
     {
-        return (Type *) (m_pkg->project()->matchUI(this->m_variable, TRIGGER_TYPE));
+        return (Type *) (m_pkg->project()->matchUI(this->m_variableType, TRIGGER_TYPE));
     }
 
     const QString Param::formDisplay() const
@@ -59,23 +69,25 @@ namespace TCUIEdit { namespace core { namespace ui
         }
         return m_name;
     }
-            QString Param::version(){
-                return this->m_version;
-            }
-            void Param::setVersion(QString version){
-                this->m_version=version;
-            }
-            QString Param::variable() {
-                return this->m_variable;
-            }
-            void Param::setVariable(QString variable) {
-                this->m_variable=variable;
-            }
-            QString Param::script() {
-                return this->m_script;
-            }
-            void Param::setScript(QString script) {
-                this->m_script=script;
-            }
+
+    const QString &Param::variableType() const
+    {
+        return m_variableType;
+    }
+
+    void Param::setVariableType(const QString &variableType)
+    {
+        m_variableType = variableType;
+    }
+
+    const QString &Param::script() const
+    {
+        return m_script;
+    }
+
+    void Param::setScript(const QString &script)
+    {
+        m_script = script;
+    }
 
 }}}

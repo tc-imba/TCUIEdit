@@ -21,12 +21,12 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 0: script text
         if (it != pair.second.constEnd())
         {
-            this->m_script = *it++;
+            m_script = *it++;
         }
         // Value 1: display text (if not present, script text will be used)
         if (it != pair.second.constEnd())
         {
-            m_display =  *it++;
+            m_display = *it++;
         }
     }
 
@@ -44,12 +44,16 @@ namespace TCUIEdit { namespace core { namespace ui
         }
         return "";
     }
-            QString TypeDefault::script() {
-                return this->m_script;
-            }
-            void TypeDefault::setScript(QString script) {
-                this->m_script=script;
-            }
+
+    const QString &TypeDefault::script() const
+    {
+        return m_script;
+    }
+
+    void TypeDefault::setScript(const QString &script)
+    {
+        m_script = script;
+    }
 
 
 }}}

@@ -121,4 +121,19 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_category;
     }
 
+    void Function::setCategory(const QString &category)
+    {
+        m_category = category;
+    }
+
+    const QString &Function::version() const
+    {
+        return this->m_version;
+    }
+
+    void Function::setVersion(const QString &version)
+    {
+        m_version = version;
+    }
+
 }}}

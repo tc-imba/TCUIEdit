@@ -23,19 +23,25 @@ namespace TCUIEdit { namespace core { namespace ui
     class Param : public Base
     {
     protected:
-        QString m_version, m_variable, m_script;
+        QString m_version, m_variableType, m_script;
     public:
         Param(package::Package *package, QPair<QString, QStringList> pair);
+
+        const QString& version() const ;
+
+        void setVersion(const QString& version);
+
+        const QString &variableType() const;
+
+        void setVariableType(const QString &variableType);
+
+        const QString &script() const;
+
+        void setScript(const QString &script);
 
         Type *getOriginType() const;
 
         const QString formDisplay() const;
-        QString version();
-        void setVersion(QString version);
-        QString variable();
-        void setVariable(QString variable);
-        QString script();
-        void setScript(QString script);
 
 
     };

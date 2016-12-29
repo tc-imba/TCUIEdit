@@ -27,8 +27,10 @@ namespace TCUIEdit { namespace core { namespace ui
         Type *getOriginType() const;
 
         const QString formDisplay() const;
-        QString script();
-        void setScript(QString script);
+
+        const QString &script() const;
+
+        void setScript(const QString &script);
 
     };
 

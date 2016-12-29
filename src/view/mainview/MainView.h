@@ -6,6 +6,10 @@
 
 #include "Base.h"
 #include "Category.h"
+#include "Type.h"
+#include "TypeDefault.h"
+#include "Param.h"
+
 
 namespace TCUIEdit { namespace mainview
 {

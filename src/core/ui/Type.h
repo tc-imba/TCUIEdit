@@ -28,18 +28,30 @@ namespace TCUIEdit { namespace core { namespace ui
         QString m_version, m_globalFlag, m_compareFlag, m_baseType, m_importType, m_baseFlag;
     public:
         Type(package::Package *package, QPair<QString, QStringList> pair);
-        QString version();
-        void setVersion(QString version);
-        QString globalFlag();
-        void setGlobalFlag(QString globalFlag);
-        QString compareFlag();
-        void setCompareFlag(QString compareFlag);
-        QString baseType();
-        void setBaseType(QString baseType);
-        QString importType();
-        void setImportType(QString importType);
-        QString baseFlag();
-        void setBaseFlag(QString baseFlag);
+
+        const QString &version() const;
+
+        void setVersion(const QString &version);
+
+        const QString &globalFlag() const;
+
+        void setGlobalFlag(const QString &globalFlag);
+
+        const QString &compareFlag() const;
+
+        void setCompareFlag(const QString &compareFlag);
+
+        const QString &baseType() const;
+
+        void setBaseType(const QString &baseType);
+
+        const QString &importType() const;
+
+        void setImportType(const QString &importType);
+
+        const QString &baseFlag() const;
+
+        void setBaseFlag(const QString &baseFlag);
     };
 }}}
 

@@ -27,10 +27,14 @@ namespace TCUIEdit { namespace core { namespace ui
         QString m_eventFlag, m_returnType;
     public:
         Call(package::Package *package, QPair<QString, QStringList> pair);
-        QString version();
-        void setVersion(QString version);
-        TYPE type();
-        void setType(TYPE type);
+
+        const QString &eventFlag() const;
+
+        void setEventFlag(const QString &eventFlag);
+
+        const QString &returnType() const;
+
+        void setReturnType(const QString &returnType);
     };
 
 

@@ -27,11 +27,6 @@ namespace TCUIEdit { namespace core { namespace ui
             m_arguments.push_back(Argument(*it++));
         }
     }
-            QString Condition::version(){
-                return this->m_version;
-            }
-            void Condition::setVersion(QString version) {
-                this->m_version=version;
-            }
+
 
 }}}

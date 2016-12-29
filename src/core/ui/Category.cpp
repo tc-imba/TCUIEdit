@@ -22,7 +22,7 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 0: Display text
         if (it != pair.second.constEnd())
         {
-            m_display =  *it++;
+            m_display = *it++;
         }
         // Value 1: Icon image file
         if (it != pair.second.constEnd())
@@ -36,12 +36,17 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
-    const QString& Category::icon()
+    const QString &Category::icon() const
     {
         return m_icon;
     }
 
-    const QString& Category::displayFlag()
+    void Category::setIcon(const QString &icon)
+    {
+        m_icon = icon;
+    }
+
+    const QString &Category::displayFlag()
     {
         return m_displayFlag;
     }
@@ -55,8 +60,5 @@ namespace TCUIEdit { namespace core { namespace ui
         return Base::formDisplay();
     }
 
-            void Category::setIcon(QString icon){
-                this->m_icon=icon;
-            }
 
 }}}

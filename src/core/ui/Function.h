@@ -73,6 +73,11 @@ namespace TCUIEdit { namespace core { namespace ui
 
         const QString &category() const;
 
+        void setCategory(const QString& category);
+
+        const QString& version() const ;
+
+        void setVersion(const QString& version);
     };
 
 }}}

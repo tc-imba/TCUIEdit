@@ -21,6 +21,15 @@ namespace TCUIEdit { namespace mainview
         case core::ui::Base::TRIGGER_CATEGORY:
             this->base = new Category(this->browser, ui);
             break;
+        case core::ui::Base::TRIGGER_TYPE:
+            this->base = new Type(this->browser, ui);
+            break;
+        case core::ui::Base::TRIGGER_TYPE_DEFAULT:
+            this->base = new TypeDefault(this->browser, ui);
+            break;
+        case core::ui::Base::TRIGGER_PARAM:
+            this->base = new Param(this->browser, ui);
+            break;
         default:
             break;
         }
