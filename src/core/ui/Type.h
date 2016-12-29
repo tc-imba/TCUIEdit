@@ -34,8 +34,6 @@ namespace TCUIEdit { namespace core { namespace ui
         void setGlobalFlag(QString globalFlag);
         QString compareFlag();
         void setCompareFlag(QString compareFlag);
-        QString display();
-        void setDisplay(QString display);
         QString baseType();
         void setBaseType(QString baseType);
         QString importType();

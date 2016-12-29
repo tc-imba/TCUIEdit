@@ -4,7 +4,7 @@
 #include "Type.h"
 namespace TCUIEdit{namespace mainview
     {
-        Type::Type(property_browser::Browser *browser, core::ui::Base *ui) 
+        Type::Type(property_browser::Browser *browser, core::ui::Base *ui)
                 :Base(browser,ui)
         {
             m_ui=(core::ui::Type *)ui;
@@ -17,12 +17,12 @@ namespace TCUIEdit{namespace mainview
             row->nameItem()->setData("第一个可运行游戏版本",Qt::ToolTipRole);
             this->connect(row,SIGNAL(edited(TCUIEdit::property_browser::Row *)),
                           this,SLOT(onDisplayEdited(TCUIEdit::property_browser::Row *)));
-            
+
             row=parent->addEditor("Global Flag",m_ui->globalFlag());
             row->nameItem()->setData("是否为全局变量",Qt::ToolTipRole);
             this->connect(row,SIGNAL(edited(TCUIEdit::property_browser::Row *)),
                           this,SLOT(onDisplayEdited(TCUIEdit::property_browser::Row *)));
-            
+
             row=parent->addEditor("Compare Flag",m_ui->compareFlag());
             row->nameItem()->setData("是否适用比较运算符",Qt::ToolTipRole);
             this->connect(row,SIGNAL(edited(TCUIEdit::property_browser::Row *)),
@@ -49,7 +49,7 @@ namespace TCUIEdit{namespace mainview
                           this,SLOT(onDisplayEdited(TCUIEdit::property_browser::Row *)));
 
 
-            
+
         }
 
     }}

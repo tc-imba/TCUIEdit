@@ -32,8 +32,6 @@ namespace TCUIEdit { namespace core { namespace ui
 
         const QString formDisplay() const;
 
-        QString display();
-        void setDisplay(QString display);
         void setIcon(QString icon);
 
 

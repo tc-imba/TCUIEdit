@@ -72,12 +72,6 @@ namespace TCUIEdit { namespace core { namespace ui
             void Type::setCompareFlag(QString compareFlag){
                 this->m_compareFlag=compareFlag;
             }
-            QString Type::display(){
-                return this->m_display;
-            }
-            void Type::setDisplay(QString display){
-                this->m_display=display;
-            }
             QString Type::baseType(){
                 return this->m_baseType;
             }

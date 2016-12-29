@@ -42,12 +42,6 @@ namespace TCUIEdit { namespace core { namespace ui
             void Call::setVersion(QString version) {
                 this->m_version=version;
             }
-            bool *Call::flag() {
-                return this->m_flag;
-            }
-            void Call::setFlag(bool *flag) {
-                this->m_flag=flag;
-            }
             TYPE Call::type()  {
                 return this->m_type;
             }

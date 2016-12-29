@@ -54,12 +54,7 @@ namespace TCUIEdit { namespace core { namespace ui
         }
         return Base::formDisplay();
     }
-            QString Category::display() {
-                return this->m_display;
-            }
-            void Category::setDisplay(QString display) {
-                this->m_display=display;
-            }
+
             void Category::setIcon(QString icon){
                 this->m_icon=icon;
             }
