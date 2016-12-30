@@ -18,6 +18,9 @@ namespace TCUIEdit { namespace mainview
         Category(property_browser::Browser *browser, core::ui::Base *ui);
 
         void refresh();
+
+    protected slots:
+        void onNameEdited(TCUIEdit::property_browser::Row *row);
     };
 
 }}

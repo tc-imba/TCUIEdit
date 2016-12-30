@@ -7,6 +7,7 @@
 #include <QColor>
 #include <QTextStream>
 #include <QMenu>
+#include <QMessageBox>
 
 #include "../../core/core.h"
 #include "../../core/ui/all.h"

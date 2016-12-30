@@ -35,7 +35,6 @@ namespace TCUIEdit { namespace mainview
         row->nameItem()->setData("编辑器中是否显示该类", Qt::ToolTipRole);
 
 
-
         QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
         core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
                                          core::ui::Base::TRIGGER_CONDITION,
@@ -59,6 +58,14 @@ namespace TCUIEdit { namespace mainview
         }
 
         m_browser->expandToDepth(0);
+    }
+
+    void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
+    {
+        QMessageBox box();
+
+
+        Base::onNameEdited(row);
     }
 
 }}
