@@ -7,6 +7,7 @@ set(SOURCE_FILES
         )
 
 include(mainview/CMakeLists.txt)
+include(chaindialog/CMakeLists.txt)
 
 add_library(view ${SOURCE_FILES})
 

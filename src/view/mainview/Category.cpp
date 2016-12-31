@@ -62,9 +62,10 @@ namespace TCUIEdit { namespace mainview
 
     void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
-        QMessageBox box();
-
-
+        auto dialog = new view::chaindialog::ChainDialog();
+        auto result = dialog->exec();
+        qDebug() << result;
+        delete dialog;
         Base::onNameEdited(row);
     }
 

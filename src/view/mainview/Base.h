@@ -16,6 +16,8 @@
 #include "../../components/property_browser/Browser.h"
 #include "../../components/property_browser/Editor.h"
 
+#include "../chaindialog/ChainDialog.h"
+
 //using namespace TCUIEdit::core;
 
 namespace TCUIEdit { namespace mainview
