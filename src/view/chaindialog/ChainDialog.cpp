@@ -14,6 +14,7 @@ namespace TCUIEdit { namespace view { namespace chaindialog
         ui->treeView->setModel(m_model);
         ui->treeView->setHeaderHidden(true);
         ui->label->setWordWrap(true);
+        m_updateTreeFlag = true;
     }
 
     ChainDialog::~ChainDialog()
@@ -32,7 +33,7 @@ namespace TCUIEdit { namespace view { namespace chaindialog
         item->setEditable(false);
         item->setCheckable(true);
         item->setTristate(true);
-        item->setData((unsigned) ui, Qt::UserRole + 1);
+        item->setData((qlonglong) ui, Qt::UserRole + 1);
         parent ? parent->appendRow(item) : m_model->appendRow(item);
         return item;
     }
@@ -40,12 +41,14 @@ namespace TCUIEdit { namespace view { namespace chaindialog
     void ChainDialog::connectCheckbox(int depth)
     {
         this->connect(m_model, SIGNAL(itemChanged(QStandardItem * )),
-                this, SLOT(treeItemChanged(QStandardItem * )));
+                      this, SLOT(treeItemChanged(QStandardItem * )));
         ui->treeView->expandToDepth(depth);
     }
 
     void ChainDialog::treeItemChanged(QStandardItem *item)
     {
+        if (!m_updateTreeFlag)return;
+        m_updateTreeFlag = false;
         if (!item)return;
         if (!item->isCheckable())return;
         auto state = item->checkState();
@@ -54,6 +57,7 @@ namespace TCUIEdit { namespace view { namespace chaindialog
             this->updateTreeChildren(item, state);
             this->updateTreeParents(item);
         }
+        m_updateTreeFlag = true;
     }
 
     void ChainDialog::updateTreeChildren(QStandardItem *item, Qt::CheckState state)
@@ -71,19 +75,19 @@ namespace TCUIEdit { namespace view { namespace chaindialog
     {
         auto parent = item->parent();
         if (!parent)return;
-        int now = 0, max = 0;
+        bool emptyFlag = true, fullFlag = true;
         for (int i = 0; i < parent->rowCount(); i++)
         {
             auto brother = parent->child(i);
             if (!brother->isCheckable())continue;
-            max++;
-            if (brother->checkState() == Qt::Checked)now++;
+            if (brother->checkState() != Qt::Checked)fullFlag = false;
+            if (brother->checkState() != Qt::Unchecked)emptyFlag = false;
         }
-        if (now == 0)
+        if (emptyFlag)
         {
             parent->setCheckState(Qt::Unchecked);
         }
-        else if (now == max)
+        else if (fullFlag)
         {
             parent->setCheckState(Qt::Checked);
         }

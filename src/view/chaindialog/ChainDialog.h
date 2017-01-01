@@ -33,6 +33,8 @@ namespace TCUIEdit { namespace view { namespace chaindialog
     protected:
         QStandardItemModel *m_model;
 
+        bool m_updateTreeFlag;
+
         void updateTreeChildren(QStandardItem *item, Qt::CheckState state);
 
         void updateTreeParents(QStandardItem *item);

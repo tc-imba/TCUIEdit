@@ -23,7 +23,7 @@ namespace TCUIEdit { namespace mainview
         auto row = parent->addEditor("Display", m_ui->display(true));
         row->nameItem()->setData("编辑器中显示的名字（可以为WE_STRING）", Qt::ToolTipRole);
         this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
-                this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
+                      this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
         row = parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
         row->nameItem()->setData("编辑器中最终显示的名字", Qt::ToolTipRole);
 
@@ -62,6 +62,7 @@ namespace TCUIEdit { namespace mainview
 
     void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
+        qDebug() << "onNameEdited" << m_ui->name();
         auto dialog = new view::chaindialog::ChainDialog();
         const core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
                                                core::ui::Base::TRIGGER_CONDITION,
@@ -75,7 +76,6 @@ namespace TCUIEdit { namespace mainview
             QStandardItem *typeItem;
             bool firstPackageFlag = true;
             int typeCount = 0;
-            //parent = m_browser->addCategory(typeNames[i]);
             for (auto itPkg:*(m_ui->package()->project()->packages()))
             {
                 QStandardItem *packageItem;
@@ -125,13 +125,41 @@ namespace TCUIEdit { namespace mainview
 
         dialog->connectCheckbox(1);
         rootItem->setCheckState(Qt::Checked);
-        dialog->setLabel("You are editing the name of the category of the following items, please choose those you'd like to change their values of category respectively.\n你正在编辑以下UI所对应的的类别名，请选择想要一起改动的UI");
+        dialog->setLabel(
+                "You are editing the name of the category of the following items, please choose those you'd like to change their values of category respectively.\n你正在编辑以下UI所对应的的类别名，请选择想要一起改动的UI");
 
         auto result = dialog->exec();
-        qDebug() << result;
+        if (result == QDialog::Accepted)
+        {
+            Base::onNameEdited(row);
+            for (int i = 0; i < rootItem->rowCount(); i++)
+            {
+                auto typeItem = rootItem->child(i);
+                for (int j = 0; j < typeItem->rowCount(); j++)
+                {
+                    auto packageItem = typeItem->child(j);
+                    for (int k = 0; k < packageItem->rowCount(); k++)
+                    {
+                        auto uiItem = packageItem->child(k);
+                        if(uiItem->checkState()==Qt::Checked)
+                        {
+                            auto ui = (core::ui::Function *) uiItem->data(Qt::UserRole + 1).toLongLong();
+                            ui->setCategory(row->value());
+                        }
+                    }
+                }
+            }
+            this->refresh();
+        }
+        else
+        {
+            this->disconnect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                             this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
+            row->valueItem()->setText(row->value());
+            this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                          this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
+        }
         delete dialog;
-
-        Base::onNameEdited(row);
     }
 
 }}

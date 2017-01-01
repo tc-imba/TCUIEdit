@@ -38,6 +38,8 @@ namespace TCUIEdit { namespace mainview
 
     void Base::refresh()
     {
+        m_browser->init();
+
         this->connect(m_browser, SIGNAL(rightClicked(TCUIEdit::property_browser::Row * )),
                       this, SLOT(onRightClicked(TCUIEdit::property_browser::Row * )));
 
