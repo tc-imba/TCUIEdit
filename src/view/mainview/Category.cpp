@@ -23,7 +23,7 @@ namespace TCUIEdit { namespace mainview
         auto row = parent->addEditor("Display", m_ui->display(true));
         row->nameItem()->setData("编辑器中显示的名字（可以为WE_STRING）", Qt::ToolTipRole);
         this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
-                      this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
+                this, SLOT(onDisplayEdited(TCUIEdit::property_browser::Row * )));
         row = parent->addText("Display (in Editor)", m_ui->display(false), "DisplayName");
         row->nameItem()->setData("编辑器中最终显示的名字", Qt::ToolTipRole);
 
@@ -35,11 +35,11 @@ namespace TCUIEdit { namespace mainview
         row->nameItem()->setData("编辑器中是否显示该类", Qt::ToolTipRole);
 
 
-        QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
-        core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
-                                         core::ui::Base::TRIGGER_CONDITION,
-                                         core::ui::Base::TRIGGER_ACTION,
-                                         core::ui::Base::TRIGGER_CALL};
+        const QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
+        const core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
+                                               core::ui::Base::TRIGGER_CONDITION,
+                                               core::ui::Base::TRIGGER_ACTION,
+                                               core::ui::Base::TRIGGER_CALL};
 
         for (int i = 0; i < 4; i++)
         {
@@ -63,9 +63,74 @@ namespace TCUIEdit { namespace mainview
     void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
         auto dialog = new view::chaindialog::ChainDialog();
+        const core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
+                                               core::ui::Base::TRIGGER_CONDITION,
+                                               core::ui::Base::TRIGGER_ACTION,
+                                               core::ui::Base::TRIGGER_CALL};
+
+        auto rootItem = dialog->addItem("");
+        int totalCount = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            QStandardItem *typeItem;
+            bool firstPackageFlag = true;
+            int typeCount = 0;
+            //parent = m_browser->addCategory(typeNames[i]);
+            for (auto itPkg:*(m_ui->package()->project()->packages()))
+            {
+                QStandardItem *packageItem;
+                bool firstUIFlag = true;
+                int packageCount = 0;
+                for (auto itUI:itPkg->base(types[i])->data())
+                {
+                    if (m_ui->name() == ((core::ui::Function *) itUI)->category())
+                    {
+                        if (firstPackageFlag)
+                        {
+                            firstPackageFlag = false;
+                            typeItem = dialog->addItem("", rootItem);
+                        }
+                        if (firstUIFlag)
+                        {
+                            firstUIFlag = false;
+                            packageItem = dialog->addItem("", typeItem);
+                        }
+                        auto item = dialog->addItem(itUI->name(), packageItem, itUI);
+                        packageCount++;
+                    }
+                }
+                if (!firstUIFlag)
+                {
+                    QString str;
+                    QTextStream stream(&str);
+                    stream << itPkg->name() << " ( " << packageCount << " items )";
+                    packageItem->setText(str);
+                    typeCount += packageCount;
+                }
+            }
+            if (!firstPackageFlag)
+            {
+                QString str;
+                QTextStream stream(&str);
+                stream << core::ui::Base::typeName(types[i])
+                       << " ( " << typeCount << " items )";
+                typeItem->setText(str);
+                totalCount += typeCount;
+            }
+        }
+        QString str;
+        QTextStream stream(&str);
+        stream << "All Effected ( " << totalCount << " items )";
+        rootItem->setText(str);
+
+        dialog->connectCheckbox(1);
+        rootItem->setCheckState(Qt::Checked);
+        dialog->setLabel("You are editing the name of the category of the following items, please choose those you'd like to change their values of category respectively.\n你正在编辑以下UI所对应的的类别名，请选择想要一起改动的UI");
+
         auto result = dialog->exec();
         qDebug() << result;
         delete dialog;
+
         Base::onNameEdited(row);
     }
 
