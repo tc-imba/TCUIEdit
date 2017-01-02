@@ -30,6 +30,8 @@ namespace TCUIEdit { namespace property_browser
 
         ~Browser();
 
+        Model* model();
+
         void init();
 
         bool addAlias(Row *item, const QString &alias);

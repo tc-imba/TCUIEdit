@@ -3,6 +3,7 @@
 //
 
 #include "Browser.h"
+#include "ItemDelegate.h"
 
 namespace TCUIEdit { namespace property_browser
 {
@@ -12,6 +13,8 @@ namespace TCUIEdit { namespace property_browser
         this->setModel(m_model);
         this->header()->setStretchLastSection(true);
 
+        this->setItemDelegate(new ItemDelegate(this));
+
         this->init();
         //
     }
@@ -19,6 +22,11 @@ namespace TCUIEdit { namespace property_browser
     Browser::~Browser()
     {
         //delete m_model;
+    }
+
+    Model* Browser::model()
+    {
+        return m_model;
     }
 
     void Browser::init()
@@ -31,6 +39,7 @@ namespace TCUIEdit { namespace property_browser
         this->header()->resizeSection(0, this->rect().width() * 0.3);
         this->header()->resizeSection(1, this->rect().width() * 0.7);
         this->header()->setSectionResizeMode(QHeaderView::Fixed);
+
 
         //qDebug() << "Frame" << this->rect().width() << this->rect().height();
     }

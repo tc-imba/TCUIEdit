@@ -25,6 +25,8 @@ namespace TCUIEdit { namespace property_browser
 
     class Item;
 
+    class ItemDelegate;
+
     class Row;
 
     class Category;
@@ -32,4 +34,6 @@ namespace TCUIEdit { namespace property_browser
     class Editor;
 
     class Text;
+
+    class List;
 }}

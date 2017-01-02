@@ -46,36 +46,51 @@ namespace TCUIEdit { namespace mainview
         auto parent = m_browser->addCategory("Property");
         auto row = parent->addEditor("Name", m_uiBase->name());
         row->nameItem()->setData("本条UI的名字", Qt::ToolTipRole);
-        this->examineName(row);
+        this->showError(row, m_uiBase->examineName());
         this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
                       this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
 
     }
 
-    void Base::examineName(property_browser::Row *row)
+    void Base::showError(property_browser::Row *row, const core::Error &error)
     {
-        auto list = m_uiBase->examineName();
-        if (list.length() > 0)
+        row->removeChildren();
+        auto list = error.list();
+        if (error.type() == core::Error::TYPE_NONE)return;
+        auto color = error.color();
+        QString str;
+        QTextStream stream(&str);
+        if (list.length() == 0)
         {
-            QString str;
-            QTextStream ss(&str);
-            ss << list.length() << " Redefinition Error(s) in";
-            auto item = row->addText("Error", str, "");
-            item->nameItem()->setForeground(QColor(Qt::red));
-            item->valueItem()->setForeground(QColor(Qt::red));
-            for (auto it:list)
-            {
-                item = row->addText(it->package()->name(), it->typeName(), "");
-                item->setData(it);
-                item->nameItem()->setForeground(QColor(Qt::red));
-                item->valueItem()->setForeground(QColor(Qt::red));
-                m_browser->expand(row->valueItem()->index());
-            }
+            stream << error.name() << " " << error.typeName();
+        }
+        else if (list.length() == 1)
+        {
+            stream << "1 " << error.name() << " " << error.typeName();
         }
         else
         {
-            row->removeChildren();
+            stream << list.length() << " " << error.name() << " " << error.typeName() << "s";
         }
+        auto newRow = row->addText(error.typeName(), str, "");
+        newRow->nameItem()->setForeground(color);
+        newRow->valueItem()->setForeground(color);
+        for (auto it:list)
+        {
+            newRow = row->addText(it.name, it.value, "");
+            newRow->setData((qlonglong) it.ui);
+            newRow->nameItem()->setForeground(color);
+            newRow->valueItem()->setForeground(color);
+        }
+        m_browser->expand(row->valueItem()->index());
+    }
+
+    int Base::showErrorDialog(const core::Error &error)
+    {
+        if (error.type() == core::Error::TYPE_NONE)return QDialog::Accepted;
+        QDialog dialog;
+
+        return dialog.exec();
     }
 
     void Base::updateDisplay(property_browser::Row *row)
@@ -88,7 +103,7 @@ namespace TCUIEdit { namespace mainview
     {
         row->setValue(row->valueItem()->text());
         m_uiBase->setName(row->value());
-        this->examineName(row);
+        this->showErrorDialog(m_uiBase->examineName());
     }
 
     void Base::onDisplayEdited(TCUIEdit::property_browser::Row *row)
@@ -107,7 +122,7 @@ namespace TCUIEdit { namespace mainview
         if (row)
         {
             m_currentRow = row;
-            if (row->data())
+            if (row->data().toLongLong())
             {
                 m_menuOpen->setEnabled(true);
                 m_menuRedirect->setEnabled(true);

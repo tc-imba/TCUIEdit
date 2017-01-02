@@ -67,8 +67,7 @@ namespace TCUIEdit { namespace core
         class Call;
     }
 
-
-    class Map;
+    class Error;
 
     class Project;
 

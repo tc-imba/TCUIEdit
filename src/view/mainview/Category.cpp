@@ -31,8 +31,8 @@ namespace TCUIEdit { namespace mainview
         row = parent->addEditor("Icon", m_ui->icon());
         row->nameItem()->setData("编辑器中显示的图标", Qt::ToolTipRole);
 
-        row = parent->addEditor("Display Flag", m_ui->displayFlag());
-        row->nameItem()->setData("编辑器中是否显示该类", Qt::ToolTipRole);
+        row = parent->addList("Display Flag", m_ui->displayFlag(), QStringList() << "0" << "1");
+        row->nameItem()->setData("编辑器中是否显示该类，0为显示，1为不显示", Qt::ToolTipRole);
 
 
         const QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
@@ -51,13 +51,13 @@ namespace TCUIEdit { namespace mainview
                     if (m_ui->name() == ((core::ui::Function *) itUI)->category())
                     {
                         row = parent->addText(itPkg->name(), itUI->name(), "");
-                        row->setData(itUI);
+                        row->setData((qlonglong) itUI);
                     }
                 }
             }
         }
 
-        m_browser->expandToDepth(0);
+        m_browser->expandToDepth(1);
     }
 
     void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
@@ -141,7 +141,7 @@ namespace TCUIEdit { namespace mainview
                     for (int k = 0; k < packageItem->rowCount(); k++)
                     {
                         auto uiItem = packageItem->child(k);
-                        if(uiItem->checkState()==Qt::Checked)
+                        if (uiItem->checkState() == Qt::Checked)
                         {
                             auto ui = (core::ui::Function *) uiItem->data(Qt::UserRole + 1).toLongLong();
                             ui->setCategory(row->value());

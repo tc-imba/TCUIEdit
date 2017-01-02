@@ -10,6 +10,7 @@
 #include <QMessageBox>
 
 #include "../../core/core.h"
+#include "../../core/Error.h"
 #include "../../core/ui/all.h"
 #include "../../core/package/Package.h"
 #include "../../core/Project.h"
@@ -40,7 +41,9 @@ namespace TCUIEdit { namespace mainview
 
         virtual void refresh();
 
-        virtual void examineName(property_browser::Row *row);
+        void showError(property_browser::Row *row, const core::Error &error);
+
+        int showErrorDialog(const core::Error &error);
 
         virtual void updateDisplay(property_browser::Row *row);
 

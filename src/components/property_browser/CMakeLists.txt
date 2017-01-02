@@ -5,10 +5,12 @@ set(SOURCE_FILES
         Browser.cpp
         Model.cpp
         Category.cpp
+        List.cpp
         Editor.cpp
         Text.cpp
         Row.cpp
         Item.cpp
+        ItemDelegate.cpp
         common.h)
 
 add_library(property_browser ${SOURCE_FILES})

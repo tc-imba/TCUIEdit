@@ -6,6 +6,7 @@
 
 #include "../core.h"
 #include "../Exception.h"
+#include "../Error.h"
 
 namespace TCUIEdit { namespace core { namespace ui
 {
@@ -83,8 +84,8 @@ namespace TCUIEdit { namespace core { namespace ui
         void setName(const QString &name);
 
         // Examine whether the name of the UI is redefined
-        // Return a list of all the redefined UIs
-        QList<ui::Base *> examineName() const;
+        // Return an Error with all the redefined UIs
+        virtual Error examineName() const;
 
         // Return the display text of the UI (subsitituted by WE_STRINGs)
         // If origin is set to true, the origin value display will be returned
@@ -98,14 +99,10 @@ namespace TCUIEdit { namespace core { namespace ui
         // Return the actual information to be displayed
         virtual const QString formDisplay() const;
 
-        // Deleted Functions
-        //
+        // Examine a flag of 0 or 1 or blank
+        // Return an Error if a vialation exists
+        virtual Error examineFlag(const QString &value, bool optionalFlag) const;
 
-        /*virtual void displayDetail(UIMainTree *tree) = delete;
-
-        void initDisplayDetail(UIMainTree *tree) = delete;
-
-        static QTreeWidgetItem *formRow(const QString &strName, const QString &strValue = "") = delete;*/
     };
 }}}
 

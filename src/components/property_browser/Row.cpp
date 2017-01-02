@@ -6,11 +6,13 @@
 #include "Browser.h"
 #include "Editor.h"
 #include "Text.h"
+#include "List.h"
 
 namespace TCUIEdit { namespace property_browser
 {
     Row::Row(Browser *browser, const QString &name, const QString &value)
     {
+        m_type = TYPE_TEXT;
         m_data = NULL;
         m_browser = browser;
         m_name = name;
@@ -28,6 +30,11 @@ namespace TCUIEdit { namespace property_browser
     QList<QStandardItem *> Row::formRow()
     {
         return QList<QStandardItem *>() << m_nameItem << m_valueItem;
+    }
+
+    Row::TYPE Row::type()
+    {
+        return m_type;
     }
 
     const QString &Row::name()
@@ -60,14 +67,14 @@ namespace TCUIEdit { namespace property_browser
         return m_valueItem;
     }
 
-    void *Row::data()
+    QVariant Row::data(int role) const
     {
-        return m_data;
+        return m_nameItem->data(role);
     }
 
-    void Row::setData(void *data)
+    void Row::setData(const QVariant &value, int role)
     {
-        m_data = data;
+        m_nameItem->setData(value, role);
     }
 
     const QString &Row::alias()
@@ -75,12 +82,31 @@ namespace TCUIEdit { namespace property_browser
         return m_alias;
     }
 
-    Row *Row::addEditor(const QString &name, const QString &value, const QString &alias)
+    Row *Row::addRow(TYPE type, const QString &name, const QString &value, const QString &alias)
     {
-        auto item = new Editor(m_browser, name, value);
+        Row *item;
+        switch (type)
+        {
+        case TYPE_EDITOR:
+            item = new Editor(m_browser, name, value);
+            break;
+        case TYPE_LIST:
+            item = new List(m_browser, name, value);
+            break;
+        case TYPE_TEXT:
+        default:
+            item = new Text(m_browser, name, value);
+            break;
+        }
         m_browser->addAlias(item, alias);
         m_nameItem->appendRow(item->formRow());
         return item;
+    }
+
+
+    Row *Row::addEditor(const QString &name, const QString &value, const QString &alias)
+    {
+        return this->addRow(TYPE_EDITOR, name, value, alias);
     }
 
     Row *Row::addEditor(const QString &name, const QString &value)
@@ -90,16 +116,26 @@ namespace TCUIEdit { namespace property_browser
 
     Row *Row::addText(const QString &name, const QString &value, const QString &alias)
     {
-        auto item = new Text(m_browser, name, value);
-        m_browser->addAlias(item, alias);
-        m_nameItem->appendRow(item->formRow());
-        return item;
+        return this->addRow(TYPE_TEXT, name, value, alias);
     }
 
     Row *Row::addText(const QString &name, const QString &value)
     {
         return this->addText(name, value, name);
     }
+
+    Row *Row::addList(const QString &name, const QString &value, const QStringList &list, const QString &alias)
+    {
+        auto row = (List *) this->addRow(TYPE_LIST, name, value, alias);
+        row->setList(list);
+        return row;
+    }
+
+    Row *Row::addList(const QString &name, const QString &value, const QStringList &list)
+    {
+        return this->addList(name, value, list, name);
+    }
+
 
     void Row::removeChildren()
     {

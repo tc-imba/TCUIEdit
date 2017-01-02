@@ -71,9 +71,16 @@ namespace TCUIEdit { namespace core { namespace ui
         m_pkg->project()->addUI(this);
     }
 
-    QList<ui::Base *> Base::examineName() const
+    Error Base::examineName() const
     {
-        return m_pkg->project()->examineUI(this);
+        auto list = m_pkg->project()->examineUI(this);
+        if (list.size() == 0)return Error();
+        Error error("Redefinition", Error::TYPE_ERROR);
+        for (auto it:list)
+        {
+            error.addItem(it->package()->name(), it->name(), it);
+        }
+        return error;
     }
 
     const QString Base::display(bool origin) const
@@ -96,20 +103,13 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_name + " - " + this->display();
     }
 
-    /*void Base::initDisplayDetail(UIMainTree *tree)
+    Error Base::examineFlag(const QString &value, bool optionalFlag) const
     {
-        tree->clear();
-        tree->setColumnCount(2);
-        tree->setHeaderLabels(QStringList() << "Name" << "Value");
-        tree->addTopLevelItem(this->formRow("Name", m_name));
-
-        //treeModel->clear();
-        //treeModel->setHorizontalHeaderLabels(QStringList() << QStringLiteral("Row") << QStringLiteral("Value"));
-        //treeModel->appendRow(this->formRow("Name", m_name));
+        if (value == "0" || value == "1" || value.isEmpty() && optionalFlag)return Error();
+        Error error("Illegal", Error::TYPE_ERROR);
+        //error.addItem("","")
+        return error;
     }
 
-    QTreeWidgetItem *Base::formRow(const QString &strName, const QString &strValue)
-    {
-        return new QTreeWidgetItem(QStringList() << strName << strValue);
-    }*/
+
 }}}

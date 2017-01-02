@@ -12,7 +12,14 @@ namespace TCUIEdit { namespace property_browser
     class Row : public QObject
     {
     Q_OBJECT
+    public:
+        enum TYPE
+        {
+            TYPE_CATEGORY, TYPE_TEXT, TYPE_EDITOR, TYPE_LIST
+        };
+
     protected:
+        TYPE m_type;
 
         Browser *m_browser;
 
@@ -24,6 +31,8 @@ namespace TCUIEdit { namespace property_browser
 
         QString m_alias;
 
+        Row *addRow(TYPE type, const QString &name, const QString &value, const QString &alias);
+
     public:
         friend class Browser;
 
@@ -33,21 +42,24 @@ namespace TCUIEdit { namespace property_browser
 
         QList<QStandardItem *> formRow();
 
+        Row::TYPE type();
+
         const QString &name();
 
         const QString &value();
 
-        void setName(const QString& name);
+        void setName(const QString &name);
 
-        void setValue(const QString& value);
+        void setValue(const QString &value);
 
         Item *nameItem();
 
         Item *valueItem();
 
-        void *data();
+        virtual QVariant data(int role = Qt::UserRole + 1) const;
 
-        void setData(void *data);
+        virtual void setData(const QVariant &value, int role = Qt::UserRole + 1);
+
 
         const QString &alias();
 
@@ -58,6 +70,10 @@ namespace TCUIEdit { namespace property_browser
         Row *addText(const QString &name, const QString &value, const QString &alias);
 
         Row *addText(const QString &name, const QString &value);
+
+        Row *addList(const QString &name, const QString &value, const QStringList &list, const QString &alias);
+
+        Row *addList(const QString &name, const QString &value, const QStringList &list);
 
         void removeChildren();
 

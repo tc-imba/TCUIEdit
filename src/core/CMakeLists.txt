@@ -11,6 +11,7 @@ set(SOURCE_FILES
         ${SOURCE_FILES_BASE}
         Exception.cpp
         FileInput.cpp
+        Error.cpp
         core.cpp
         )
 
