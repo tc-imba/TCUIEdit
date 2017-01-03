@@ -27,6 +27,8 @@ namespace TCUIEdit { namespace core { namespace ui
     public:
         Param(package::Package *package, QPair<QString, QStringList> pair);
 
+        ~Param();
+
         const QString& version() const ;
 
         void setVersion(const QString& version);

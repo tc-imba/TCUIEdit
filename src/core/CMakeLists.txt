@@ -12,6 +12,7 @@ set(SOURCE_FILES
         Exception.cpp
         FileInput.cpp
         Error.cpp
+        Resourse.cpp
         core.cpp
         )
 

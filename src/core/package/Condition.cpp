@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Condition::Condition(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_CONDITION;
     }
 
     void Condition::readLine(QString &str)

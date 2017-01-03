@@ -51,6 +51,11 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_displayFlag;
     }
 
+    void Category::setDisplayFlag(const QString &displayFlag)
+    {
+        m_displayFlag = displayFlag;
+    }
+
     const QString Category::formDisplay() const
     {
         if (m_displayFlag == "1")

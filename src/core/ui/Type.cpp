@@ -51,7 +51,10 @@ namespace TCUIEdit { namespace core { namespace ui
         {
             m_baseFlag = *it++;
         }
+    }
 
+    Type::~Type()
+    {
 
     }
 

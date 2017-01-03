@@ -19,6 +19,8 @@ namespace TCUIEdit { namespace core { namespace ui
 
         WEString(package::Package *package);
 
+        ~WEString();
+
         const QString &name() const;
 
         const QString &value() const;

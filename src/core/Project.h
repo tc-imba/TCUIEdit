@@ -12,24 +12,19 @@ namespace TCUIEdit { namespace core
 {
     class Project
     {
-        // friend class UIBase;
-
     protected:
         QMultiHash<QString, ui::Base *> m_uiMap;
-        QMultiHash<QString, ui::WEString *> weStringMap;
+        QMultiHash<QString, ui::WEString *> m_weStringMap;
         QList<package::Package *> m_packages;
     public:
-        /*Map *getUIMap()
-        { return &this->uiMap; }*/
 
-        QMultiHash<QString, ui::WEString *> *getWEStringMap()
-        { return &this->weStringMap; }
+        QMultiHash<QString, ui::WEString *> &weStringMap();
 
         package::Package *createPackage();
 
         package::Package *createPackage(const QString &basePath, const QString &name);
 
-        QList<package::Package *> *packages();
+        const QList<package::Package *> &packages() const;
 
         void addUI(ui::Base *UI);
 
@@ -40,8 +35,6 @@ namespace TCUIEdit { namespace core
         void removeUI(ui::Base *UI);
 
         ui::Base *matchUI(const QString &name, ui::Base::TYPE type) const;
-
-
 
     };
 

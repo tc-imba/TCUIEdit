@@ -37,6 +37,11 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+    Call::~Call()
+    {
+
+    }
+
     const QString &Call::eventFlag() const
     {
         return m_eventFlag;
@@ -56,5 +61,6 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_returnType = returnType;
     }
+
 
 }}}

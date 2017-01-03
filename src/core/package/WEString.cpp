@@ -6,7 +6,7 @@
 #include "Project.h"
 #include "Exception.h"
 
-#define _HASH m_pkg->project()->getWEStringMap()
+#define _HASH m_pkg->project()->weStringMap()
 
 namespace TCUIEdit { namespace core { namespace package
 {
@@ -38,7 +38,7 @@ namespace TCUIEdit { namespace core { namespace package
         auto weString = new ui::WEString(m_pkg);
         weString->m_name = name;
         weString->m_value = value;
-        _HASH->insert(name, weString);
+        _HASH.insert(name, weString);
         m_data.push_back(weString);
     }
 
@@ -48,7 +48,7 @@ namespace TCUIEdit { namespace core { namespace package
         {
             throw ExceptionNotFound();
         }
-        _HASH->remove(weString->name(), weString);
+        _HASH.remove(weString->name(), weString);
         m_data.removeAll(weString);
         delete weString;
     }
@@ -59,8 +59,8 @@ namespace TCUIEdit { namespace core { namespace package
         QString value = name;
         while (value.left(8) == "WESTRING")
         {
-            auto it = _HASH->find(value);
-            if (it == _HASH->end())break;
+            auto it = _HASH.find(value);
+            if (it == _HASH.end())break;
             list.push_back(value);
             value = it.value()->value();
             if (list.contains(value))break;

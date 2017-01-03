@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Event::Event(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_EVENT;
     }
 
     void Event::readLine(QString &str)

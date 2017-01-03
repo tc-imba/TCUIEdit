@@ -34,6 +34,10 @@ namespace TCUIEdit { namespace mainview
         QAction *m_menuCopy, *m_menuOpen, *m_menuRedirect;
         property_browser::Row *m_currentRow;
 
+        virtual void _onFlagEdited(TCUIEdit::property_browser::Row *row, bool optionalFlag);
+
+        virtual void _onStringEdited(TCUIEdit::property_browser::Row *row);
+
     public:
         Base(property_browser::Browser *browser, core::ui::Base *ui);
 

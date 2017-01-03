@@ -26,4 +26,9 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+    Event::~Event()
+    {
+
+    }
+
 }}}

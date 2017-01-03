@@ -22,6 +22,8 @@ namespace TCUIEdit { namespace core { namespace ui
     {
     public:
         Action(package::Package *package, QPair<QString, QStringList> pair);
+
+        ~Action();
     };
 
 }}}

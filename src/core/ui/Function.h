@@ -69,15 +69,17 @@ namespace TCUIEdit { namespace core { namespace ui
     public:
         Function(package::Package *package);
 
+        virtual ~Function() = 0;
+
         void add(QPair<QString, QStringList> pair);
 
         const QString &category() const;
 
-        void setCategory(const QString& category);
+        void setCategory(const QString &category);
 
-        const QString& version() const ;
+        const QString &version() const;
 
-        void setVersion(const QString& version);
+        void setVersion(const QString &version);
     };
 
 }}}

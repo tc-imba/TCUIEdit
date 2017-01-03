@@ -9,7 +9,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Param::Param(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_PARAM;
     }
 
     void Param::readLine(QString &str)

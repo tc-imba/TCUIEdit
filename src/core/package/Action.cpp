@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Action::Action(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_ACTION;
     }
 
     void Action::readLine(QString &str)

@@ -28,6 +28,8 @@ namespace TCUIEdit { namespace core { namespace ui
     public:
         Call(package::Package *package, QPair<QString, QStringList> pair);
 
+        ~Call();
+
         const QString &eventFlag() const;
 
         void setEventFlag(const QString &eventFlag);

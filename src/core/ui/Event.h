@@ -20,6 +20,8 @@ namespace TCUIEdit { namespace core { namespace ui
     {
     public:
         Event(package::Package *package, QPair<QString, QStringList> pair);
+
+        ~Event();
     };
 
 }}}

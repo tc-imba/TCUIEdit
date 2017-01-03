@@ -30,10 +30,14 @@ namespace TCUIEdit { namespace mainview
 
         row = parent->addEditor("Icon", m_ui->icon());
         row->nameItem()->setData("编辑器中显示的图标", Qt::ToolTipRole);
+        this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onIconEdited(TCUIEdit::property_browser::Row * )));
 
-        row = parent->addList("Display Flag", m_ui->displayFlag(), QStringList() << "0" << "1");
+        row = parent->addList("Display Flag", m_ui->displayFlag().isEmpty() ? "0" : m_ui->displayFlag(),
+                              QStringList() << "0" << "1");
         row->nameItem()->setData("编辑器中是否显示该类，0为显示，1为不显示", Qt::ToolTipRole);
-
+        this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onDisplayFlagEdited(TCUIEdit::property_browser::Row * )));
 
         const QString typeNames[4] = {"Events", "Condition", "Action", "Call"};
         const core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
@@ -44,7 +48,7 @@ namespace TCUIEdit { namespace mainview
         for (int i = 0; i < 4; i++)
         {
             parent = m_browser->addCategory(typeNames[i]);
-            for (auto itPkg:*(m_ui->package()->project()->packages()))
+            for (auto itPkg:m_ui->package()->project()->packages())
             {
                 for (auto itUI:itPkg->base(types[i])->data())
                 {
@@ -81,7 +85,7 @@ namespace TCUIEdit { namespace mainview
             QStandardItem *typeItem;
             bool firstPackageFlag = true;
             int typeCount = 0;
-            for (auto itPkg:*(m_ui->package()->project()->packages()))
+            for (auto itPkg:m_ui->package()->project()->packages())
             {
                 QStandardItem *packageItem;
                 bool firstUIFlag = true;
@@ -174,6 +178,29 @@ namespace TCUIEdit { namespace mainview
                           this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
         }
         delete dialog;
+    }
+
+    void Category::onIconEdited(TCUIEdit::property_browser::Row *row)
+    {
+        qDebug() << "onIconEdited" << m_ui->name();
+        this->_onStringEdited(row);
+        m_ui->setIcon(row->value());
+    }
+
+    void Category::onDisplayFlagEdited(TCUIEdit::property_browser::Row *row)
+    {
+        qDebug() << "onDisplayFlagEdited" << m_ui->name();
+
+        this->disconnect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                         this, SLOT(onDisplayFlagEdited(TCUIEdit::property_browser::Row * )));
+        QString value = row->value();
+        this->_onFlagEdited(row, true);
+        if (row->value() == row->valueItem()->text())
+        {
+            m_ui->setDisplayFlag(row->value());
+        }
+        this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                      this, SLOT(onDisplayFlagEdited(TCUIEdit::property_browser::Row * )));
     }
 
 }}

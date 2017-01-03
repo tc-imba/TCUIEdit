@@ -9,7 +9,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     TypeDefault::TypeDefault(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_TYPE_DEFAULT;
     }
 
     void TypeDefault::readLine(QString &str)

@@ -58,7 +58,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         Base(package::Package *package);
 
-        ~Base();
+        virtual ~Base() = 0;
 
         // Public Functions
         //
@@ -101,7 +101,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         // Examine a flag of 0 or 1 or blank
         // Return an Error if a vialation exists
-        virtual Error examineFlag(const QString &value, bool optionalFlag) const;
+        virtual Error examineFlag(const QString &value, bool optionalFlag = false) const;
 
     };
 }}}

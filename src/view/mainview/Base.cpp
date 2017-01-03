@@ -129,6 +129,24 @@ namespace TCUIEdit { namespace mainview
         }
     }
 
+    void Base::_onFlagEdited(TCUIEdit::property_browser::Row *row, bool optionalFlag)
+    {
+        auto result = this->showErrorDialog(m_uiBase->examineFlag(row->valueItem()->text(), optionalFlag));
+        if (result == QDialog::Rejected)
+        {
+            row->valueItem()->setText(row->value());
+        }
+        else
+        {
+            row->setValue(row->valueItem()->text());
+        }
+    }
+
+    void Base::_onStringEdited(TCUIEdit::property_browser::Row *row)
+    {
+        row->setValue(row->valueItem()->text());
+    }
+
     void Base::onRightClicked(TCUIEdit::property_browser::Row *row)
     {
         if (row)

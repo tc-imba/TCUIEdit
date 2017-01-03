@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Call::Call(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_CALL;
     }
 
     void Call::readLine(QString &str)

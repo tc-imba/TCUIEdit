@@ -40,6 +40,8 @@ namespace TCUIEdit { namespace core
         class Action;
 
         class Call;
+
+        class DefaultCategory;
     }
 
     namespace package
@@ -65,7 +67,11 @@ namespace TCUIEdit { namespace core
         class Action;
 
         class Call;
+
+        class DefaultCategory;
     }
+
+    class Resourse;
 
     class Error;
 

@@ -9,7 +9,7 @@ namespace TCUIEdit { namespace core { namespace package
 {
     Category::Category(Package *package) : Base(package)
     {
-
+        m_type = ui::Base::TRIGGER_CATEGORY;
     }
 
 

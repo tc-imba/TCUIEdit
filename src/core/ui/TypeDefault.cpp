@@ -30,6 +30,11 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+    TypeDefault::~TypeDefault()
+    {
+
+    }
+
     Type *TypeDefault::getOriginType() const
     {
         return (Type *) (m_pkg->project()->matchUI(m_name, TRIGGER_TYPE));

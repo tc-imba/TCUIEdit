@@ -8,6 +8,12 @@
 namespace TCUIEdit { namespace core
 {
 
+
+    QMultiHash<QString, ui::WEString *>& Project::weStringMap()
+    {
+        return m_weStringMap;
+    }
+
     package::Package *Project::createPackage()
     {
         auto pkg = new package::Package(this);
@@ -22,9 +28,9 @@ namespace TCUIEdit { namespace core
         return pkg;
     }
 
-    QList<package::Package *> *Project::packages()
+    const QList<package::Package *> &Project::packages() const
     {
-        return &m_packages;
+        return m_packages;
     }
 
     void Project::addUI(ui::Base *UI)

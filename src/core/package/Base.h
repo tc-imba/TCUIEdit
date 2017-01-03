@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../core.h"
+#include "../ui/Base.h"
 #include "../Exception.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
@@ -18,6 +19,8 @@ namespace TCUIEdit { namespace core { namespace package
     {
     protected:
 
+        ui::Base::TYPE m_type = ui::Base::UNKNOWN;
+
         QList<ui::Base *> m_data;
 
         QPair<QString, QStringList> _preprocessLine(QString &str);
@@ -28,11 +31,17 @@ namespace TCUIEdit { namespace core { namespace package
 
         Base(Package *package);
 
+        virtual ~Base() = 0;
+
+        ui::Base::TYPE type();
+
         virtual void readLine(QString &str) = 0;
 
         QList<ui::Base *> data();
 
         void readComment(QString &str);
+
+        const QString &typeDefineText() const;
     };
 }}}
 

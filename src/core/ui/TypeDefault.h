@@ -24,6 +24,8 @@ namespace TCUIEdit { namespace core { namespace ui
     public:
         TypeDefault(package::Package *package, QPair<QString, QStringList> pair);
 
+        ~TypeDefault();
+
         Type *getOriginType() const;
 
         const QString formDisplay() const;

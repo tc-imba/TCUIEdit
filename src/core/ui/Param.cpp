@@ -41,6 +41,11 @@ namespace TCUIEdit { namespace core { namespace ui
 
     }
 
+    Param::~Param()
+    {
+
+    }
+
     const QString &Param::version() const
     {
         return m_version;
@@ -89,5 +94,6 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_script = script;
     }
+
 
 }}}

@@ -57,3 +57,5 @@ install_manifest.txt
 CTestTestfile.cmake
 
 /bin
+/tmp/*
+!/tmp/.gitkeep

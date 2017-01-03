@@ -27,6 +27,11 @@ namespace TCUIEdit { namespace core { namespace ui
         for (int i = 0; i < FLAG_NUM; i++)m_flag[i] = false;
     }
 
+    Function::~Function()
+    {
+
+    }
+
     void Function::_addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType, bool limitsFlag)
     {
         auto itArg = m_arguments.begin();

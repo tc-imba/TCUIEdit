@@ -7,10 +7,11 @@
 
 
 #include <QDebug>
+#include <QFile>
 #include <QElapsedTimer>
-//#include "../core/ui/UIBase_All.h"
 #include "../core/package/Package.h"
-#include "src/core/Project.h"
+#include "../core/Project.h"
+#include "../core/Resourse.h"
 #include "UITreeViewItem.h"
 
 using namespace TCUIEdit;
@@ -28,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QElapsedTimer timer;
     timer.start();
+
+    Resourse::construct("res/core/");
 
     QString str = "ui/ydwe/ui/";
 
@@ -100,6 +103,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     qDebug() << timer.elapsed();
+
+    QFile file("tmp/test.txt");
+    if (file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream stream(&file);
+        for (int i = 0; i < ui::Base::TYPE_NUM; i++)
+            stream << Resourse::typeDefineText(ui::Base::TYPE(i)) << endl;
+    }
 
 }
 

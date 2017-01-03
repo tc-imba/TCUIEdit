@@ -32,9 +32,9 @@ namespace TCUIEdit { namespace core { namespace ui
 
         const QString &displayFlag();
 
+        void setDisplayFlag(const QString &displayFlag);
+
         const QString formDisplay() const;
-
-
 
     };
 }}}

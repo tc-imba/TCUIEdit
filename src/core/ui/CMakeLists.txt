@@ -9,5 +9,6 @@ set(SOURCE_FILES_BASE
         ui/Action.cpp
         ui/Call.cpp
         ui/Function.cpp
+        ui/DefaultCategory.cpp
         ui/WEString.cpp
         )

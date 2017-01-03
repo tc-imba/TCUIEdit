@@ -21,6 +21,10 @@ namespace TCUIEdit { namespace mainview
 
     protected slots:
         void onNameEdited(TCUIEdit::property_browser::Row *row);
+
+        void onIconEdited(TCUIEdit::property_browser::Row *row);
+
+        void onDisplayFlagEdited(TCUIEdit::property_browser::Row *row);
     };
 
 }}

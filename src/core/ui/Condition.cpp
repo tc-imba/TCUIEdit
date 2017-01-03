@@ -28,5 +28,10 @@ namespace TCUIEdit { namespace core { namespace ui
         }
     }
 
+    Condition::~Condition()
+    {
+
+    }
+
 
 }}}
