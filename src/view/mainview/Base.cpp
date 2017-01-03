@@ -101,9 +101,21 @@ namespace TCUIEdit { namespace mainview
 
     void Base::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
-        row->setValue(row->valueItem()->text());
-        m_uiBase->setName(row->value());
-        this->showErrorDialog(m_uiBase->examineName());
+        m_uiBase->setName(row->valueItem()->text());
+        auto result = this->showErrorDialog(m_uiBase->examineName());
+        if (result == QDialog::Rejected)
+        {
+            this->disconnect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                             this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
+            row->valueItem()->setText(row->value());
+            this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
+                          this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
+            m_uiBase->setName(row->value());
+        }
+        else
+        {
+            row->setValue(m_uiBase->name());
+        }
     }
 
     void Base::onDisplayEdited(TCUIEdit::property_browser::Row *row)

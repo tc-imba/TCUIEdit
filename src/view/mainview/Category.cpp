@@ -63,6 +63,11 @@ namespace TCUIEdit { namespace mainview
     void Category::onNameEdited(TCUIEdit::property_browser::Row *row)
     {
         qDebug() << "onNameEdited" << m_ui->name();
+
+        QString name = m_ui->name();
+        Base::onNameEdited(row);
+        if (name == m_ui->name())return;
+
         auto dialog = new view::chaindialog::ChainDialog();
         const core::ui::Base::TYPE types[4] = {core::ui::Base::TRIGGER_EVENT,
                                                core::ui::Base::TRIGGER_CONDITION,
@@ -83,7 +88,7 @@ namespace TCUIEdit { namespace mainview
                 int packageCount = 0;
                 for (auto itUI:itPkg->base(types[i])->data())
                 {
-                    if (m_ui->name() == ((core::ui::Function *) itUI)->category())
+                    if (name == ((core::ui::Function *) itUI)->category())
                     {
                         if (firstPackageFlag)
                         {
@@ -95,7 +100,7 @@ namespace TCUIEdit { namespace mainview
                             firstUIFlag = false;
                             packageItem = dialog->addItem("", typeItem);
                         }
-                        auto item = dialog->addItem(itUI->name(), packageItem, itUI);
+                        dialog->addItem(itUI->name(), packageItem, itUI);
                         packageCount++;
                     }
                 }
@@ -118,6 +123,14 @@ namespace TCUIEdit { namespace mainview
                 totalCount += typeCount;
             }
         }
+
+        if (totalCount == 0)
+        {
+            delete dialog;
+            this->refresh();
+            return;
+        }
+
         QString str;
         QTextStream stream(&str);
         stream << "All Effected ( " << totalCount << " items )";
@@ -131,7 +144,6 @@ namespace TCUIEdit { namespace mainview
         auto result = dialog->exec();
         if (result == QDialog::Accepted)
         {
-            Base::onNameEdited(row);
             for (int i = 0; i < rootItem->rowCount(); i++)
             {
                 auto typeItem = rootItem->child(i);
@@ -155,7 +167,9 @@ namespace TCUIEdit { namespace mainview
         {
             this->disconnect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
                              this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
-            row->valueItem()->setText(row->value());
+            m_ui->setName(name);
+            row->setValue(name);
+            row->valueItem()->setText(name);
             this->connect(row, SIGNAL(edited(TCUIEdit::property_browser::Row * )),
                           this, SLOT(onNameEdited(TCUIEdit::property_browser::Row * )));
         }
