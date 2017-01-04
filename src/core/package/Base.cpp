@@ -45,9 +45,17 @@ namespace TCUIEdit { namespace core { namespace package
         return QPair<QString, QStringList>(name, args);
     }
 
-    const QString& Base::typeDefineText() const
+    const QString &Base::typeDefineText() const
     {
         return Resourse::typeDefineText(m_type);
+    }
+
+    void Base::writeTrigData(File &file)
+    {
+        for (auto it:m_data)
+        {
+            file.writeLine(it->trigData());
+        }
     }
 
 }}}

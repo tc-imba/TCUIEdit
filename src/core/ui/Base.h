@@ -103,6 +103,11 @@ namespace TCUIEdit { namespace core { namespace ui
         // Return an Error if a vialation exists
         virtual Error examineFlag(const QString &value, bool optionalFlag = false) const;
 
+
+        virtual QString trigData()
+        {
+            return m_name;
+        };
     };
 }}}
 

@@ -20,12 +20,16 @@ namespace TCUIEdit { namespace core
 
         QString m_typeDefineText[ui::Base::TYPE_NUM + 1];
 
+        QString m_license;
+
     public:
         static void construct(const QString &path);
 
         static void destruct();
 
         static const QString &typeDefineText(ui::Base::TYPE type);
+
+        static const QString &license();
 
     };
 

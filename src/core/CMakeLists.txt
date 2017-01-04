@@ -10,7 +10,7 @@ set(SOURCE_FILES
         ${SOURCE_FILES_PACKAGE}
         ${SOURCE_FILES_BASE}
         Exception.cpp
-        FileInput.cpp
+        File.cpp
         Error.cpp
         Resourse.cpp
         core.cpp

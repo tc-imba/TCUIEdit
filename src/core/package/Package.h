@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../core.h"
-#include "../FileInput.h"
+#include "../File.h"
 #include "../ui/Base.h"
 #include "WEString.h"
 #include "Base.h"
@@ -28,7 +28,7 @@ namespace TCUIEdit { namespace core { namespace package
 
         Project *m_proj;
 
-        FileInput m_file;
+        File m_file;
 
         QString m_basePath, m_name;
 
@@ -49,9 +49,11 @@ namespace TCUIEdit { namespace core { namespace package
 
         void init();
 
-        void processTrigData(QString &line);
+        void _processTrigData(QString &line);
 
-        void processWEStrings(QString &line);
+        void _processWEStrings(QString &line);
+
+        void _writeTrigData();
 
 
     public:
@@ -83,9 +85,13 @@ namespace TCUIEdit { namespace core { namespace package
 
         void setName(const QString &name);
 
-        bool openFile(FileInput::TYPE fileType);
+        void setBasePath(const QString &basePath);
+
+        bool readFile(File::TYPE fileType);
 
         int readLine();
+
+        bool writeFile(File::TYPE fileType);
 
     };
 

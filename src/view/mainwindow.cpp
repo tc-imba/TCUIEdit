@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Package uip(&proj, str);
 
-    uip->openFile(FileInput::CLASSIC_TRIG_DATA);
+    uip->readFile(File::CLASSIC_TRIG_DATA);
 
     //msgBox.setText(uip->readLine());
     //msgBox.exec();
@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    uip->openFile(FileInput::CLASSIC_WE_STRINGS);
+    uip->readFile(File::CLASSIC_WE_STRINGS);
     while (uip->readLine() > 0)
     {
         //ui->textBrowser->append("1");
@@ -104,13 +104,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << timer.elapsed();
 
-    QFile file("tmp/test.txt");
-    if (file.open(QFile::WriteOnly | QFile::Text))
-    {
-        QTextStream stream(&file);
-        for (int i = 0; i < ui::Base::TYPE_NUM; i++)
-            stream << Resourse::typeDefineText(ui::Base::TYPE(i)) << endl;
-    }
+
+    uip->setBasePath("tmp/");
+
+    uip->writeFile(core::File::CLASSIC_TRIG_DATA);
 
 }
 

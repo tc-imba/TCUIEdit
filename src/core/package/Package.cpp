@@ -3,6 +3,7 @@
 //
 
 #include "Package.h"
+#include "Resourse.h"
 
 namespace TCUIEdit { namespace core { namespace package
 {
@@ -49,7 +50,7 @@ namespace TCUIEdit { namespace core { namespace package
 
     }
 
-    void Package::processTrigData(QString &line)
+    void Package::_processTrigData(QString &line)
     {
         // Match the sign [\w] when a new ui is assigned.
         QRegExp rx("^\\[\\w+\\]$");
@@ -96,7 +97,7 @@ namespace TCUIEdit { namespace core { namespace package
         }
     }
 
-    void Package::processWEStrings(QString &line)
+    void Package::_processWEStrings(QString &line)
     {
         // Match the sign [\w] when a new ui is assigned.
         QRegExp rx("^\\[\\w+\\]$");
@@ -107,6 +108,18 @@ namespace TCUIEdit { namespace core { namespace package
             return;
         }
         m_weString->readLine(line);
+    }
+
+    void Package::_writeTrigData()
+    {
+        m_file.writeLine(Resourse::license());
+        for (int i = 0; i < ui::Base::TRIGGER_CALL; i++)
+        {
+            m_file.writeLine(m_base[i]->typeDefineText());
+            m_base[i]->writeTrigData(m_file);
+            m_file.writeLine();
+            m_file.writeLine();
+        }
     }
 
     // Public Functions
@@ -153,18 +166,26 @@ namespace TCUIEdit { namespace core { namespace package
         m_name = name;
     }
 
-    bool Package::openFile(FileInput::TYPE fileType)
+    void Package::setBasePath(const QString &basePath)
     {
-        m_file.open(m_basePath, fileType);
+        m_basePath = basePath;
+    }
+
+    bool Package::readFile(File::TYPE fileType)
+    {
+        m_file.open(m_basePath, fileType, true);
         if (m_file.is_open())
         {
             switch (fileType)
             {
-            case FileInput::CLASSIC_TRIG_DATA:m_processLine = &Package::processTrigData;
+            case File::CLASSIC_TRIG_DATA:
+                m_processLine = &Package::_processTrigData;
                 break;
-            case FileInput::CLASSIC_WE_STRINGS:m_processLine = &Package::processWEStrings;
+            case File::CLASSIC_WE_STRINGS:
+                m_processLine = &Package::_processWEStrings;
                 break;
-            default:return false;
+            default:
+                return false;
             }
             return true;
         }
@@ -180,6 +201,27 @@ namespace TCUIEdit { namespace core { namespace package
             (this->*m_processLine)(line);
         }
         return lineNum;
+    }
+
+    bool Package::writeFile(File::TYPE fileType)
+    {
+        m_file.open(m_basePath, fileType, false);
+        if (m_file.is_open())
+        {
+            switch (fileType)
+            {
+            case File::CLASSIC_TRIG_DATA:
+                this->_writeTrigData();
+                break;
+            case File::CLASSIC_WE_STRINGS:
+                break;
+            default:
+                return false;
+            }
+            m_file.close();
+            return true;
+        }
+        return false;
     }
 }}}
 

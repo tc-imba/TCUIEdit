@@ -65,5 +65,12 @@ namespace TCUIEdit { namespace core { namespace ui
         return Base::formDisplay();
     }
 
+    QString Category::trigData()
+    {
+        QString str = m_name + "=" + m_display + "," + m_icon;
+        if (m_displayFlag == "1")str += ",1";
+        return str;
+    }
+
 
 }}}

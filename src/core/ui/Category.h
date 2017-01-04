@@ -36,6 +36,8 @@ namespace TCUIEdit { namespace core { namespace ui
 
         const QString formDisplay() const;
 
+        virtual QString trigData();
+
     };
 }}}
 

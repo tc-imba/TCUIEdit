@@ -18,6 +18,12 @@ namespace TCUIEdit { namespace core
 
     Resourse::Resourse(const QString &path)
     {
+        QFile file(path + "LICENSE");
+        if (file.open(QFile::ReadOnly))
+        {
+            m_license = file.readAll();
+        }
+        file.close();
         QString filedir = path + "typeDefineText/";
         for (int i = 0; i < ui::Base::TYPE_NUM; i++)
         {
@@ -27,7 +33,6 @@ namespace TCUIEdit { namespace core
                 QTextStream stream(m_typeDefineText + i);
                 stream << "//***************************************************************************\n["
                        << ui::Base::TYPE_NAME[i] << "]\n" << file.readAll();
-                qDebug() << ui::Base::TYPE_NAME[i] << m_typeDefineText[i];
             }
             file.close();
         }
@@ -35,8 +40,8 @@ namespace TCUIEdit { namespace core
 
     void Resourse::construct(const QString &path)
     {
-        destruct();
-        m_singleton = new Resourse(path);
+        Resourse::destruct();
+        Resourse::m_singleton = new Resourse(path);
     }
 
     void Resourse::destruct()
@@ -55,6 +60,11 @@ namespace TCUIEdit { namespace core
         {
             return m_singleton->m_typeDefineText[ui::Base::TYPE_NUM];
         }
+    }
+
+    const QString &Resourse::license()
+    {
+        return m_singleton->m_license;
     }
 
 }}

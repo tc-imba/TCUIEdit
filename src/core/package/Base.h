@@ -7,6 +7,7 @@
 #include "../core.h"
 #include "../ui/Base.h"
 #include "../Exception.h"
+#include "../File.h"
 
 #undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Base
@@ -42,6 +43,8 @@ namespace TCUIEdit { namespace core { namespace package
         void readComment(QString &str);
 
         const QString &typeDefineText() const;
+
+        virtual void writeTrigData(File &file);
     };
 }}}
 

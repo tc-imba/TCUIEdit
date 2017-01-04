@@ -12,7 +12,7 @@
 namespace TCUIEdit { namespace core
 {
 
-    class FileInput
+    class File
     {
     public:
 
@@ -33,6 +33,8 @@ namespace TCUIEdit { namespace core
     protected:
 
         int m_lineNum;
+        bool m_readFlag;
+        QFile *m_file;
         QByteArray m_data;
         QTextStream *m_stream;
         CATEGORY m_category;
@@ -42,11 +44,9 @@ namespace TCUIEdit { namespace core
         // Constructors
         //
 
-        FileInput();
+        File();
 
-        FileInput(const QString &path, TYPE type);
-
-        ~FileInput();
+        ~File();
 
         // Public Functions
         //
@@ -59,14 +59,19 @@ namespace TCUIEdit { namespace core
 
         void reset();
 
-        void open(const QString &path, TYPE type);
+        void open(const QString &path, TYPE type, bool readFlag);
 
         bool is_open() const;
 
         bool eof() const;
 
+        void close();
+
         int readLineInto(QString &line);
 
+        void writeLine(const QString &text = "");
+
+        void write(const QString &text = "");
     };
 
 }}

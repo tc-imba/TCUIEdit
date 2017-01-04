@@ -77,7 +77,7 @@ namespace TCUIEdit { namespace core
 
     class Project;
 
-    class FileInput;
+    class File;
 
     class Exception;
 
