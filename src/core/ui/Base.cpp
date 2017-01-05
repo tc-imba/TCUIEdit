@@ -29,8 +29,29 @@ namespace TCUIEdit { namespace core { namespace ui
 
     // Protected Functions
     //
+    QString Base::_formArgument(int argc, ...)
+    {
+        QString str = "";
+        va_list argv;
+        va_start(argv, argc);
+        if (argc >= 1)
+        {
+            str += va_arg(argv, QString) + "=";
+            for (int i = 1; i < argc; i++)
+            {
+                str += va_arg(argv, QString) + ",";
 
+            }
+            str += va_arg(argv, QString);
+        }
+        va_end(argv);
+        return str;
+    }
 
+    void Base::_addArgument(QString &str, const QString &arg)
+    {
+        str += "," + arg;
+    }
 
     // Public Functions
     //

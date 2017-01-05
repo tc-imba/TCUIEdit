@@ -85,7 +85,7 @@ namespace TCUIEdit { namespace core
         m_file = new QFile(path + TYPE_FILENAME[type]);
         if (readFlag)
         {
-            if (m_file->open(QFile::ReadOnly))
+            if (m_file->open(QFile::ReadOnly | QFile::Text))
             {
                 m_data = m_file->readAll();
                 m_stream = new QTextStream(m_data);

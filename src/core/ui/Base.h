@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <stdarg.h>
 #include "../core.h"
 #include "../Exception.h"
 #include "../Error.h"
@@ -51,6 +52,10 @@ namespace TCUIEdit { namespace core { namespace ui
         // A common method to get the information to be displayed
         // Only called by virtual const QString formDisplay() const in child classes
         // const QString _formDisplay() const;
+
+        QString _formArgument(int argc, ...);
+
+        void _addArgument(QString &str, const QString &arg);
 
     public:
         // Constructors

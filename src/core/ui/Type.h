@@ -54,6 +54,9 @@ namespace TCUIEdit { namespace core { namespace ui
         const QString &baseFlag() const;
 
         void setBaseFlag(const QString &baseFlag);
+
+        virtual QString trigData();
+
     };
 }}}
 

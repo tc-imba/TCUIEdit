@@ -118,4 +118,22 @@ namespace TCUIEdit { namespace core { namespace ui
         m_baseFlag = baseFlag;
     }
 
+    QString Type::trigData()
+    {
+        QString str = this->_formArgument(4, m_name, m_version, m_globalFlag, m_compareFlag, m_display);
+        if (!m_baseType.isEmpty())
+        {
+            this->_addArgument(str, m_baseType);
+            if (!m_importType.isEmpty())
+            {
+                this->_addArgument(str, m_importType);
+                if (m_baseFlag == "1")
+                {
+                    this->_addArgument(str, m_baseFlag);
+                }
+            }
+        }
+        return str;
+    }
+
 }}}

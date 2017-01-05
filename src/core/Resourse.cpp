@@ -19,7 +19,7 @@ namespace TCUIEdit { namespace core
     Resourse::Resourse(const QString &path)
     {
         QFile file(path + "LICENSE");
-        if (file.open(QFile::ReadOnly))
+        if (file.open(QFile::ReadOnly | QFile::Text))
         {
             m_license = file.readAll();
         }
@@ -28,7 +28,7 @@ namespace TCUIEdit { namespace core
         for (int i = 0; i < ui::Base::TYPE_NUM; i++)
         {
             QFile file(filedir + ui::Base::TYPE_NAME[i] + ".txt");
-            if (file.open(QFile::ReadOnly))
+            if (file.open(QFile::ReadOnly | QFile::Text))
             {
                 QTextStream stream(m_typeDefineText + i);
                 stream << "//***************************************************************************\n["

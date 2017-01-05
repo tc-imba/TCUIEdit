@@ -67,8 +67,8 @@ namespace TCUIEdit { namespace core { namespace ui
 
     QString Category::trigData()
     {
-        QString str = m_name + "=" + m_display + "," + m_icon;
-        if (m_displayFlag == "1")str += ",1";
+        QString str = this->_formArgument(2, m_name, m_display, m_icon);
+        if (m_displayFlag == "1")this->_addArgument(str, m_displayFlag);
         return str;
     }
 
