@@ -95,5 +95,11 @@ namespace TCUIEdit { namespace core { namespace ui
         m_script = script;
     }
 
+    QString Param::trigData()
+    {
+        QString str = this->_formArgument(4, m_name, m_version, m_variableType, m_script, m_display);
+        return str;
+    }
+
 
 }}}

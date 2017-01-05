@@ -34,6 +34,8 @@ namespace TCUIEdit { namespace core { namespace ui
 
         void setScript(const QString &script);
 
+        virtual QString trigData();
+
     };
 
 }}}

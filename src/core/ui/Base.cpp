@@ -34,23 +34,22 @@ namespace TCUIEdit { namespace core { namespace ui
         QString str = "";
         va_list argv;
         va_start(argv, argc);
+        str += va_arg(argv, QString) + "=";
+        for (int i = 1; i < argc; i++)
+        {
+            str += va_arg(argv, QString) + ",";
+        }
         if (argc >= 1)
         {
-            str += va_arg(argv, QString) + "=";
-            for (int i = 1; i < argc; i++)
-            {
-                str += va_arg(argv, QString) + ",";
-
-            }
             str += va_arg(argv, QString);
         }
         va_end(argv);
         return str;
     }
 
-    void Base::_addArgument(QString &str, const QString &arg)
+    void Base::_addArgument(QString &str, const QString &arg, bool firstFlag)
     {
-        str += "," + arg;
+        str += !firstFlag ? "," + arg : arg;
     }
 
     // Public Functions

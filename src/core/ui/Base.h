@@ -55,7 +55,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         QString _formArgument(int argc, ...);
 
-        void _addArgument(QString &str, const QString &arg);
+        void _addArgument(QString &str, const QString &arg, bool firstFlag = false);
 
     public:
         // Constructors

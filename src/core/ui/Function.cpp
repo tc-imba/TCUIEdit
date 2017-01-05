@@ -141,4 +141,21 @@ namespace TCUIEdit { namespace core { namespace ui
         m_version = version;
     }
 
+    QString Function::trigData()
+    {
+        QString str = this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_DEFAULTS]);
+        bool firstFlag = true;
+        for (auto &it:m_arguments)
+        {
+            this->_addArgument(str, it.m_data[Argument::DEFAULT], firstFlag);
+            firstFlag = false;
+        }
+
+
+        str += "\n" + this->_formArgument(1, "_" + m_name + FLAG_NAME[FLAG_CATEGORY], m_category);
+
+        str += "\n";
+        return str;
+    }
+
 }}}

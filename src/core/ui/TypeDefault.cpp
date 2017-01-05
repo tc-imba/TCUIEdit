@@ -60,5 +60,12 @@ namespace TCUIEdit { namespace core { namespace ui
         m_script = script;
     }
 
+    QString TypeDefault::trigData()
+    {
+        QString str = this->_formArgument(1, m_name, m_script);
+        if (!m_display.isEmpty())this->_addArgument(str, m_display);
+        return str;
+    }
+
 
 }}}

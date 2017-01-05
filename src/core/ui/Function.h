@@ -80,6 +80,8 @@ namespace TCUIEdit { namespace core { namespace ui
         const QString &version() const;
 
         void setVersion(const QString &version);
+
+        virtual QString trigData();
     };
 
 }}}
