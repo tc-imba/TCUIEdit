@@ -40,8 +40,9 @@ namespace TCUIEdit { namespace core { namespace package
 
         WEString *m_weString;
 
-        void (Package::*m_processLine)(QString &);
+        QMap<QString, QMultiMap<QString, ui::Base * >> m_categoryMap[4];
 
+        void (Package::*m_processLine)(QString &);
 
 
         //Protected Functions

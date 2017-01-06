@@ -143,17 +143,61 @@ namespace TCUIEdit { namespace core { namespace ui
 
     QString Function::trigData()
     {
-        QString str = this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_DEFAULTS]);
+        QString str = "";
+        if (m_arguments.length() == 0)
+        {
+            this->_addArgument(str, "nothing");
+        }
+        else
+        {
+            for (auto &it:m_arguments)
+            {
+                this->_addArgument(str, it.m_data[Argument::TYPE]);
+            }
+        }
+        // Defaults
+        str += "\n" + this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_DEFAULTS]);
         bool firstFlag = true;
         for (auto &it:m_arguments)
         {
             this->_addArgument(str, it.m_data[Argument::DEFAULT], firstFlag);
             firstFlag = false;
         }
-
-
+        // Limits
+        if (m_flag[FLAG_LIMITS])
+        {
+            firstFlag = true;
+            str += "\n" + this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_LIMITS]);
+            for (auto &it:m_arguments)
+            {
+                this->_addArgument(str, it.m_data[Argument::MIN], firstFlag);
+                this->_addArgument(str, it.m_data[Argument::MAX]);
+                firstFlag = false;
+            }
+        }
+        // Category
         str += "\n" + this->_formArgument(1, "_" + m_name + FLAG_NAME[FLAG_CATEGORY], m_category);
-
+        // ScriptName
+        if (m_flag[FLAG_SCRIPT])
+        {
+            str += "\n" + this->_formArgument(1, "_" + m_name + FLAG_NAME[FLAG_SCRIPT], m_script);
+        }
+        // UseWithAI
+        if (m_useWithAI == "1")
+        {
+            str += "\n" + this->_formArgument(1, "_" + m_name + FLAG_NAME[FLAG_AI], m_useWithAI);
+            // AIDefaults
+            if (m_flag[FLAG_AI_DEFAULTS])
+            {
+                firstFlag = true;
+                str += "\n" + this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_AI_DEFAULTS]);
+                for (auto &it:m_arguments)
+                {
+                    this->_addArgument(str, it.m_data[Argument::AI_DEFAULT], firstFlag);
+                    firstFlag = false;
+                }
+            }
+        }
         str += "\n";
         return str;
     }

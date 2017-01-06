@@ -23,6 +23,8 @@ namespace TCUIEdit { namespace core { namespace ui
         Condition(package::Package *package, QPair<QString, QStringList> pair);
 
         ~Condition();
+
+        QString trigData();
     };
 
 }}}

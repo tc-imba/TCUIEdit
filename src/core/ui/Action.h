@@ -24,6 +24,8 @@ namespace TCUIEdit { namespace core { namespace ui
         Action(package::Package *package, QPair<QString, QStringList> pair);
 
         ~Action();
+
+        QString trigData();
     };
 
 }}}

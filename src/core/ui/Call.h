@@ -37,6 +37,8 @@ namespace TCUIEdit { namespace core { namespace ui
         const QString &returnType() const;
 
         void setReturnType(const QString &returnType);
+
+        QString trigData();
     };
 
 

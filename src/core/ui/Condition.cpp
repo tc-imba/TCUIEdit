@@ -33,5 +33,12 @@ namespace TCUIEdit { namespace core { namespace ui
 
     }
 
+    QString Condition::trigData()
+    {
+        QString str = this->_formArgument(1, m_name, m_version);
+        str += Function::trigData();
+        return str;
+    }
+
 
 }}}
