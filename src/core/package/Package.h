@@ -7,6 +7,7 @@
 #include "../core.h"
 #include "../File.h"
 #include "../ui/Base.h"
+#include "../ui/Function.h"
 #include "WEString.h"
 #include "Base.h"
 #include "Category.h"
@@ -41,6 +42,8 @@ namespace TCUIEdit { namespace core { namespace package
         WEString *m_weString;
 
         QMap<QString, QMultiMap<QString, ui::Base * >> m_categoryMap[4];
+
+        static const QMultiMap<QString, ui::Base * > m_emptyCategoryMap;
 
         void (Package::*m_processLine)(QString &);
 
@@ -94,6 +97,14 @@ namespace TCUIEdit { namespace core { namespace package
 
         bool writeFile(File::TYPE fileType);
 
+        void addCategoryUI(ui::Function *ui);
+
+        void removeCategoryUI(ui::Function *ui);
+
+        const QMap<QString, QMultiMap<QString, ui::Base * >> &categoryMap(ui::Function::FUNCTION_TYPE funcType) const;
+
+        const QMultiMap<QString, ui::Base *> &
+        categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category) const;
     };
 
 

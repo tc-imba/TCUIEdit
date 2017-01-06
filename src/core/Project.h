@@ -26,13 +26,13 @@ namespace TCUIEdit { namespace core
 
         const QList<package::Package *> &packages() const;
 
-        void addUI(ui::Base *UI);
+        void addUI(ui::Base *ui);
 
         QList<ui::Base *> getUI(const QString &name) const;
 
-        QList<ui::Base *> examineUI(const ui::Base *UI) const;
+        QList<ui::Base *> examineUI(const ui::Base *ui) const;
 
-        void removeUI(ui::Base *UI);
+        void removeUI(ui::Base *ui);
 
         ui::Base *matchUI(const QString &name, ui::Base::TYPE type) const;
 

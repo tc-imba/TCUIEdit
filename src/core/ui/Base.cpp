@@ -65,6 +65,16 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_type;
     }
 
+    bool Base::isFunction(TYPE type)
+    {
+        return type >= TRIGGER_EVENT && type <= TRIGGER_CALL;
+    }
+
+    bool Base::isFunction() const
+    {
+        return this->isFunction(m_type);
+    }
+
     const char *Base::typeName(TYPE type)
     {
         if (type >= 0 && type < Base::TYPE_NUM)

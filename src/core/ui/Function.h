@@ -42,6 +42,15 @@ namespace TCUIEdit { namespace core { namespace ui
 
         static const char *FLAG_NAME[FLAG_NUM];
 
+        enum FUNCTION_TYPE
+        {
+            FUNCTION_TYPE_EVENT, FUNCTION_TYPE_CONDITION, FUNCTION_TYPE_ACTION, FUNCTION_TYPE_CALL
+        };
+
+        static Base::TYPE FUNCTION_TO_BASE(FUNCTION_TYPE type);
+
+        static FUNCTION_TYPE BASE_TO_FUNCTION(Base::TYPE type);
+
     protected:
         QString m_version, m_category, m_useWithAI, m_script;
         QList<Argument> m_arguments;
@@ -71,7 +80,11 @@ namespace TCUIEdit { namespace core { namespace ui
 
         virtual ~Function() = 0;
 
+        FUNCTION_TYPE functionType() const;
+
         void add(QPair<QString, QStringList> pair);
+
+        void setName(const QString &name);
 
         const QString &category() const;
 
@@ -80,6 +93,8 @@ namespace TCUIEdit { namespace core { namespace ui
         const QString &version() const;
 
         void setVersion(const QString &version);
+
+        const QString formDisplay() const;
 
         virtual QString trigData();
     };

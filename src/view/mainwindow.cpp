@@ -104,6 +104,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << timer.elapsed();
 
+    //_ui = proj->matchUI("DoNothing", ui::Base::TRIGGER_ACTION);
+    //uip->addCategoryUI((core::ui::Function *) _ui);
 
     uip->setBasePath("tmp/");
 

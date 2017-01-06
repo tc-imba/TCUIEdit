@@ -3,12 +3,26 @@
 //
 
 #include "Function.h"
+#include "../package/Package.h"
+#include "../Project.h"
 
 namespace TCUIEdit { namespace core { namespace ui
 {
 
     const char *Function::FLAG_NAME[Function::FLAG_NUM] =
             {"_Defaults", "_Limits", "_Category", "_ScriptName", "_UseWithAI", "_AIDefaults"};
+
+    Base::TYPE Function::FUNCTION_TO_BASE(FUNCTION_TYPE type)
+    {
+        if (type < 0 || type > 4)return Base::UNKNOWN;
+        return Base::TYPE(type + Base::TRIGGER_EVENT);
+    }
+
+    Function::FUNCTION_TYPE Function::BASE_TO_FUNCTION(Base::TYPE type)
+    {
+        if (!isFunction(type))return FUNCTION_TYPE_EVENT;
+        return FUNCTION_TYPE(type - Base::TRIGGER_EVENT);
+    }
 
     const Function::FUNC Function::_add[Function::FLAG_NUM] =
             {
@@ -30,6 +44,11 @@ namespace TCUIEdit { namespace core { namespace ui
     Function::~Function()
     {
 
+    }
+
+    Function::FUNCTION_TYPE Function::functionType() const
+    {
+        return this->BASE_TO_FUNCTION(m_type);
     }
 
     void Function::_addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType, bool limitsFlag)
@@ -78,7 +97,7 @@ namespace TCUIEdit { namespace core { namespace ui
     void Function::_addCategory(const QPair<QString, QStringList> &pair)
     {
         m_flag[FLAG_CATEGORY] = true;
-        if (pair.second.size() > 0)m_category = pair.second.first();
+        if (pair.second.size() > 0)this->setCategory(pair.second.first());
     }
 
     void Function::_addScript(const QPair<QString, QStringList> &pair)
@@ -121,6 +140,15 @@ namespace TCUIEdit { namespace core { namespace ui
 #endif
     }
 
+    void Function::setName(const QString &name)
+    {
+        m_pkg->project()->removeUI(this);
+        m_pkg->removeCategoryUI(this);
+        m_name = name;
+        m_pkg->project()->addUI(this);
+        m_pkg->addCategoryUI(this);
+    }
+
     const QString &Function::category() const
     {
         return m_category;
@@ -128,7 +156,9 @@ namespace TCUIEdit { namespace core { namespace ui
 
     void Function::setCategory(const QString &category)
     {
+        m_pkg->removeCategoryUI(this);
         m_category = category;
+        m_pkg->addCategoryUI(this);
     }
 
     const QString &Function::version() const
@@ -139,6 +169,16 @@ namespace TCUIEdit { namespace core { namespace ui
     void Function::setVersion(const QString &version)
     {
         m_version = version;
+    }
+
+    const QString Function::formDisplay() const
+    {
+        int pos = 0;
+        while (pos < m_name.length())
+        {
+            if (m_name[pos++] != ' ')break;
+        }
+        return m_name.left(pos - 1).replace(' ', '_') + m_name.mid(pos - 1);
     }
 
     QString Function::trigData()
@@ -201,5 +241,6 @@ namespace TCUIEdit { namespace core { namespace ui
         str += "\n";
         return str;
     }
+
 
 }}}

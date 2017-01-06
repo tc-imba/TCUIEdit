@@ -38,6 +38,8 @@ namespace TCUIEdit { namespace core { namespace ui
 
         void setReturnType(const QString &returnType);
 
+        const QString formDisplay() const;
+
         QString trigData();
     };
 

@@ -74,11 +74,15 @@ namespace TCUIEdit { namespace core { namespace ui
         // Return the TYPE of the UI
         TYPE type() const;
 
+        // Return whether the UI is a function
+        static bool isFunction(TYPE type);
+
+        bool isFunction() const;
+
         // Return the name of the TYPE
         // If the TYPE is undefined or unknown, return "UNKNOWN_TYPE"
         static const char *typeName(TYPE type);
 
-        // Return this->typeName(this->type)
         const char *typeName() const;
 
         // Return the name of the UI
@@ -86,7 +90,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         // Set the name of the UI
         // The hashtable of UIs will be updated
-        void setName(const QString &name);
+        virtual void setName(const QString &name);
 
         // Examine whether the name of the UI is redefined
         // Return an Error with all the redefined UIs

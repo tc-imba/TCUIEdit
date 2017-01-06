@@ -89,5 +89,7 @@ namespace TCUIEdit { namespace core
 
     class ExceptionFormatError;
 
+    class ExceptionTypeError;
+
 }}
 

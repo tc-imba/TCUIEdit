@@ -8,6 +8,8 @@
 namespace TCUIEdit { namespace core { namespace package
 {
 
+    const QMultiMap<QString, ui::Base *> Package::m_emptyCategoryMap = QMultiMap<QString, ui::Base *>();
+
     // Constructors
     //
 
@@ -222,6 +224,46 @@ namespace TCUIEdit { namespace core { namespace package
             return true;
         }
         return false;
+    }
+
+    void Package::addCategoryUI(ui::Function *ui)
+    {
+        if (ui == NULL)throw ExceptionUndefined();
+        if (!ui->isFunction())throw ExceptionTypeError();
+
+        auto &map = m_categoryMap[ui->functionType()][ui->category()];
+        if (map.find(ui->name(), ui) == map.end())
+        {
+            map.insert(ui->name(), ui);
+        }
+    }
+
+    void Package::removeCategoryUI(ui::Function *ui)
+    {
+        if (ui == NULL)throw ExceptionUndefined();
+        if (!ui->isFunction())throw ExceptionTypeError();
+
+        auto funcType = ui->functionType();
+        auto it = m_categoryMap[funcType].find(ui->category());
+        if (it != m_categoryMap[funcType].end())
+        {
+            (*it).remove(ui->name(), ui);
+        }
+    }
+
+    const QMap<QString, QMultiMap<QString, ui::Base * >> &
+    Package::categoryMap(ui::Function::FUNCTION_TYPE funcType) const
+    {
+        return m_categoryMap[funcType];
+    }
+
+    const QMultiMap<QString, ui::Base *> &
+    Package::categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category) const
+    {
+        auto it = m_categoryMap[funcType].find(category);
+        if (it == m_categoryMap[funcType].end())
+            return m_emptyCategoryMap;
+        return (*it);
     }
 }}}
 

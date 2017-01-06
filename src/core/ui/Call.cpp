@@ -62,11 +62,17 @@ namespace TCUIEdit { namespace core { namespace ui
         m_returnType = returnType;
     }
 
+    const QString Call::formDisplay() const
+    {
+        return "(" + m_returnType + ") " + Function::formDisplay();
+    }
+
     QString Call::trigData()
     {
         QString str = this->_formArgument(3, m_name, m_version, m_eventFlag, m_returnType);
         str += Function::trigData();
         return str;
     }
+
 
 }}}

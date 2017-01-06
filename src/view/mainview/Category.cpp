@@ -50,13 +50,18 @@ namespace TCUIEdit { namespace mainview
             parent = m_browser->addCategory(typeNames[i]);
             for (auto itPkg:m_ui->package()->project()->packages())
             {
-                for (auto itUI:itPkg->base(types[i])->data())
+                /*for (auto itUI:itPkg->base(types[i])->data())
                 {
                     if (m_ui->name() == ((core::ui::Function *) itUI)->category())
                     {
                         row = parent->addText(itPkg->name(), itUI->name(), "");
                         row->setData((qlonglong) itUI);
                     }
+                }*/
+                for (auto itUI:itPkg->categoryMap(core::ui::Function::FUNCTION_TYPE(i), m_ui->name()))
+                {
+                    row = parent->addText(itPkg->name(), itUI->formDisplay(), "");
+                    row->setData((qlonglong) itUI);
                 }
             }
         }
@@ -108,6 +113,21 @@ namespace TCUIEdit { namespace mainview
                         packageCount++;
                     }
                 }
+                /*for (auto itUI:itPkg->categoryMap(core::ui::Function::FUNCTION_TYPE(i), name))
+                {
+                    if (firstPackageFlag)
+                    {
+                        firstPackageFlag = false;
+                        typeItem = dialog->addItem("", rootItem);
+                    }
+                    if (firstUIFlag)
+                    {
+                        firstUIFlag = false;
+                        packageItem = dialog->addItem("", typeItem);
+                    }
+                    dialog->addItem(itUI->name(), packageItem, itUI);
+                    packageCount++;
+                }*/
                 if (!firstUIFlag)
                 {
                     QString str;

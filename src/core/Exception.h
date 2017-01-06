@@ -29,6 +29,9 @@ namespace TCUIEdit { namespace core
     {
     };
 
+    class ExceptionTypeError : Exception
+    {
+    };
 
 }}
 

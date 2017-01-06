@@ -33,18 +33,18 @@ namespace TCUIEdit { namespace core
         return m_packages;
     }
 
-    void Project::addUI(ui::Base *UI)
+    void Project::addUI(ui::Base *ui)
     {
-        if (UI == NULL)
+        if (ui == NULL)
         {
             throw ExceptionUndefined();
         }
 
-        auto name = UI->name();
+        auto name = ui->name();
 
-        if (m_uiMap.find(name, UI) == m_uiMap.end())
+        if (m_uiMap.find(name, ui) == m_uiMap.end())
         {
-            m_uiMap.insert(name, UI);
+            m_uiMap.insert(name, ui);
         }
         /*else
         {
@@ -57,35 +57,35 @@ namespace TCUIEdit { namespace core
         return m_uiMap.values(name);
     }
 
-    QList<ui::Base *> Project::examineUI(const ui::Base *UI) const
+    QList<ui::Base *> Project::examineUI(const ui::Base *ui) const
     {
-        if (UI == NULL)
+        if (ui == NULL)
         {
             throw ExceptionUndefined();
         }
-        auto list = this->getUI(UI->name());
+        auto list = this->getUI(ui->name());
         for (auto it = list.begin(); it != list.end();)
         {
-            if (*it == UI)it = list.erase(it);
+            if (*it == ui)it = list.erase(it);
             else ++it;
         }
         return list;
     }
 
-    void Project::removeUI(ui::Base *UI)
+    void Project::removeUI(ui::Base *ui)
     {
-        if (UI == NULL)
+        if (ui == NULL)
         {
             throw ExceptionUndefined();
         }
 
-        auto name = UI->name();
+        auto name = ui->name();
 
-        /*if (this->hashtable.find(name, UI) == this->hashtable.end())
+        /*if (this->hashtable.find(name, ui) == this->hashtable.end())
         {
             throw UIExceptionNotFound();
         }*/
-        m_uiMap.remove(name, UI);
+        m_uiMap.remove(name, ui);
     }
 
     ui::Base *Project::matchUI(const QString &name, ui::Base::TYPE type) const
