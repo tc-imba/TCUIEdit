@@ -230,11 +230,17 @@ namespace TCUIEdit { namespace core { namespace package
     {
         if (ui == NULL)throw ExceptionUndefined();
         if (!ui->isFunction())throw ExceptionTypeError();
-
-        auto &map = m_categoryMap[ui->functionType()][ui->category()];
-        if (map.find(ui->name(), ui) == map.end())
+        auto name = ui->name();
+        int pos = 0;
+        while (pos < name.length())
         {
-            map.insert(ui->name(), ui);
+            if (name[pos++] != ' ')break;
+        }
+        name = name.mid(pos - 1) + name.left(pos - 1);
+        auto &map = m_categoryMap[ui->functionType()][ui->category()];
+        if (map.find(name, ui) == map.end())
+        {
+            map.insert(name, ui);
         }
     }
 
@@ -242,12 +248,18 @@ namespace TCUIEdit { namespace core { namespace package
     {
         if (ui == NULL)throw ExceptionUndefined();
         if (!ui->isFunction())throw ExceptionTypeError();
-
         auto funcType = ui->functionType();
         auto it = m_categoryMap[funcType].find(ui->category());
         if (it != m_categoryMap[funcType].end())
         {
-            (*it).remove(ui->name(), ui);
+            auto name = ui->name();
+            int pos = 0;
+            while (pos < name.length())
+            {
+                if (name[pos++] != ' ')break;
+            }
+            name = name.mid(pos - 1) + name.left(pos - 1);
+            (*it).remove(name, ui);
         }
     }
 

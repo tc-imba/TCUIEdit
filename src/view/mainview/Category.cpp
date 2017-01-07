@@ -95,7 +95,7 @@ namespace TCUIEdit { namespace mainview
                 QStandardItem *packageItem;
                 bool firstUIFlag = true;
                 int packageCount = 0;
-                for (auto itUI:itPkg->base(types[i])->data())
+                /*for (auto itUI:itPkg->base(types[i])->data())
                 {
                     if (name == ((core::ui::Function *) itUI)->category())
                     {
@@ -112,8 +112,8 @@ namespace TCUIEdit { namespace mainview
                         dialog->addItem(itUI->name(), packageItem, itUI);
                         packageCount++;
                     }
-                }
-                /*for (auto itUI:itPkg->categoryMap(core::ui::Function::FUNCTION_TYPE(i), name))
+                }*/
+                for (auto itUI:itPkg->categoryMap(core::ui::Function::FUNCTION_TYPE(i), name))
                 {
                     if (firstPackageFlag)
                     {
@@ -127,7 +127,7 @@ namespace TCUIEdit { namespace mainview
                     }
                     dialog->addItem(itUI->name(), packageItem, itUI);
                     packageCount++;
-                }*/
+                }
                 if (!firstUIFlag)
                 {
                     QString str;
