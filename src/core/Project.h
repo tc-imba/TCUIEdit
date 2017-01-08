@@ -15,16 +15,16 @@ namespace TCUIEdit { namespace core
     protected:
         QMultiHash<QString, ui::Base *> m_uiMap;
         QMultiHash<QString, ui::WEString *> m_weStringMap;
-        QMap<QString, QPair<bool, int> > m_undefinedCategoryMap;
-        QMap<QString, QPair<bool, int> > m_undefinedTypeMap;
+        QMap<QString, QPair<bool, int> > m_categoryNumMap;
+        QMap<QString, QPair<bool, int> > m_typeNumMap;
         QList<package::Package *> m_packages;
     public:
 
         QMultiHash<QString, ui::WEString *> &weStringMap();
 
-        QMap<QString, QPair<bool, int> > undefinedCategoryMap();
+        QMap<QString, QPair<bool, int> > categoryNumMap();
 
-        QMap<QString, QPair<bool, int> > undefinedTypeMap();
+        QMap<QString, QPair<bool, int> > typeNumMap();
 
         package::Package *createPackage();
 

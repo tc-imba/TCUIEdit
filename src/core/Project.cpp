@@ -9,19 +9,19 @@ namespace TCUIEdit { namespace core
 {
 
 
-    QMultiHash<QString, ui::WEString *>& Project::weStringMap()
+    QMultiHash<QString, ui::WEString *> &Project::weStringMap()
     {
         return m_weStringMap;
     }
 
-    QMap<QString, QPair<bool, int> > Project::undefinedCategoryMap()
+    QMap<QString, QPair<bool, int> > Project::categoryNumMap()
     {
-        return m_undefinedCategoryMap;
+        return m_categoryNumMap;
     }
 
-    QMap<QString, QPair<bool, int> > Project::undefinedTypeMap()
+    QMap<QString, QPair<bool, int> > Project::typeNumMap()
     {
-        return m_undefinedTypeMap;
+        return m_typeNumMap;
     }
 
     package::Package *Project::createPackage()
@@ -55,6 +55,32 @@ namespace TCUIEdit { namespace core
         if (m_uiMap.find(name, ui) == m_uiMap.end())
         {
             m_uiMap.insert(name, ui);
+        }
+        if (ui->type() == ui::Base::TRIGGER_CATEGORY)
+        {
+            auto it = m_categoryNumMap.find(ui->name());
+            if (it != m_categoryNumMap.end())(*it).first = true;
+            else m_categoryNumMap.insert(ui->name(), qMakePair(true, 0));
+        }
+        else if (ui->type() == ui::Base::TRIGGER_TYPE)
+        {
+            auto it = m_typeNumMap.find(ui->name());
+            if (it != m_typeNumMap.end())(*it).first = true;
+            else m_typeNumMap.insert(ui->name(), qMakePair(true, 0));
+        }
+        else if (ui->isFunction())
+        {
+            auto category = ((ui::Function *) ui)->category();
+            auto it = m_categoryNumMap.find(category);
+            if (it != m_categoryNumMap.end())(*it).second++;
+            else m_categoryNumMap.insert(ui->name(), qMakePair(false, 1));
+            if (ui->type() == ui::Base::TRIGGER_CALL)
+            {
+                auto type = ((ui::Call *) ui)->returnType();
+                it = m_typeNumMap.find(type);
+                if (it != m_typeNumMap.end())(*it).second++;
+                else m_typeNumMap.insert(ui->name(), qMakePair(false, 1));
+            }
         }
         /*else
         {
@@ -96,6 +122,36 @@ namespace TCUIEdit { namespace core
             throw UIExceptionNotFound();
         }*/
         m_uiMap.remove(name, ui);
+        if (ui->type() == ui::Base::TRIGGER_CATEGORY)
+        {
+            if (this->matchUI(name, ui::Base::TRIGGER_CATEGORY) == NULL)
+            {
+                auto it = m_categoryNumMap.find(ui->name());
+                if (it != m_categoryNumMap.end())(*it).first = false;
+                else m_categoryNumMap.insert(ui->name(), qMakePair(false, 0));
+            }
+        }
+        else if (ui->type() == ui::Base::TRIGGER_TYPE)
+        {
+            if (this->matchUI(name, ui::Base::TRIGGER_TYPE) == NULL)
+            {
+                auto it = m_typeNumMap.find(ui->name());
+                if (it != m_typeNumMap.end())(*it).first = false;
+                else m_typeNumMap.insert(ui->name(), qMakePair(false, 0));
+            }
+        }
+        else if (ui->isFunction())
+        {
+            auto category = ((ui::Function *) ui)->category();
+            auto it = m_categoryNumMap.find(category);
+            if (it != m_categoryNumMap.end())(*it).second--;
+            if (ui->type() == ui::Base::TRIGGER_CALL)
+            {
+                auto type = ((ui::Call *) ui)->returnType();
+                it = m_typeNumMap.find(type);
+                if (it != m_typeNumMap.end())(*it).second--;
+            }
+        }
     }
 
     ui::Base *Project::matchUI(const QString &name, ui::Base::TYPE type) const
