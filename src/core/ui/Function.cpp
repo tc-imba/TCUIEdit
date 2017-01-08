@@ -178,7 +178,7 @@ namespace TCUIEdit { namespace core { namespace ui
         {
             if (m_name[pos++] != ' ')break;
         }
-        return m_name.left(pos - 1).replace(' ', '_') + m_name.mid(pos - 1);
+        return m_name.left(pos - 1).replace(' ', "~") + m_name.mid(pos - 1);
     }
 
     QString Function::trigData()

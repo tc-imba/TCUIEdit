@@ -14,6 +14,16 @@ namespace TCUIEdit { namespace core
         return m_weStringMap;
     }
 
+    QMap<QString, QPair<bool, int> > Project::undefinedCategoryMap()
+    {
+        return m_undefinedCategoryMap;
+    }
+
+    QMap<QString, QPair<bool, int> > Project::undefinedTypeMap()
+    {
+        return m_undefinedTypeMap;
+    }
+
     package::Package *Project::createPackage()
     {
         auto pkg = new package::Package(this);

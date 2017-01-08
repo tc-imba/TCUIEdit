@@ -3,6 +3,7 @@
 //
 
 #include "Package.h"
+#include "Project.h"
 #include "Resourse.h"
 
 namespace TCUIEdit { namespace core { namespace package
@@ -237,11 +238,31 @@ namespace TCUIEdit { namespace core { namespace package
             if (name[pos++] != ' ')break;
         }
         name = name.mid(pos - 1) + name.left(pos - 1);
-        auto &map = m_categoryMap[ui->functionType()][ui->category()];
+        if (m_proj->matchUI(ui->category(), ui::Base::TRIGGER_CATEGORY) == NULL)
+        {
+            auto _map = m_proj->undefinedCategoryMap();
+            auto it = _map.find(ui->category());
+            if (it == _map.end())_map.insert(ui->category(), true);
+            else if (!(*it))(*it) = true;
+        }
+        QString returnType = "";
+        if (ui->type() == ui::Base::TRIGGER_CALL)
+        {
+            returnType = ((ui::Call *) ui)->returnType();
+            if (m_proj->matchUI(returnType, ui::Base::TRIGGER_TYPE) == NULL)
+            {
+                auto _map = m_proj->undefinedTypeMap();
+                auto it = _map.find(returnType);
+                if (it == _map.end())_map.insert(returnType, true);
+                else if (!(*it))(*it) = true;
+            }
+        }
+        auto &map = m_categoryMap[ui->functionType()][qMakePair(ui->category(), returnType)];
         if (map.find(name, ui) == map.end())
         {
             map.insert(name, ui);
         }
+
     }
 
     void Package::removeCategoryUI(ui::Function *ui)
@@ -249,7 +270,8 @@ namespace TCUIEdit { namespace core { namespace package
         if (ui == NULL)throw ExceptionUndefined();
         if (!ui->isFunction())throw ExceptionTypeError();
         auto funcType = ui->functionType();
-        auto it = m_categoryMap[funcType].find(ui->category());
+        auto returnType = ui->type() == ui::Base::TRIGGER_CALL ? ((ui::Call *) ui)->returnType() : "";
+        auto it = m_categoryMap[funcType].find(qMakePair(ui->category(), returnType));
         if (it != m_categoryMap[funcType].end())
         {
             auto name = ui->name();
@@ -260,19 +282,31 @@ namespace TCUIEdit { namespace core { namespace package
             }
             name = name.mid(pos - 1) + name.left(pos - 1);
             (*it).remove(name, ui);
+            if ((*it).size() == 0)
+            {
+                auto _map = m_proj->undefinedCategoryMap();
+                auto _it = _map.find(ui->category());
+                if (_it != _map.end())_map.erase(_it);
+                if (returnType.length() > 0)
+                {
+                    _map = m_proj->undefinedTypeMap();
+                    _it = _map.find(returnType);
+                    if (_it != _map.end())_map.erase(_it);
+                }
+            }
         }
     }
 
-    const QMap<QString, QMultiMap<QString, ui::Base * >> &
+    const QHash<QPair<QString, QString>, QMultiMap<QString, ui::Base * >> &
     Package::categoryMap(ui::Function::FUNCTION_TYPE funcType) const
     {
         return m_categoryMap[funcType];
     }
 
     const QMultiMap<QString, ui::Base *> &
-    Package::categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category) const
+    Package::categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category, const QString &returnType) const
     {
-        auto it = m_categoryMap[funcType].find(category);
+        auto it = m_categoryMap[funcType].find(qMakePair(category, returnType));
         if (it == m_categoryMap[funcType].end())
             return m_emptyCategoryMap;
         return (*it);

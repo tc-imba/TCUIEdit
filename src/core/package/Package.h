@@ -6,8 +6,7 @@
 
 #include "../core.h"
 #include "../File.h"
-#include "../ui/Base.h"
-#include "../ui/Function.h"
+#include "../ui/all.h"
 #include "WEString.h"
 #include "Base.h"
 #include "Category.h"
@@ -23,6 +22,18 @@ namespace TCUIEdit { namespace core { namespace package
 {
     class Package
     {
+    /*public:
+        struct FunctionProperty
+        {
+            ui::Function::FUNCTION_TYPE m_type;
+            QString m_category, m_returnType;
+
+            FunctionProperty(ui::Function::FUNCTION_TYPE type, const QString &category = "",
+                             const QString &returnType = "")
+                    : m_type(type), m_category(category), m_returnType(returnType)
+            {}
+        };
+    */
     protected:
         // Protected Properties
         //
@@ -41,9 +52,11 @@ namespace TCUIEdit { namespace core { namespace package
 
         WEString *m_weString;
 
-        QMap<QString, QMultiMap<QString, ui::Base * >> m_categoryMap[4];
+        QHash<QPair<QString, QString>, QMultiMap<QString, ui::Base *> > m_categoryMap[4];
 
-        static const QMultiMap<QString, ui::Base * > m_emptyCategoryMap;
+        //QHash<FunctionProperty, QMultiMap<QString, ui::Base *>>m_categoryMap;
+
+        static const QMultiMap<QString, ui::Base *> m_emptyCategoryMap;
 
         void (Package::*m_processLine)(QString &);
 
@@ -101,13 +114,23 @@ namespace TCUIEdit { namespace core { namespace package
 
         void removeCategoryUI(ui::Function *ui);
 
-        const QMap<QString, QMultiMap<QString, ui::Base * >> &categoryMap(ui::Function::FUNCTION_TYPE funcType) const;
+        const QHash<QPair<QString, QString>, QMultiMap<QString, ui::Base * >> &
+        categoryMap(ui::Function::FUNCTION_TYPE funcType) const;
 
         const QMultiMap<QString, ui::Base *> &
-        categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category) const;
+        categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category,
+                    const QString &returnType = "") const;
     };
 
+    /*inline bool operator==(const Package::FunctionProperty &a, const Package::FunctionProperty &b)
+    {
+        return a.m_type == b.m_type && a.m_category == b.m_category && a.m_returnType == b.m_returnType;
+    }
 
+    inline uint qHash(const Package::FunctionProperty &key, uint seed)
+    {
+        return qHash(key.m_category, seed) ^ qHash(key.m_returnType, seed) ^ key.m_type;
+    }*/
 }}}
 
 
