@@ -94,9 +94,9 @@ namespace TCUIEdit { namespace core { namespace ui
         return m_name;
     }
 
-    void Base::setName(const QString &name)
+    void Base::setName(const QString &name, bool firstFlag)
     {
-        m_pkg->project()->removeUI(this);
+        if (!firstFlag)m_pkg->project()->removeUI(this);
         m_name = name;
         m_pkg->project()->addUI(this);
     }

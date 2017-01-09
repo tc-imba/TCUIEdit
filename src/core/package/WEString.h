@@ -30,6 +30,8 @@ namespace TCUIEdit { namespace core { namespace package
         const QString getValue(const QString &name) const;
 
         Package *package() const;
+
+        void writeWEStrings(File &file);
     };
 
 }}}

@@ -19,7 +19,7 @@ namespace TCUIEdit { namespace core { namespace package
     void WEString::readLine(const QString &line)
     {
         auto pos = line.indexOf('=');
-        if (pos == -1 || pos == line.length() - 1)
+        if (pos == -1)
         {
             throw ExceptionFormatError();
         }
@@ -71,5 +71,13 @@ namespace TCUIEdit { namespace core { namespace package
     Package *WEString::package() const
     {
         return m_pkg;
+    }
+
+    void WEString::writeWEStrings(File &file)
+    {
+        for (auto it:m_data)
+        {
+            file.writeLine(it->m_name + "=\"" + it->m_value + "\"");
+        }
     }
 }}}

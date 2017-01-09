@@ -4,12 +4,10 @@
 
 #include "Call.h"
 #include "../ui/Call.h"
-#include "Project.h"
-#include "Package.h"
 
 namespace TCUIEdit { namespace core { namespace package
 {
-    Call::Call(Package *package) : Base(package)
+    Call::Call(Package *package) : Function(package)
     {
         m_type = ui::Base::TRIGGER_CALL;
     }
@@ -23,15 +21,9 @@ namespace TCUIEdit { namespace core { namespace package
             auto item = static_cast<ui::Base *>(m_lastUI);
             m_data.push_back(item);
         }
-        else if (m_lastUI != NULL)
+        else
         {
-            auto lastName = m_lastUI->name();
-            auto name = pair.first.mid(1, lastName.length());
-            if (lastName == name)
-            {
-                pair.first = pair.first.mid(1 + lastName.length());
-                m_lastUI->add(pair);
-            }
+            this->_addLine(pair);
         }
     }
 

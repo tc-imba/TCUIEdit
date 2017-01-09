@@ -33,6 +33,8 @@ namespace TCUIEdit { namespace core
 
         class Param;
 
+        class Function;
+
         class Event;
 
         class Condition;
@@ -59,6 +61,8 @@ namespace TCUIEdit { namespace core
         class TypeDefault;
 
         class Param;
+
+        class Function;
 
         class Event;
 

@@ -9,7 +9,6 @@
 #include "../Exception.h"
 #include "../File.h"
 
-#undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Base
 #define TCUIEDIT_UIPACKAGE_OPERATOR_INDEX TCUIEDIT_UIPACKAGE_BASE_NAME *operator[](unsigned int index){return m_data.size()>index?(TCUIEDIT_UIPACKAGE_BASE_NAME*)(m_data[index]):NULL;}
 #define TCUIEDIT_UIPACKAGE_CAST_DATA static TCUIEDIT_UIPACKAGE_BASE_NAME *castData(ui::Base* baseType){return (TCUIEDIT_UIPACKAGE_BASE_NAME*)(baseType);}
@@ -48,5 +47,4 @@ namespace TCUIEdit { namespace core { namespace package
     };
 }}}
 
-
-
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME

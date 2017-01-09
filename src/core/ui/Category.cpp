@@ -15,7 +15,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_type = TRIGGER_CATEGORY;
 
-        this->setName(pair.first);
+        this->setName(pair.first, true);
 
         auto it = pair.second.constBegin();
 

@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Resourse::construct("res/core/");
 
     QString str = "ui/ydwe/ui/";
+    //QString str = "tmp/";
 
     Project *proj = new Project();
 
@@ -104,12 +105,38 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << timer.elapsed();
 
+    auto &map = proj->categoryNumMap();
+    for (auto it = map.begin(); it != map.end(); ++it)
+    {
+        qDebug() << it.key() << (*it).first << (*it).second;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        qDebug() << uip->categoryMap(ui::Function::FUNCTION_TYPE(i), "").size();
+        /*for (auto it:uip->categoryMap(ui::Function::FUNCTION_TYPE(i), "", ""))
+        {
+            qDebug() << it->name() << it->category();
+        }*/
+    }
+
+    for (auto it = proj->typeNumMap().begin(); it != proj->typeNumMap().end(); ++it)
+    {
+        for (auto _it:uip->categoryMap(ui::Function::FUNCTION_TYPE(3), "", it.key()))
+        {
+            qDebug() << _it->name() << _it->category() << ((ui::Call *) _it)->returnType();
+        }
+    }
+
+
+
     //_ui = proj->matchUI("DoNothing", ui::Base::TRIGGER_ACTION);
     //uip->addCategoryUI((core::ui::Function *) _ui);
 
     uip->setBasePath("tmp/");
 
     uip->writeFile(core::File::CLASSIC_TRIG_DATA);
+    uip->writeFile(core::File::CLASSIC_WE_STRINGS);
 
 }
 

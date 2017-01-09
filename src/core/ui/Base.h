@@ -90,7 +90,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         // Set the name of the UI
         // The hashtable of UIs will be updated
-        virtual void setName(const QString &name);
+        virtual void setName(const QString &name, bool firstFlag = false);
 
         // Examine whether the name of the UI is redefined
         // Return an Error with all the redefined UIs

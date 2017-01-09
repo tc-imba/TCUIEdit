@@ -3,17 +3,15 @@
 //
 
 #pragma once
-#include "Base.h"
 
-#undef TCUIEDIT_UIPACKAGE_BASE_NAME
+#include "Function.h"
+
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Action
 
 namespace TCUIEdit { namespace core { namespace package
 {
-    class Action : public Base
+    class Action : public Function
     {
-    protected:
-        ui::Action* m_lastUI;
     public:
         Action(Package *package);
 
@@ -25,3 +23,4 @@ namespace TCUIEdit { namespace core { namespace package
     };
 }}}
 
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME

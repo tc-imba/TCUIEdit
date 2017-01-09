@@ -2,6 +2,7 @@
 // Created by liu on 2016/12/4.
 //
 
+#include <QDateTime>
 #include "Package.h"
 #include "Project.h"
 #include "Resourse.h"
@@ -9,7 +10,7 @@
 namespace TCUIEdit { namespace core { namespace package
 {
 
-    const QMultiMap<QString, ui::Base *> Package::m_emptyCategoryMap = QMultiMap<QString, ui::Base *>();
+    const QMultiMap<QString, ui::Function *> Package::m_emptyCategoryMap = QMultiMap<QString, ui::Function *>();
 
     // Constructors
     //
@@ -115,14 +116,22 @@ namespace TCUIEdit { namespace core { namespace package
 
     void Package::_writeTrigData()
     {
-        m_file.writeLine(Resourse::license());
-        for (int i = 0; i < ui::Base::TRIGGER_CALL; i++)
+        for (int i = 0; i <= ui::Base::TRIGGER_CALL; i++)
         {
             m_file.writeLine(m_base[i]->typeDefineText());
+            m_file.writeLine();
+            m_file.writeLine();
             m_base[i]->writeTrigData(m_file);
             m_file.writeLine();
             m_file.writeLine();
         }
+    }
+
+    void Package::_writeWEStrings()
+    {
+        m_file.writeLine("[WorldEditStrings]");
+        m_file.writeLine();
+        m_weString->writeWEStrings(m_file);
     }
 
     // Public Functions
@@ -211,12 +220,18 @@ namespace TCUIEdit { namespace core { namespace package
         m_file.open(m_basePath, fileType, false);
         if (m_file.is_open())
         {
+            m_file.writeLine(Resourse::license());
+            m_file.write("// Generating time: ");
+            m_file.writeLine(QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
+            m_file.writeLine();
+            m_file.writeLine();
             switch (fileType)
             {
             case File::CLASSIC_TRIG_DATA:
                 this->_writeTrigData();
                 break;
             case File::CLASSIC_WE_STRINGS:
+                this->_writeWEStrings();
                 break;
             default:
                 return false;
@@ -238,13 +253,29 @@ namespace TCUIEdit { namespace core { namespace package
             if (name[pos++] != ' ')break;
         }
         name = name.mid(pos - 1) + name.left(pos - 1);
-        auto returnType = ui->type() == ui::Base::TRIGGER_CALL ? ((ui::Call *) ui)->returnType() : "";
-        auto &map = m_categoryMap[ui->functionType()][qMakePair(ui->category(), returnType)];
+        name = name.toLower();
+
+        auto category = ui->category();
+        category = category.toLower();
+        auto &numMap = m_proj->categoryNumMap();
+        auto it = numMap.find(category);
+        if (it != numMap.end())(*it).second++;
+        else numMap.insert(category, qMakePair(false, 1));
+
+        QString returnType = "";
+        if (ui->type() == ui::Base::TRIGGER_CALL)
+        {
+            returnType = ((ui::Call *) ui)->returnType().toLower();
+            auto &_numMap = m_proj->typeNumMap();
+            it = _numMap.find(returnType);
+            if (it != _numMap.end())(*it).second++;
+            else _numMap.insert(returnType, qMakePair(false, 1));
+        }
+        auto &map = m_categoryMap[ui->functionType()][qMakePair(category, returnType)];
         if (map.find(name, ui) == map.end())
         {
             map.insert(name, ui);
         }
-
     }
 
     void Package::removeCategoryUI(ui::Function *ui)
@@ -252,9 +283,24 @@ namespace TCUIEdit { namespace core { namespace package
         if (ui == NULL)throw ExceptionUndefined();
         if (!ui->isFunction())throw ExceptionTypeError();
         auto funcType = ui->functionType();
-        auto returnType = ui->type() == ui::Base::TRIGGER_CALL ? ((ui::Call *) ui)->returnType() : "";
-        auto it = m_categoryMap[funcType].find(qMakePair(ui->category(), returnType));
-        if (it != m_categoryMap[funcType].end())
+
+        auto category = ui->category();
+        category = category.toLower();
+        auto &numMap = m_proj->categoryNumMap();
+        auto it = numMap.find(category);
+        if (it != numMap.end())(*it).second--;
+
+        QString returnType = "";
+        if (ui->type() == ui::Base::TRIGGER_CALL)
+        {
+            returnType = ((ui::Call *) ui)->returnType().toLower();
+            auto &_numMap = m_proj->typeNumMap();
+            it = _numMap.find(returnType);
+            if (it != _numMap.end())(*it).second--;
+        }
+
+        auto _it = m_categoryMap[funcType].find(qMakePair(category, returnType));
+        if (_it != m_categoryMap[funcType].end())
         {
             auto name = ui->name();
             int pos = 0;
@@ -263,17 +309,18 @@ namespace TCUIEdit { namespace core { namespace package
                 if (name[pos++] != ' ')break;
             }
             name = name.mid(pos - 1) + name.left(pos - 1);
-            (*it).remove(name, ui);
+            name = name.toLower();
+            (*_it).remove(name, ui);
         }
     }
 
-    const QHash<QPair<QString, QString>, QMultiMap<QString, ui::Base * >> &
+    const QHash<QPair<QString, QString>, QMultiMap<QString, ui::Function * >> &
     Package::categoryMap(ui::Function::FUNCTION_TYPE funcType) const
     {
         return m_categoryMap[funcType];
     }
 
-    const QMultiMap<QString, ui::Base *> &
+    const QMultiMap<QString, ui::Function *> &
     Package::categoryMap(ui::Function::FUNCTION_TYPE funcType, const QString &category, const QString &returnType) const
     {
         auto it = m_categoryMap[funcType].find(qMakePair(category, returnType));

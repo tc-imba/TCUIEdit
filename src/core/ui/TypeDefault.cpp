@@ -15,7 +15,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_type = TRIGGER_TYPE_DEFAULT;
 
-        this->setName(pair.first);
+        this->setName(pair.first, true);
 
         auto it = pair.second.constBegin();
         // Value 0: script text

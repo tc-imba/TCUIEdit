@@ -9,4 +9,3 @@
 // Value 5: import type, for strings which represent files (optional)
 // Value 6: flag (0 or 1) indicating to treat this type as the base type in the editor
 //
-

@@ -6,4 +6,3 @@
 //
 // Note that the first argument is always a `trigger`, and is excluded here
 //
-

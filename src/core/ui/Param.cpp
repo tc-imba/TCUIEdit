@@ -15,7 +15,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_type = TRIGGER_PARAM;
 
-        this->setName(pair.first);
+        this->setName(pair.first, true);
 
         auto it = pair.second.constBegin();
         // Value 0: first game version in which this parameter is valid

@@ -22,9 +22,9 @@ namespace TCUIEdit { namespace core
 
         QMultiHash<QString, ui::WEString *> &weStringMap();
 
-        QMap<QString, QPair<bool, int> > categoryNumMap();
+        QMap<QString, QPair<bool, int> > &categoryNumMap();
 
-        QMap<QString, QPair<bool, int> > typeNumMap();
+        QMap<QString, QPair<bool, int> > &typeNumMap();
 
         package::Package *createPackage();
 

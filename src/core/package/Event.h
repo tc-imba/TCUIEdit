@@ -4,17 +4,14 @@
 
 #pragma once
 
-#include "Base.h"
+#include "Function.h"
 
-#undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Event
 
 namespace TCUIEdit { namespace core { namespace package
 {
-    class Event : public Base
+    class Event : public Function
     {
-    protected:
-        ui::Event* m_lastUI;
     public:
         Event(Package *package);
 
@@ -26,4 +23,4 @@ namespace TCUIEdit { namespace core { namespace package
     };
 }}}
 
-
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME

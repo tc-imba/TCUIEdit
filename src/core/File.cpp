@@ -68,7 +68,6 @@ namespace TCUIEdit { namespace core
         if (m_stream)delete m_stream;
         m_stream = NULL;
         this->close();
-        m_file = NULL;
         m_lineNum = 0;
         m_data.clear();
         m_category = CATEGORY_UNKNOWN;
@@ -129,8 +128,9 @@ namespace TCUIEdit { namespace core
     {
         if (m_file)
         {
-            m_file->close();
+            if (m_file->isOpen()) m_file->close();
             delete m_file;
+            m_file = NULL;
         }
     }
 

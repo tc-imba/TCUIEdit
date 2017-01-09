@@ -3,6 +3,7 @@
 //
 
 #include "Call.h"
+#include "../package/Package.h"
 
 namespace TCUIEdit { namespace core { namespace ui
 {
@@ -12,7 +13,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_type = TRIGGER_CALL;
 
-        this->setName(pair.first);
+        this->setName(pair.first, true);
 
         auto it = pair.second.constBegin();
         // Value 0: first game version in which this function is valid
@@ -28,12 +29,13 @@ namespace TCUIEdit { namespace core { namespace ui
         // Value 2: return type
         if (it != pair.second.constEnd())
         {
-            m_returnType = *it++;
+            this->setReturnType(*it++);
         }
         // Value 3+: argument types
         while (it != pair.second.constEnd())
         {
             m_arguments.push_back(Argument(*it++));
+            m_argumentNum++;
         }
     }
 
@@ -59,7 +61,9 @@ namespace TCUIEdit { namespace core { namespace ui
 
     void Call::setReturnType(const QString &returnType)
     {
+        m_pkg->removeCategoryUI(this);
         m_returnType = returnType;
+        m_pkg->addCategoryUI(this);
     }
 
     const QString Call::formDisplay() const

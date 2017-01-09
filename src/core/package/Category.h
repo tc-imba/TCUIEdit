@@ -6,7 +6,6 @@
 
 #include "Base.h"
 
-#undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Category
 
 namespace TCUIEdit { namespace core { namespace package
@@ -30,5 +29,4 @@ namespace TCUIEdit { namespace core { namespace package
 
 }}}
 
-
-
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME

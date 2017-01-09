@@ -11,7 +11,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_type = TRIGGER_EVENT;
 
-        this->setName(pair.first);
+        this->setName(pair.first, true);
 
         auto it = pair.second.constBegin();
         // Value 0: first game version in which this function is valid
@@ -23,6 +23,7 @@ namespace TCUIEdit { namespace core { namespace ui
         while (it != pair.second.constEnd())
         {
             m_arguments.push_back(Argument(*it++));
+            m_argumentNum++;
         }
     }
 

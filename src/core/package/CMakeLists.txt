@@ -10,4 +10,5 @@ set(SOURCE_FILES_PACKAGE
         package/Condition.cpp
         package/Action.cpp
         package/Call.cpp
+        package/Function.cpp
         )

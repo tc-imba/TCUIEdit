@@ -39,6 +39,7 @@ namespace TCUIEdit { namespace core { namespace ui
     {
         m_lastFlagNum = 0;
         for (int i = 0; i < FLAG_NUM; i++)m_flag[i] = false;
+        m_argumentNum = 0;
     }
 
     Function::~Function()
@@ -51,8 +52,9 @@ namespace TCUIEdit { namespace core { namespace ui
         return this->BASE_TO_FUNCTION(m_type);
     }
 
-    void Function::_addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType, bool limitsFlag)
+    void Function::_addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType)
     {
+        bool limitsFlag = dataType == Argument::MIN;
         auto itArg = m_arguments.begin();
         auto itList = list.constBegin();
         bool endFlag = false;
@@ -65,18 +67,35 @@ namespace TCUIEdit { namespace core { namespace ui
             if (itArg != m_arguments.end() & !endFlag)
             {
                 (*itArg).m_data[dataType] = (*itList++);
-                if (itList != list.constEnd() && limitsFlag)(*itArg).m_data[Argument::MAX] = (*itList++);
+                if ((*itArg).m_data[dataType] == "_")(*itArg).m_data[dataType] = "";
+                if (itList != list.constEnd() && limitsFlag)
+                {
+                    (*itArg).m_data[Argument::MAX] = (*itList++);
+                    if ((*itArg).m_data[Argument::MAX] == "_")(*itArg).m_data[dataType] = "";
+                }
                 ++itArg;
             }
             else
             {
+                auto _itList = itList;
+                while (_itList != list.constEnd())
+                {
+                    if ((*_itList).length() > 0 && (*_itList) != "_" && (*_itList) != "nothing")break;
+                    ++_itList;
+                }
+                if (_itList == list.constEnd())return;
 #ifdef QT_DEBUG
                 qDebug() << typeName() << m_name << list;
 #endif
                 endFlag = true;
                 Argument arg("");
                 arg.m_data[dataType] = (*itList++);
-                if (itList != list.constEnd() && limitsFlag)arg.m_data[Argument::MAX] = (*itList++);
+                if (arg.m_data[dataType] == "_")arg.m_data[dataType] = "";
+                if (itList != list.constEnd() && limitsFlag)
+                {
+                    arg.m_data[Argument::MAX] = (*itList++);
+                    if (arg.m_data[Argument::MAX] == "_")arg.m_data[dataType] = "";
+                }
                 m_arguments.push_back(arg);
             }
         }
@@ -91,7 +110,7 @@ namespace TCUIEdit { namespace core { namespace ui
     void Function::_addLimits(const QPair<QString, QStringList> &pair)
     {
         m_flag[FLAG_LIMITS] = true;
-        this->_addArgumentData(pair.second, Argument::MIN, true);
+        this->_addArgumentData(pair.second, Argument::MIN);
     }
 
     void Function::_addCategory(const QPair<QString, QStringList> &pair)
@@ -135,15 +154,63 @@ namespace TCUIEdit { namespace core { namespace ui
                 break;
             }
         }
+        // Fix some old problems in YDWE ui
+        if (!successFlag)
+        {
+            if (pair.first.length() == 0)
+            {
+                if (pair.second.size() == 1)
+                {
+                    if (!m_flag[FLAG_CATEGORY] &&
+                        m_pkg->project()->matchUI(pair.second.first(), ui::Base::TRIGGER_CATEGORY) != NULL)
+                    {
+                        this->_addCategory(pair);
+                        m_flag[FLAG_CATEGORY] = false;
+                        successFlag = true;
+                    }
+                }
+                if (!m_flag[FLAG_DEFAULTS] && !successFlag)
+                {
+                    if (pair.second.size() > 0)
+                    {
+                        auto &str = pair.second.first();
+                        QString cmp = FLAG_NAME[FLAG_DEFAULTS];
+                        if (str.left(cmp.length()) == cmp)
+                        {
+                            str = str.mid(cmp.length() + 1);
+                        }
+                    }
+                    this->_addDefaults(pair);
+                    m_flag[FLAG_DEFAULTS] = false;
+                    successFlag = true;
+                }
+            }
+            else if (pair.first == FLAG_NAME[FLAG_DEFAULTS] && !m_flag[FLAG_LIMITS])
+            {
+                this->_addLimits(pair);
+                m_flag[FLAG_LIMITS] = false;
+                successFlag = true;
+            }
+            else if (pair.first == "_Script" && !m_flag[FLAG_SCRIPT])
+            {
+                this->_addScript(pair);
+                m_flag[FLAG_SCRIPT] = false;
+                successFlag = true;
+            }
+        }
+
 #ifdef QT_DEBUG
         if (!successFlag)qDebug() << typeName() << m_name << pair.first << pair.second;
 #endif
     }
 
-    void Function::setName(const QString &name)
+    void Function::setName(const QString &name, bool firstFlag)
     {
-        m_pkg->project()->removeUI(this);
-        m_pkg->removeCategoryUI(this);
+        if (!firstFlag)
+        {
+            m_pkg->project()->removeUI(this);
+            m_pkg->removeCategoryUI(this);
+        }
         m_name = name;
         m_pkg->project()->addUI(this);
         m_pkg->addCategoryUI(this);
@@ -200,7 +267,7 @@ namespace TCUIEdit { namespace core { namespace ui
         bool firstFlag = true;
         for (auto &it:m_arguments)
         {
-            this->_addArgument(str, it.m_data[Argument::DEFAULT], firstFlag);
+            this->_addArgument(str, _arg_(it.m_data[Argument::DEFAULT]), firstFlag);
             firstFlag = false;
         }
         // Limits
@@ -210,8 +277,8 @@ namespace TCUIEdit { namespace core { namespace ui
             str += "\n" + this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_LIMITS]);
             for (auto &it:m_arguments)
             {
-                this->_addArgument(str, it.m_data[Argument::MIN], firstFlag);
-                this->_addArgument(str, it.m_data[Argument::MAX]);
+                this->_addArgument(str, _arg_(it.m_data[Argument::MIN]), firstFlag);
+                this->_addArgument(str, _arg_(it.m_data[Argument::MAX]));
                 firstFlag = false;
             }
         }
@@ -233,7 +300,7 @@ namespace TCUIEdit { namespace core { namespace ui
                 str += "\n" + this->_formArgument(0, "_" + m_name + FLAG_NAME[FLAG_AI_DEFAULTS]);
                 for (auto &it:m_arguments)
                 {
-                    this->_addArgument(str, it.m_data[Argument::AI_DEFAULT], firstFlag);
+                    this->_addArgument(str, _arg_(it.m_data[Argument::AI_DEFAULT]), firstFlag);
                     firstFlag = false;
                 }
             }

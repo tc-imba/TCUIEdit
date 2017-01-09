@@ -14,12 +14,12 @@ namespace TCUIEdit { namespace core
         return m_weStringMap;
     }
 
-    QMap<QString, QPair<bool, int> > Project::categoryNumMap()
+    QMap<QString, QPair<bool, int> > &Project::categoryNumMap()
     {
         return m_categoryNumMap;
     }
 
-    QMap<QString, QPair<bool, int> > Project::typeNumMap()
+    QMap<QString, QPair<bool, int> > &Project::typeNumMap()
     {
         return m_typeNumMap;
     }
@@ -51,6 +51,7 @@ namespace TCUIEdit { namespace core
         }
 
         auto name = ui->name();
+        name = name.toLower();
 
         if (m_uiMap.find(name, ui) == m_uiMap.end())
         {
@@ -58,30 +59,30 @@ namespace TCUIEdit { namespace core
         }
         if (ui->type() == ui::Base::TRIGGER_CATEGORY)
         {
-            auto it = m_categoryNumMap.find(ui->name());
+            auto it = m_categoryNumMap.find(name);
             if (it != m_categoryNumMap.end())(*it).first = true;
-            else m_categoryNumMap.insert(ui->name(), qMakePair(true, 0));
+            else m_categoryNumMap.insert(name, qMakePair(true, 0));
         }
         else if (ui->type() == ui::Base::TRIGGER_TYPE)
         {
-            auto it = m_typeNumMap.find(ui->name());
+            auto it = m_typeNumMap.find(name);
             if (it != m_typeNumMap.end())(*it).first = true;
-            else m_typeNumMap.insert(ui->name(), qMakePair(true, 0));
+            else m_typeNumMap.insert(name, qMakePair(true, 0));
         }
-        else if (ui->isFunction())
+        /*else if (ui->isFunction())
         {
             auto category = ((ui::Function *) ui)->category();
             auto it = m_categoryNumMap.find(category);
             if (it != m_categoryNumMap.end())(*it).second++;
-            else m_categoryNumMap.insert(ui->name(), qMakePair(false, 1));
+            else m_categoryNumMap.insert(category, qMakePair(false, 1));
             if (ui->type() == ui::Base::TRIGGER_CALL)
             {
                 auto type = ((ui::Call *) ui)->returnType();
                 it = m_typeNumMap.find(type);
                 if (it != m_typeNumMap.end())(*it).second++;
-                else m_typeNumMap.insert(ui->name(), qMakePair(false, 1));
+                else m_typeNumMap.insert(type, qMakePair(false, 1));
             }
-        }
+        }*/
         /*else
         {
             throw UIExceptionRedefined();
@@ -90,7 +91,7 @@ namespace TCUIEdit { namespace core
 
     QList<ui::Base *> Project::getUI(const QString &name) const
     {
-        return m_uiMap.values(name);
+        return m_uiMap.values(name.toLower());
     }
 
     QList<ui::Base *> Project::examineUI(const ui::Base *ui) const
@@ -116,6 +117,7 @@ namespace TCUIEdit { namespace core
         }
 
         auto name = ui->name();
+        name = name.toLower();
 
         /*if (this->hashtable.find(name, ui) == this->hashtable.end())
         {
@@ -126,21 +128,21 @@ namespace TCUIEdit { namespace core
         {
             if (this->matchUI(name, ui::Base::TRIGGER_CATEGORY) == NULL)
             {
-                auto it = m_categoryNumMap.find(ui->name());
+                auto it = m_categoryNumMap.find(name);
                 if (it != m_categoryNumMap.end())(*it).first = false;
-                else m_categoryNumMap.insert(ui->name(), qMakePair(false, 0));
+                else m_categoryNumMap.insert(name, qMakePair(false, 0));
             }
         }
         else if (ui->type() == ui::Base::TRIGGER_TYPE)
         {
             if (this->matchUI(name, ui::Base::TRIGGER_TYPE) == NULL)
             {
-                auto it = m_typeNumMap.find(ui->name());
+                auto it = m_typeNumMap.find(name);
                 if (it != m_typeNumMap.end())(*it).first = false;
-                else m_typeNumMap.insert(ui->name(), qMakePair(false, 0));
+                else m_typeNumMap.insert(name, qMakePair(false, 0));
             }
         }
-        else if (ui->isFunction())
+        /*else if (ui->isFunction())
         {
             auto category = ((ui::Function *) ui)->category();
             auto it = m_categoryNumMap.find(category);
@@ -151,7 +153,7 @@ namespace TCUIEdit { namespace core
                 it = m_typeNumMap.find(type);
                 if (it != m_typeNumMap.end())(*it).second--;
             }
-        }
+        }*/
     }
 
     ui::Base *Project::matchUI(const QString &name, ui::Base::TYPE type) const

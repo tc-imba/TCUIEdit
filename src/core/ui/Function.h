@@ -54,14 +54,20 @@ namespace TCUIEdit { namespace core { namespace ui
     protected:
         QString m_version, m_category, m_useWithAI, m_script;
         QList<Argument> m_arguments;
+        int m_argumentNum;
         bool m_flag[FLAG_NUM];
         int m_lastFlagNum;
 
-        void _addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType, bool limitsFlag = false);
+        void _addArgumentData(const QStringList &list, Argument::DATA_TYPE dataType);
 
         typedef void (Function::*FUNC)(const QPair<QString, QStringList> &);
 
         static const FUNC _add[FLAG_NUM];
+
+        inline QString _arg_(const QString &arg)
+        {
+            return arg.length() == 0 ? "_" : arg;
+        }
 
         void _addDefaults(const QPair<QString, QStringList> &pair);
 
@@ -84,7 +90,7 @@ namespace TCUIEdit { namespace core { namespace ui
 
         void add(QPair<QString, QStringList> pair);
 
-        void setName(const QString &name);
+        void setName(const QString &name, bool firstFlag = false);
 
         const QString &category() const;
 

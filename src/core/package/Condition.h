@@ -3,17 +3,14 @@
 //
 
 #pragma once
-#include "Base.h"
+#include "Function.h"
 
-#undef TCUIEDIT_UIPACKAGE_BASE_NAME
 #define TCUIEDIT_UIPACKAGE_BASE_NAME ui::Condition
 
 namespace TCUIEdit { namespace core { namespace package
 {
-    class Condition : public Base
+    class Condition : public Function
     {
-    protected:
-        ui::Condition* m_lastUI;
     public:
         Condition(Package *package);
 
@@ -25,3 +22,4 @@ namespace TCUIEdit { namespace core { namespace package
     };
 }}}
 
+#undef TCUIEDIT_UIPACKAGE_BASE_NAME
