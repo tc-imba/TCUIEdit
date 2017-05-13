@@ -14,15 +14,8 @@ Linux: gcc_64
 In CLion, you should set Working Directory to the base path of the project in Configuration and Build with the option `TCUIEdit_automoc`.  
 在 Clion 中，必须把工作路径设为项目路径，并使用 `TCUIEdit_automoc` 进行编译
 
-After cloned, enter the command below  
-克隆后，在控制台输入以下命令
-
-```
-git update-index --assume-unchanged CMakeConfig.txt
-```
-
-Then, edit the file `CMakeConfig.txt` to config your QT Path.  
-然后编辑 `CMakeConfig.txt` 配置 QT 路径
+After cloned, create the file `CMakeConfig` to config your QT Path.
+克隆后，创建 `CMakeConfig` 以配置 QT 路径
 
 ## For Windows Users
 
