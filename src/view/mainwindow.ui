@@ -56,16 +56,47 @@
    </property>
    <widget class="QMenu" name="menuTCUIEdit">
     <property name="title">
-     <string>Files</string>
+     <string>File</string>
     </property>
     <addaction name="separator"/>
+    <addaction name="actionNew_Project"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionClose_Project"/>
+    <addaction name="separator"/>
+    <addaction name="actionProject_Settings"/>
+   </widget>
+   <widget class="QMenu" name="menuCompile">
+    <property name="title">
+     <string>Compile</string>
+    </property>
    </widget>
    <addaction name="menuTCUIEdit"/>
+   <addaction name="menuCompile"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAaa">
    <property name="text">
     <string>aaa</string>
+   </property>
+  </action>
+  <action name="actionNew_Project">
+   <property name="text">
+    <string>New Project</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionClose_Project">
+   <property name="text">
+    <string>Close Project</string>
+   </property>
+  </action>
+  <action name="actionProject_Settings">
+   <property name="text">
+    <string>Project Settings</string>
    </property>
   </action>
  </widget>
