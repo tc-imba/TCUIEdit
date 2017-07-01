@@ -59,3 +59,5 @@ CTestTestfile.cmake
 /bin
 /tmp/*
 !/tmp/.gitkeep
+
+CMakeConfig

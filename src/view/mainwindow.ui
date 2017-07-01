@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1007</width>
-    <height>585</height>
+    <width>1206</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,8 +50,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1007</width>
-     <height>19</height>
+     <width>1206</width>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTCUIEdit">

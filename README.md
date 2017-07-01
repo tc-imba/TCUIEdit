@@ -47,9 +47,7 @@ If you have some compile errors about `gl.h` or `glu.h`, it is because you haven
 
 ```
 sudo apt-get install build-essential
-sudo apt-get install libgl1-mesa-dev
-sudo apt-get install libglu1-mesa-dev
-sudo apt-get install freeglut3-dev
+sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
 ```
 
 ## For MacOS Users
